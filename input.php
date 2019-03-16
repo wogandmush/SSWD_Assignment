@@ -47,4 +47,4 @@ function input(string $name, string $label, string $type, array $options = null,
 	}
 }
 
-echo input("UserId", "Insert User Id:", "text", array(), array(), ['UserIp' => 'bugger']);
+echo input("UserId", "Insert User Id:", "text", array(), array(), ['UserId' => 'bugger']);
