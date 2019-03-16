@@ -41,7 +41,7 @@ index_edit : page : - - A
  - Allows the editing of the feature information presented on the homepage
 
 
-registration : user & fee : P M A
+registration : user & fee : P M A 
  - Displays fee information and allows member to register.
  - There should be 3 fees levels with differing title, benefits, and price
  - Member must choose which classes they are registering for
@@ -101,4 +101,10 @@ header : n/a : P M A
 logout : n/a : P M A
  - A user should be able to access a logout script from a link in the header.
  - When this logout script executes, the session should be destroyed and the user should recieve a logout confirmation message, before being return to the index page
+
+
+
+	----Currently Working on----
+
+Oisin: Registration + Login                	 Martin:                               Dan:
 
