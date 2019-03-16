@@ -106,5 +106,5 @@ logout : n/a : P M A
 
 	----Currently Working on----
 
-Oisin: Registration + Login                	 Martin:                               Dan:
+Oisin: Getting Registration + Login working             Martin:                        Dan:
 
