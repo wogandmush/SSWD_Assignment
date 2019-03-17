@@ -9,7 +9,7 @@ session_start();
 		<meta charset="utf-8">
 		<title>=Fitness Club Website</title>
 		<link rel="stylesheet" href="reset.css">
-		<link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
+		<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
