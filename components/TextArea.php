@@ -1,17 +1,15 @@
 <?php
-class Input{
+class TextArea{
 	private $name; // the name attribute
 	private $label; // The text for the label field
-	private $type; // text, email, tel, password
 	private $attributes; // array to set things like maxlength, required, etc
 	private $data; // data retrieved from GET/POST request
 	private $errors; // array of errors to print out
 
-	public function __construct(string $name, string $label, string $type, array $attributes = array()){
+	public function __construct(string $name, string $label, array $attributes = array()){
 		//$this->name  === this.name in java
 		$this->name = $name;
 		$this->label = $label;			
-		$this->type = $type;
 		$this->attributes = $attributes; //attributes are optional
 	}
 	public function setAttributes(array $attributes){ //pass in an array of attributes
@@ -42,7 +40,7 @@ class Input{
 		foreach($this->errors as $error){
 			$output .= "<small class='text-danger'>$error</small>";
 		}
-		$output .="	<input name='$this->name' id='$this->name' class='form-control' type=$this->type ";
+		$output .="	<textarea name='$this->name' id='$this->name' class='form-control'";
 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
@@ -55,7 +53,7 @@ class Input{
 			}
 		}
 
-		$output .="	/>
+		$output .="	></textarea>
 				</div>";
 		return $output;
 	}
@@ -67,7 +65,7 @@ class Input{
 	elseif (!empty($this->data)){
 		$output = "<div class='form-group'>
 					<label class='text-success' for='$this->name'>$this->label</label>
-					<input name='$this->name' id='$this->name' class='form-control' type='$this->type' value='$this->data' ";
+					<textarea name='$this->name' id='$this->name' class='form-control'";
 				 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
@@ -81,7 +79,7 @@ class Input{
 		}
 				
 				
-		$output .= " />
+		$output .= ">$this->data</textarea>
 				</div>";
 		return $output;
 	}
@@ -92,7 +90,7 @@ class Input{
 		 */
 		$output = "<div class='form-group'>
 					<label for='$this->name'>$this->label</label>
-					<input name='$this->name' id='$this->name' class='form-control' type='$this->type' ";
+					<textarea name='$this->name' id='$this->name' class='form-control'";
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
 				if ($key === 'required'){
@@ -103,7 +101,7 @@ class Input{
 				}
 			}
 		}	 
-		$output .= "/>
+		$output .= "></textarea>
 				</div>";
 		return $output;
 	}

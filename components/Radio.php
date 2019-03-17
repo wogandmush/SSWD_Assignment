@@ -7,7 +7,7 @@ class Radio{
 	private $data; // data retrieved from GET/POST request
 	private $errors; // array of errors to print out
 
-	public function __construct($name, $label, $options = array(), $attributes = array()){
+	public function __construct(string $name, string $label, array $options = array(), array $attributes = array()){
 		//$this->name  === this.name in java
 		$this->name = $name;
 		$this->label = $label;			
@@ -17,10 +17,10 @@ class Radio{
 	public function getName(){
 		return $this->name;
 	}
-	public function setAttributes($attributes){ //pass in an array of attributes
+	public function setAttributes(array $attributes){ //pass in an array of attributes
 		$this->attributes += $attributes;
 	}
-	public function setOptions($options){
+	public function setOptions(array $options){
 		$this->options += $options;
 	}
 	public function getOptions(){

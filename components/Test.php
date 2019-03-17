@@ -67,6 +67,12 @@ $checkTest->render();
 $checkTest->setError("What did you do?!");
 $checkTest->render();
 
+include 'TextArea.php';
+
+$testArea = new TextArea('address', 'Enter Address: ');
+
+$testArea->render();
+
 ?>
 
 		<button type="submit">Submit</button>
