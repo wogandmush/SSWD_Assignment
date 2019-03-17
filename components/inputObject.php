@@ -17,6 +17,9 @@ class Input{
 	public function setAttributes($attributes){ //pass in an array of attributes
 		$this->attributes += $attributes;
 	}
+	public function getName(){
+		return $this->name;
+	}
 	public function getData(){
 		return $this->data;
 	}

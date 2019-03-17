@@ -14,6 +14,9 @@ class Radio{
 		$this->options = $options;
 		$this->attributes = $attributes; //attributes are optional
 	}
+	public function getName(){
+		return $this->name;
+	}
 	public function setAttributes($attributes){ //pass in an array of attributes
 		$this->attributes += $attributes;
 	}

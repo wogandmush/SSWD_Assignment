@@ -14,6 +14,9 @@ class Select{
 		$this->options = $options;
 		$this->attributes = $attributes; //attributes are optional
 	}
+	public function getName(){
+		return $this->name;
+	}
 	public function setAttributes($attributes){ //pass in an array of attributes
 		$this->attributes += $attributes;
 	}
@@ -49,7 +52,7 @@ class Select{
 			$output .= "<small class='text-danger'>$error</small>";
 		}
 
-		$output .="	<select id='$this->name' class='form-control' ";
+		$output .="	<select name='$this->name' id='$this->name' class='form-control' ";
 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
@@ -84,7 +87,7 @@ class Select{
 	elseif (!empty($this->data)){
 		$output = "<div class='form-group'>
 					<label class='text-success' for='$this->name'>$this->label</label>
-					<select id='$this->name' class='form-control' ";
+					<select name='$this->name' id='$this->name' class='form-control' ";
 				 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
@@ -131,7 +134,7 @@ class Select{
 		 */
 		$output = "<div class='form-group'>
 					<label for='$this->name'>$this->label</label>
-					<select id='$this->name' class='form-control' ";
+					<select name='$this->name' id='$this->name' class='form-control' ";
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
 				if ($key === 'required'){
