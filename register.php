@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$phonenoError = 'phone number should be filled and match the following format eg 0852534837';
 	} else {
 		$phoneno = validate($_POST['phoneno']);
-		if (!preg_match('/^[0-9]{10}+$/', $phoneno)) {
+		if (!preg_match('/^[0-9]{7,}$/', $phoneno)) {
 			$phonenoError = 'phone number should only contain numbers and match the following format eg 0852534837';
 		}
 	}
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$mobilephonenoError = 'mobile phone number should be filled and match the following format eg 0852534837 ';
 	} else {
 		$mobilephoneno = validate($_POST['mobilephoneno']);
-		if (!preg_match('/^[0-9]{10}+$/', $mobilephoneno)) {
+		if (!preg_match('/^[0-9]{10,}$/', $mobilephoneno)) {
 			$mobilephonenoError = 'mobile phone number should only contain numbers and match the following format eg 0852534837';
 		}
 	}
@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <?php
             
-        $sql = "INSERT INTO members (user_no, first_name, last_name, date_of_birth, gender, mobile, home_tel, email, address, membership, password) VALUES ('$userno', '$name', '$lname', '$dateofbirth', '$gender', '$mobilephoneno', '$phoneno', '$email', '$address', '$membership', '$password')";
+        $sql = "INSERT INTO member (user_no, first_name, last_name, date_of_birth, gender, mobile, home_tel, email, address, membership, password) VALUES ('$userno', '$name', '$lname', '$dateofbirth', '$gender', '$mobilephoneno', '$phoneno', '$email', '$address', '$membership', '$password')";
         if(mysqli_query($conn, $sql)){
             echo "<p>New row added successfully!</p>";  
         }else{

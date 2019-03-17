@@ -7,6 +7,7 @@ session_start();
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>=Fitness Club Website</title>
 		<link rel="stylesheet" href="reset.css">
 		<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">

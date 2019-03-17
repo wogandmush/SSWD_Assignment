@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `members`
+-- Table structure for table `member`
 --
 
-CREATE TABLE `members` (
+CREATE TABLE `member` (
   `user_no` int(11) NOT NULL,
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
@@ -43,10 +43,10 @@ CREATE TABLE `members` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `members`
+-- Dumping data for table `member`
 --
 
-INSERT INTO `members` (`user_no`, `first_name`, `last_name`, `date_of_birth`, `gender`, `mobile`, `home_tel`, `email`, `address`, `membership`, `password`) VALUES
+INSERT INTO `member` (`user_no`, `first_name`, `last_name`, `date_of_birth`, `gender`, `mobile`, `home_tel`, `email`, `address`, `membership`, `password`) VALUES
 (24, 'dfgfdg', 'dfhdfhfd', '2019-03-11', 'male', '0874563457', '0852324323', 'joe@hotmail.com', 'dsgdsg sdg ssdg sdg dsg dsg sdg ds gds ds', 'Adult Yearly', '3463467347347'),
 (14, 'agadsgdas', 'fdafaf', '2019-03-11', 'male', '014563457', '014563457', 'oisinmac45@hotmail.com', 'hgdfjdfjgdjgdfj dfgj dgj dfg jdj dgf j gfj ggdjg jdg jgdf fgj', 'Student Monthly', '54456536356'),
 (32, 'dfgfdgdf', 'dfhdfhdfh', '2019-03-26', 'female', '014563457', '014563457', 'john@hotmail.com', 'sdfhdfshfdhf sdfhfdshfdsh sdfh fsdh sdfh df hss dfh dfsh', 'Adult Monthly', '435645625472547'),
@@ -60,7 +60,7 @@ INSERT INTO `members` (`user_no`, `first_name`, `last_name`, `date_of_birth`, `g
 --
 -- Indexes for table `members`
 --
-ALTER TABLE `members`
+ALTER TABLE `member`
   ADD PRIMARY KEY (`user_no`);
 
 --
@@ -70,7 +70,7 @@ ALTER TABLE `members`
 --
 -- AUTO_INCREMENT for table `members`
 --
-ALTER TABLE `members`
+ALTER TABLE `member`
   MODIFY `user_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2344;
 COMMIT;
 
