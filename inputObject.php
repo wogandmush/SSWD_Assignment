@@ -34,7 +34,7 @@ class Input{
 		foreach($this->errors as $error){
 			$output .= "<small class='text-danger'>$error</small>";
 		}
-		$output .="	<input type=$this->type />
+		$output .="	<input id='$this->name' class='form-control' type=$this->type />
 				</div>";
 		return $output;
 	}
@@ -46,7 +46,7 @@ class Input{
 	elseif (!empty($this->data)){
 		$output = "<div class='form-group'>
 					<label class='text-success' for='$this->name'>$this->label</label>
-					<input type=$this->type value=$this->data />
+					<input id='$this->name' class='form-control' type=$this->type value=$this->data />
 				</div>";
 		return $output;
 	}
@@ -57,7 +57,7 @@ class Input{
 		 */
 		return "<div class='form-group'>
 					<label for='$this->name'>$this->label</label>
-					<input type='$this->type' />
+					<input id='$this->name' class='form-control' type='$this->type' />
 				</div>";
 	}
 

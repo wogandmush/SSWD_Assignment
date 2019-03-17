@@ -10,7 +10,7 @@ session_start();
 		<title>=Fitness Club Website</title>
 		<link rel="stylesheet" href="reset.css">
 		<link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
-		<link rel="styleshseet" href="css/style.css">
+		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
 	<header>
@@ -23,4 +23,5 @@ session_start();
 				<li><a href="#">Link4</a></li>
 			</ul>
 		</nav>
+	</header>
 
