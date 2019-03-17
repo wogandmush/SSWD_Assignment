@@ -1,21 +1,30 @@
 <?php
-class Input{
+class Select{
 	private $name; // the name attribute
 	private $label; // The text for the label field
-	private $type; // text, email, tel, password
+	private $options; //array of options
 	private $attributes; // array to set things like maxlength, required, etc
 	private $data; // data retrieved from GET/POST request
 	private $errors; // array of errors to print out
 
-	public function __construct($name, $label, $type, $attributes = array()){
+	public function __construct($name, $label, $options = array(), $attributes = array()){
 		//$this->name  === this.name in java
 		$this->name = $name;
 		$this->label = $label;			
-		$this->type = $type;
+		$this->options = $options;
 		$this->attributes = $attributes; //attributes are optional
 	}
 	public function setAttributes($attributes){ //pass in an array of attributes
 		$this->attributes += $attributes;
+	}
+	public function setOptions($options){
+		$this->options += $options;
+	}
+	public function getOptions(){
+		return $this->options;	
+	}
+	public function removeOption($option){
+		unset($this->options[$option]);
 	}
 	public function getData(){
 		return $this->data;
@@ -39,7 +48,8 @@ class Input{
 		foreach($this->errors as $error){
 			$output .= "<small class='text-danger'>$error</small>";
 		}
-		$output .="	<input id='$this->name' class='form-control' type=$this->type ";
+
+		$output .="	<select id='$this->name' class='form-control' ";
 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
@@ -52,19 +62,29 @@ class Input{
 			}
 		}
 
-		$output .="	/>
+		$output .=">";
+
+		foreach($this->options as $value=>$text){
+
+			if(is_numeric($value)){			
+				$output .= "<option>$text</option>";
+			}
+			else {
+				$output .= "<option value='$value'>$text</option>";
+			}
+		}
+
+		$output .= "</select>
 				</div>";
+
+
 		return $output;
 	}
 
-/* print the sticky version of the input
- * this assumes that validated data will be added to an array
- * to a key = $name attribute of the input
- */
 	elseif (!empty($this->data)){
 		$output = "<div class='form-group'>
 					<label class='text-success' for='$this->name'>$this->label</label>
-					<input id='$this->name' class='form-control' type=$this->type value=$this->data ";
+					<select id='$this->name' class='form-control' ";
 				 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
@@ -77,9 +97,31 @@ class Input{
 			}
 		}
 				
-				
-		$output .= " />
+		$output .=">";
+
+		foreach($this->options as $value=>$text){
+
+			if(is_numeric($value)){			
+				if($this->data === $text){
+					$output .= "<option selected='selected'>$text</option>";
+				}
+				else {
+					$output .= "<option>$text</option>";
+				}
+			}
+			else {
+				if($this->data === $value){
+					$output .= "<option value='$value' selected='selected'>$text</option>";
+				}
+				else{
+					$output .= "<option value='$value'>$text</option>";
+				}
+			}
+		}
+
+		$output .= "</select>
 				</div>";
+				
 		return $output;
 	}
 	else {
@@ -89,7 +131,7 @@ class Input{
 		 */
 		$output = "<div class='form-group'>
 					<label for='$this->name'>$this->label</label>
-					<input id='$this->name' class='form-control' type='$this->type' ";
+					<select id='$this->name' class='form-control' ";
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
 				if ($key === 'required'){
@@ -100,8 +142,21 @@ class Input{
 				}
 			}
 		}	 
-		$output .= "/>
+		$output .=">";
+
+		foreach($this->options as $value=>$text){
+
+			if(is_numeric($value)){			
+				$output .= "<option>$text</option>";
+			}
+			else {
+				$output .= "<option value='$value'>$text</option>";
+			}
+		}
+
+		$output .= "</select>
 				</div>";
+
 		return $output;
 	}
 
