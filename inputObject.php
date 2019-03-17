@@ -45,7 +45,7 @@ class Input{
 		if(!empty($this->options)){
 			foreach($this->options as $key=>$value){
 				if ($key === 'required'){
-					$output .='required';
+					$output .='required ';
 				}
 				else{
 					$output .= "$key='$value' ";
@@ -53,7 +53,7 @@ class Input{
 			}
 		}
 
-		$output .= "	/>
+		$output .="	/>
 				</div>";
 		return $output;
 	}
@@ -70,7 +70,7 @@ class Input{
 		if(!empty($this->options)){
 			foreach($this->options as $key=>$value){
 				if ($key === 'required'){
-					$output .='required';
+					$output .='required ';
 				}
 				else{
 					$output .= "$key='$value' ";
@@ -79,7 +79,7 @@ class Input{
 		}
 				
 				
-				"	/>
+		$output .= " />
 				</div>";
 		return $output;
 	}
@@ -94,7 +94,7 @@ class Input{
 		if(!empty($this->options)){
 			foreach($this->options as $key=>$value){
 				if ($key === 'required'){
-					$output .='required';
+					$output .='required ';
 				}
 				else{
 					$output .= "$key='$value' ";
