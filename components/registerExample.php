@@ -8,9 +8,9 @@
  *
  */
 include '../header.php';
-include 'inputObject.php';
-include 'radioObject.php';
-include 'selectObject.php';
+include 'Input.php';
+include 'Radio.php';
+include 'Select.php';
 
 //initiate objects before validating
 $student_no = new Input('student_no', 'Student number: ', 'number');
