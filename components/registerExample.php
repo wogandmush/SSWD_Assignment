@@ -1,4 +1,12 @@
 <?php
+/* 
+ * An abridged version of lab5, using objects
+ *
+ * Hopefully this will show how much easier it is to make forms with these objects.
+ *
+ * Don't forget to pass in options and attributes as arrays
+ *
+ */
 include '../header.php';
 include 'inputObject.php';
 include 'radioObject.php';
