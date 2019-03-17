@@ -43,6 +43,18 @@ $selectTest->render();
 $selectTest->setError("uh oh");
 $selectTest->render();
 
+include 'radioObject.php';
+
+$radioTest = new Radio("gender", "Gender: ");
+$radioTest->setOptions(array("male", "female"));
+$radioTest->render();
+
+$radioTest->setData('female');
+$radioTest->render();
+
+$radioTest->setError('not a flying toy');
+$radioTest->render();
+
 ?>
 
 
