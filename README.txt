@@ -2,7 +2,7 @@
 
     ----Currently Working on----
 
-Oisin: Getting Registration + Login working         
+Oisin: Getting Registration + Login working ~50% done - registration is working and im going to imlement basic login and test filtering content based on whether user is member, admin or public.          
 
 Martin:                      
 
