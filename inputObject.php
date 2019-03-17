@@ -34,7 +34,20 @@ class Input{
 		foreach($this->errors as $error){
 			$output .= "<small class='text-danger'>$error</small>";
 		}
-		$output .="	<input id='$this->name' class='form-control' type=$this->type />
+		$output .="	<input id='$this->name' class='form-control' type=$this->type ";
+
+		if(!empty($this->options)){
+			foreach($this->options as $key->$value){
+				if ($key === 'required'){
+					$output .='required';
+				}
+				else{
+					$output .= "$key='$value' ";
+				}
+			}
+		}
+
+		$output /="	/>
 				</div>";
 		return $output;
 	}
@@ -46,7 +59,21 @@ class Input{
 	elseif (!empty($this->data)){
 		$output = "<div class='form-group'>
 					<label class='text-success' for='$this->name'>$this->label</label>
-					<input id='$this->name' class='form-control' type=$this->type value=$this->data />
+					<input id='$this->name' class='form-control' type=$this->type value=$this->data ";
+				 
+		if(!empty($this->options)){
+			foreach($this->options as $key->$value){
+				if ($key === 'required'){
+					$output .='required';
+				}
+				else{
+					$output .= "$key='$value' ";
+				}
+			}
+		}
+				
+				
+				"	/>
 				</div>";
 		return $output;
 	}
@@ -55,9 +82,20 @@ class Input{
 		 * default form
 		 * This such as required, maxlength etc can be stored in an options array
 		 */
-		return "<div class='form-group'>
+		$output = "<div class='form-group'>
 					<label for='$this->name'>$this->label</label>
-					<input id='$this->name' class='form-control' type='$this->type' />
+					<input id='$this->name' class='form-control' type='$this->type' ";
+		if(!empty($this->options)){
+			foreach($this->options as $key->$value){
+				if ($key === 'required'){
+					$output .='required';
+				}
+				else{
+					$output .= "$key='$value' ";
+				}
+			}
+		}	 
+		$output .= "/>
 				</div>";
 	}
 
