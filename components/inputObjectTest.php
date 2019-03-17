@@ -1,8 +1,7 @@
 <?php
 
-include 'header.php';
+include '../header.php';
 
-#include 'input.php';
 include 'inputObject.php';
 
 ?>
@@ -13,7 +12,7 @@ include 'inputObject.php';
 /*make an instance of the class, with name=name, labeltext="entername, and 
  * type="text":
  */
-/*
+
 $inputTest = new Input("name", "Enter Name", "text");
 $inputTest->setAttributes(array('placeholder' => "E.g. John Doe", 'required'=>true));
 
@@ -27,7 +26,6 @@ $inputTest->render();
 //input when error has occurred
 $inputTest->setError("Invalid name");
 $inputTest->render();
- */
 
 
 include './selectObject.php';
@@ -61,7 +59,7 @@ $radioTest->render();
 	</form>
 </div>
 <?php
-include 'footer.php';
+include '../footer.php';
 
 
 
