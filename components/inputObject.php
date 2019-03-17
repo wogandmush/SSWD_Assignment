@@ -39,7 +39,7 @@ class Input{
 		foreach($this->errors as $error){
 			$output .= "<small class='text-danger'>$error</small>";
 		}
-		$output .="	<input id='$this->name' class='form-control' type=$this->type ";
+		$output .="	<input name='$this->name' id='$this->name' class='form-control' type=$this->type ";
 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
@@ -64,7 +64,7 @@ class Input{
 	elseif (!empty($this->data)){
 		$output = "<div class='form-group'>
 					<label class='text-success' for='$this->name'>$this->label</label>
-					<input id='$this->name' class='form-control' type=$this->type value=$this->data ";
+					<input name='$this->name' id='$this->name' class='form-control' type='$this->type' value='$this->data' ";
 				 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
@@ -89,7 +89,7 @@ class Input{
 		 */
 		$output = "<div class='form-group'>
 					<label for='$this->name'>$this->label</label>
-					<input id='$this->name' class='form-control' type='$this->type' ";
+					<input name='$this->name' id='$this->name' class='form-control' type='$this->type' ";
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
 				if ($key === 'required'){

@@ -34,13 +34,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 	// validate
 
-	$first_name->setData('Martin');
+	//$first_name->setData('Martin');
+	var_dump($_POST);
 
 	$date_of_birth->setError('Not a valid date of birth');
+	//$gender->setData($_POST['gender']);
+	$major->setData('Computer Science');
+	$first_name->setData($_POST['first_name']);
+	$student_no->setData($_POST['student_no']);
 }
 
-	$gender->setData('female');
-	$major->setData('Computer Science');
 	// render
 
 	echo "<form method='POST' action=''>
@@ -49,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		$student_no->render();
 		$first_name->render();
 		$date_of_birth->render();
-		$gender->render();
+		//$gender->render();
 		$major->render();
 
 	echo "<button type='submit'>Register Student</button>
