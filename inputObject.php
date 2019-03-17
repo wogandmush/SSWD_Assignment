@@ -15,6 +15,9 @@ class Input{
 		$this->type = $type;
 		$this->options = $options; //options are optional
 	}
+	public function setOptions($options){ //pass in an array of options
+		$this->options += $options;
+	}
 	public function getData($data){
 		return $this->data;
 	}
@@ -24,8 +27,11 @@ class Input{
 	public function setError($error){
 		$this->errors[] = $error;
 	}
-
 	public function render(){
+		echo $this->getString();
+	}
+
+	public function getString(){
 
 	if(!empty($this->errors)){
 		$output =  "<div class='form-group'>
@@ -37,7 +43,7 @@ class Input{
 		$output .="	<input id='$this->name' class='form-control' type=$this->type ";
 
 		if(!empty($this->options)){
-			foreach($this->options as $key->$value){
+			foreach($this->options as $key=>$value){
 				if ($key === 'required'){
 					$output .='required';
 				}
@@ -47,7 +53,7 @@ class Input{
 			}
 		}
 
-		$output /="	/>
+		$output .= "	/>
 				</div>";
 		return $output;
 	}
@@ -62,7 +68,7 @@ class Input{
 					<input id='$this->name' class='form-control' type=$this->type value=$this->data ";
 				 
 		if(!empty($this->options)){
-			foreach($this->options as $key->$value){
+			foreach($this->options as $key=>$value){
 				if ($key === 'required'){
 					$output .='required';
 				}
@@ -86,7 +92,7 @@ class Input{
 					<label for='$this->name'>$this->label</label>
 					<input id='$this->name' class='form-control' type='$this->type' ";
 		if(!empty($this->options)){
-			foreach($this->options as $key->$value){
+			foreach($this->options as $key=>$value){
 				if ($key === 'required'){
 					$output .='required';
 				}
@@ -97,6 +103,7 @@ class Input{
 		}	 
 		$output .= "/>
 				</div>";
+		return $output;
 	}
 
 	}

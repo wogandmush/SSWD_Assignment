@@ -14,17 +14,18 @@ include 'inputObject.php';
  * type="text":
  */
 $inputTest = new Input("name", "Enter Name", "text");
+$inputTest->setOptions(array('placeholder' => "E.g. John Doe", 'required'=>true));
 
 //default input
-echo $inputTest->render();
+$inputTest->render();
 
 //input with successfully validated data
 $inputTest->setData("Dan");
-echo $inputTest->render();
+$inputTest->render();
 
 //input when error has occurred
 $inputTest->setError("Invalid name");
-echo $inputTest->render();
+$inputTest->render();
 ?>
 	</form>
 </div>
