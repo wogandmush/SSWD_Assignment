@@ -1,18 +1,19 @@
 <?php
 ini_set('display_errors', 1);
 class Input{
-	private $name;
-	private $label;
-	private $type;
-	private $options;
-	private $data;
-	private $errors;
+	private $name; // the name attribute
+	private $label; // The text for the label field
+	private $type; // text, email, tel, password
+	private $options; // array to set things like maxlength, required, etc
+	private $data; // data retrieved from GET/POST request
+	private $errors; // array of errors to print out
 
 	public function __construct($name, $label, $type, $options = array()){
+		//$this->name  === this.name in java
 		$this->name = $name;
 		$this->label = $label;			
 		$this->type = $type;
-		$this->options = $options;
+		$this->options = $options; //options are optional
 	}
 	public function getData($data){
 		return $this->data;
