@@ -6,7 +6,7 @@ Oisin: Getting Registration + Login working
 
 Martin:                      
 
-Dan: Creating reusable code for form fields
+Dan: Creating reusable code for form fields - ~90% done - just need to allow CheckBox and Radio to work with attributes
 
     ----Web Application Requirements----
 
