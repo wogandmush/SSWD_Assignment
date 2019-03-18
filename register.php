@@ -1,7 +1,8 @@
 <?php
 
-require '../config/connect.php';
 
+include 'header.php';
+require '../config/connect.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -119,20 +120,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     {
 		// completed the form
 		?>
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title>Complete Form</title>
-                <style type="text/css">
-                    .error {
-                        color:red;
-                    }
-                </style>
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/materia/bootstrap.min.css">
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        </head>
-        <body>
             <div class="text-center">
                 <h1><strong><br>You have filled the form successfully!</strong></h1>
                 <h5><strong><br><br>Your user number is </strong></h5> <?php echo $userno ?><br>         
@@ -169,24 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Complete Form</title>
-        <style type="text/css">
-            .error {
-                color:red;
-            }
-        </style>
-    <!-- Materia -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/materia/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<body>
     
-	
-	
 	
 	
     <div class="container"> 
@@ -351,5 +321,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
 		</form>
 	 </div>
-</body>
-</html>
+<?php
+include 'footer.php';
+?>

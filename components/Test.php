@@ -1,7 +1,6 @@
 <?php
 include '../header.php';
 
-include 'Input.php';
 
 ?>
 <div class="container">
@@ -27,7 +26,6 @@ $inputTest->setError("Invalid name");
 $inputTest->render();
 
 
-include './Select.php';
 
 $selectTest = new Select("favorite_movie", "Select your favorite movie");
 
@@ -40,7 +38,6 @@ $selectTest->render();
 $selectTest->setError("uh oh");
 $selectTest->render();
 
-include 'Radio.php';
 
 $radioTest = new Radio("gender", "Gender: ");
 $radioTest->isRequired(true);
@@ -54,7 +51,6 @@ $radioTest->render();
 $radioTest->setError('not a flying toy');
 $radioTest->render();
 
-include 'CheckBox.php';
 
 $checkTest = new CheckBox('interests', 'Select your interests: ');
 $checkTest->setAttributes(array('required'));
@@ -69,7 +65,6 @@ $checkTest->render();
 $checkTest->setError("What did you do?!");
 $checkTest->render();
 
-include 'TextArea.php';
 $testArea = new TextArea('address', 'Enter Address: ');
 
 $testArea->render();

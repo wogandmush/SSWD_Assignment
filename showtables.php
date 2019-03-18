@@ -1,29 +1,8 @@
 <?php
 
 ini_set('display_errors', 1);
+include 'header.php';
 require '../config/connect.php';
-
-	?>
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title>Complete Form</title>
-                <style type="text/css">
-                    .error {
-                        color:red;
-                    }
-                </style>
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/materia/bootstrap.min.css">
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        </head>
-        <body>
-       
-                
-                           
-        </body>
-
-        <?php
        
         $sql = "SELECT * FROM member";
 if($result = mysqli_query($conn, $sql)){
@@ -76,6 +55,8 @@ if($result = mysqli_query($conn, $sql)){
 }else{
     echo "<p>Unable to excecute: $sql. " . mysqli_error($conn) ."</p>";   
 }
+
+include 'footer.php';
 
 ?>
 

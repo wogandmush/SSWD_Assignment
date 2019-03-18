@@ -7,11 +7,11 @@
  * Don't forget to pass in options and attributes as arrays
  *
  */
-include '../header.php';
-include 'Input.php'; //import the Input class
-include 'Radio.php'; //import the Radio class
-include 'Select.php'; //import the Select class
-include 'CheckBox.php'; //import the CheckBox class
+#include '../header.php';
+#include 'Input.php'; //import the Input class
+#include 'Radio.php'; //import the Radio class
+#include 'Select.php'; //import the Select class
+#include 'CheckBox.php'; //import the CheckBox class
 
 //initiate objects before validating
 /*

@@ -40,7 +40,7 @@ CREATE TABLE `member` (
   `address` varchar(100) NOT NULL,
   `membership` varchar(15) NOT NULL,
   `password` varchar(30) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+);
 
 --
 -- Dumping data for table `member`
