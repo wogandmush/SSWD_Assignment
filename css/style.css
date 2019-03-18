@@ -18,16 +18,25 @@
 /* style to get navbar working
  * don't change this!
  */
-#nav-div {
-	display: block;
-}
-
-.collapse {
-	height: 0px;
-	transition: 400ms;
-}
-
-.show {
-	height: 15em;
+@media (max-width: 991px){
+	#nav-div {
+		display: block;
+	}
+	.collapse{
+		height: 0px;
+		transition: 400ms;
+	}
+	.collapse *:not(.show){
+		height: 0px;
+		opacity: 0;
+	}
+	.show {
+		height: 15em;
+	}
+	.show * {
+		height: auto !important;
+		opacity: 1 !important;
+		transition: opacity 200ms !important;
+	}
 }
 /*End of navbar stuff*/
