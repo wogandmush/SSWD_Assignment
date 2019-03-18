@@ -1,5 +1,4 @@
 <?php
-
 include '../header.php';
 
 include 'Input.php';
@@ -44,10 +43,12 @@ $selectTest->render();
 include 'Radio.php';
 
 $radioTest = new Radio("gender", "Gender: ");
+$radioTest->isRequired(true);
 $radioTest->setOptions(array("male", "female"));
 $radioTest->render();
 
 $radioTest->setData('female');
+$radioTest->isRequired(false);
 $radioTest->render();
 
 $radioTest->setError('not a flying toy');
@@ -56,6 +57,7 @@ $radioTest->render();
 include 'CheckBox.php';
 
 $checkTest = new CheckBox('interests', 'Select your interests: ');
+$checkTest->setAttributes(array('required'));
 $checkTest->setOptions(array("Music", "Drinking", "Fishing"));
 
 
@@ -68,7 +70,6 @@ $checkTest->setError("What did you do?!");
 $checkTest->render();
 
 include 'TextArea.php';
-
 $testArea = new TextArea('address', 'Enter Address: ');
 
 $testArea->render();

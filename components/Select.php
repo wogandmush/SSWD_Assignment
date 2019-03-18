@@ -38,6 +38,16 @@ class Select{
 	public function setError($error){
 		$this->errors[] = $error;
 	}
+	public function isRequired(bool $which){
+		if($which){
+			$this->attributes[] = 'required';
+		}
+		else {
+			$this->attributes = array_filter($this->attributes, function($val){
+				return $val !== 'required';
+			});
+		}
+	}
 	public function render(){
 		echo $this->getString();
 	}

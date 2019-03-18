@@ -38,6 +38,16 @@ class Radio{
 	public function setError($error){
 		$this->errors[] = $error;
 	}
+	public function isRequired(bool $which){
+		if($which){
+			$this->attributes[] = 'required';
+		}
+		else {
+			$this->attributes = array_filter($this->attributes, function($val){
+				return $val !== 'required';
+			});
+		}
+	}
 	public function render(){
 		echo $this->getString();
 	}
@@ -60,8 +70,11 @@ class Radio{
 									id='$this->name-$label'
 									name='$this->name'
 									type='radio'
-									value='$label'
-								>
+									value='$label'";
+				if(in_array('required', $this->attributes)){
+					$output .= ' required ';
+				}
+				$output .= ">
 								<label class='form-check-label' for='$this->name-$label'>$label</label>
 							</div>";
 			}
@@ -73,8 +86,11 @@ class Radio{
 									id='$this->name-$value'
 									name='$this->name'
 									type='radio'
-									value='$value'
-								>
+									value='$value'";
+				if(in_array('required', $this->attributes)){
+					$output .= " required ";
+				}
+				$output .= ">
 								<label class='form-check-label' for='$this->name-$value'>$label</label>
 							</div>";
 			}
@@ -98,7 +114,12 @@ class Radio{
 									name='$this->name'
 									type='radio'
 									value='$label'";
-								if($this->data === $label) {$output .= " checked='checked' ";}
+				if(in_array('required', $this->attributes)){
+					$output .= ' required ';
+				}
+				if($this->data === $label) {
+					$output .= " checked='checked' ";
+				}
 				$output .= ">
 								<label class='form-check-label' for='$this->name-$label'>$label</label>
 							</div>";
@@ -112,7 +133,12 @@ class Radio{
 									name='$this->name'
 									type='radio'
 									value='$value'";
-				if($this->data === $value) {$output .= " checked='checked' ";}
+				if(in_array('required', $this->data)){
+					$output .= ' required ';
+				}
+				if($this->data === $value) {
+					$output .= " checked='checked' ";
+				}
 				$output .= ">
 								<label class='form-check-label' for='$this->name-$value'>$label</label>
 							</div>";
@@ -139,8 +165,11 @@ class Radio{
 									id='$this->name-$label'
 									name='$this->name'
 									type='radio'
-									value='$label'
-								>
+									value='$label'";
+				if(in_array('required', $this->attributes)){
+					$output .= ' required ';
+				}
+				$output .= ">
 								<label class='form-check-label' for='$this->name-$label'>$label</label>
 							</div>";
 			}
@@ -152,8 +181,11 @@ class Radio{
 									id='$this->name-$value'
 									name='$this->name'
 									type='radio'
-									value='$value'
-								>
+									value='$value'";
+				if(in_array('required', $this->attributes)){
+					$output .= ' required ';
+			}	
+				$output .= ">
 								<label class='form-check-label' for='$this->name-$value'>$label</label>
 							</div>";
 			}

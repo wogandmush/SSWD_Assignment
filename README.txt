@@ -6,11 +6,12 @@ Oisin: Getting Registration + Login working ~50% done - registration is working 
 
 Martin:                      
 
-Dan: Creating reusable code for form fields - ~90% done - just need to allow CheckBox and Radio to work with attributes
+Dan: Creating reusable code for form fields - done; // will add more functionality if needed
+	 Testimonial Approval System
 
     ----Web Application Requirements----
 
- - Handle form data in a secure mannger e.g. use HTML and PHP validation techniques when handling user input
+ - Handle form data in a secure manner e.g. use HTML and PHP validation techniques when handling user input
 
  - Make the website look professional by using good CSS techniques (frameworks) and appropriate content
 

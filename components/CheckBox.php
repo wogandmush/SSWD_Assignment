@@ -20,6 +20,9 @@ class CheckBox{
 	public function setAttributes(array $attributes){ //pass in an array of attributes
 		$this->attributes += $attributes;
 	}
+	public function getAttributes(){
+		return $this->attributes;
+	}
 	public function setOptions(array $options){
 		$this->options += $options;
 	}
@@ -37,6 +40,16 @@ class CheckBox{
 	}
 	public function setError($error){
 		$this->errors[] = $error;
+	}
+	public function isRequired(bool $which){
+		if($which){
+			$this->attributes[] = 'required';
+		}
+		else {
+			$this->attributes = array_filter($this->attributes, function($val){
+				return $val !== 'required';
+			});
+		}
 	}
 	public function render(){
 		echo $this->getString();
@@ -60,8 +73,11 @@ class CheckBox{
 									id='$this->name-$label'
 									name='$this->name[]'
 									type='checkbox'
-									value='$label'
-								>
+									value='$label'";
+				if(in_array('required', $this->attributes)){
+					$output .= " required ";
+				}
+				$output .= ">
 								<label class='form-check-label' for='$this->name-$label'>$label</label>
 							</div>";
 			}
@@ -73,8 +89,12 @@ class CheckBox{
 									id='$this->name-$value'
 									name='$this->name[]'
 									type='checkbox'
-									value='$value'
-								>
+									value='$value'";
+				if(in_array('required', $this->attributes)){
+						$output .= " required ";
+				}
+
+				$output .= ">
 								<label class='form-check-label' for='$this->name-$value'>$label</label>
 							</div>";
 			}
@@ -98,7 +118,12 @@ class CheckBox{
 									name='$this->name[]'
 									type='checkbox'
 									value='$label'";
-								if(in_array($label, $this->data)) {$output .= " checked='checked' ";}
+				if(in_array($label, $this->data)) {
+					$output .= " checked='checked' ";
+				}
+				if(in_array('required', $this->attributes)){
+						$output .= " required ";
+				}
 				$output .= ">
 								<label class='form-check-label' for='$this->name-$label'>$label</label>
 							</div>";
@@ -112,7 +137,12 @@ class CheckBox{
 									name='$this->name[]'
 									type='checkbox'
 									value='$value'";
-				if(in_array($value, $this->data)) {$output .= " checked='checked' ";}
+				if(in_array($value, $this->data)) {
+					$output .= " checked='checked' ";
+				}
+				if(in_array('required', $this->attributes)){
+					$output .= " required ";
+				}
 				$output .= ">
 								<label class='form-check-label' for='$this->name-$value'>$label</label>
 							</div>";
@@ -139,8 +169,12 @@ class CheckBox{
 									id='$this->name-$label'
 									name='$this->name[]'
 									type='checkbox'
-									value='$label'
-								>
+									value='$label'";
+
+				if(in_array('required', $this->attributes)){
+						$output .= " required ";
+				}
+				$output.= "	>
 								<label class='form-check-label' for='$this->name-$label'>$label</label>
 							</div>";
 			}
@@ -152,8 +186,12 @@ class CheckBox{
 									id='$this->name-$value'
 									name='$this->name[]'
 									type='checkbox'
-									value='$value'
-								>
+									value='$value'";
+				if(in_array('required', $this->attributes)){
+						$output .= " required ";
+				}
+
+				$output .= ">
 								<label class='form-check-label' for='$this->name-$value'>$label</label>
 							</div>";
 			}
