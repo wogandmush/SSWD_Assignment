@@ -12,9 +12,6 @@ class TextArea{
 		$this->label = $label;			
 		$this->attributes = $attributes; //attributes are optional
 	}
-	public function setAttributes(array $attributes){ //pass in an array of attributes
-		$this->attributes += $attributes;
-	}
 	public function getName(){
 		return $this->name;
 	}
@@ -24,8 +21,14 @@ class TextArea{
 	public function setData($data){
 		$this->data = $data;
 	}
+	public function getErrors(){
+		return $this->errors;
+	}
 	public function setError($error){
 		$this->errors[] = $error;
+	}
+	public function setAttributes(array $attributes){ //pass in an array of attributes
+		$this->attributes += $attributes;
 	}
 	public function isRequired(bool $which){
 		if($which){
@@ -54,7 +57,7 @@ class TextArea{
 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
-				if ($key === 'required'){
+				if ($value === 'required'){
 					$output .='required ';
 				}
 				else{
@@ -79,7 +82,7 @@ class TextArea{
 				 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
-				if ($key === 'required'){
+				if ($value === 'required'){
 					$output .='required ';
 				}
 				else{
@@ -103,7 +106,7 @@ class TextArea{
 					<textarea name='$this->name' id='$this->name' class='form-control'";
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
-				if ($key === 'required'){
+				if ($value === 'required'){
 					$output .='required ';
 				}
 				else{

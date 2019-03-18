@@ -26,6 +26,9 @@ class Input{
 	public function setData($data){
 		$this->data = $data;
 	}
+	public function getErrors(){
+		return $this->errors;
+	}
 	public function setError($error){
 		$this->errors[] = $error;
 	}

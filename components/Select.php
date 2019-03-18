@@ -17,6 +17,18 @@ class Select{
 	public function getName(){
 		return $this->name;
 	}
+	public function getData(){
+		return $this->data;
+	}
+	public function setData($data){
+		$this->data = $data;
+	}
+	public function getErrors(){
+		return $this->errors;
+	}
+	public function setError($error){
+		$this->errors[] = $error;
+	}
 	public function setAttributes(array $attributes){ //pass in an array of attributes
 		$this->attributes += $attributes;
 	}
@@ -28,15 +40,6 @@ class Select{
 	}
 	public function removeOption($option){
 		unset($this->options[$option]);
-	}
-	public function getData(){
-		return $this->data;
-	}
-	public function setData($data){
-		$this->data = $data;
-	}
-	public function setError($error){
-		$this->errors[] = $error;
 	}
 	public function isRequired(bool $which){
 		if($which){
@@ -66,7 +69,7 @@ class Select{
 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
-				if ($key === 'required'){
+				if ($value === 'required'){
 					$output .='required ';
 				}
 				else{
@@ -101,7 +104,7 @@ class Select{
 				 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
-				if ($key === 'required'){
+				if ($value === 'required'){
 					$output .='required ';
 				}
 				else{
@@ -147,7 +150,7 @@ class Select{
 					<select name='$this->name' id='$this->name' class='form-control' ";
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
-				if ($key === 'required'){
+				if ($value === 'required'){
 					$output .='required ';
 				}
 				else{
