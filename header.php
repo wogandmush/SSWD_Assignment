@@ -24,13 +24,13 @@ include 'components/TextArea.php';
 	</head>
 	<body>
 		<header>
-			<h1>Logo</h1>
+			<h1><a href='index.php'>Home</a></h1>
 			<nav>
 				<ul>
-					<li><a href="#">Link1</a></li>
-					<li><a href="#">Link2</a></li>
-					<li><a href="#">Link3</a></li>
-					<li><a href="#">Link4</a></li>
+					<li><a href="class.php">Classes</a></li>
+					<li><a href="testimonial.php">Testimonials</a></li>
+					<li><a href="register.php">Register</a></li>
+					<li><a href="contact.php">Contact Us</a></li>
 				</ul>
 			</nav>
 		</header>

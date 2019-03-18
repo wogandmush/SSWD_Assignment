@@ -21,7 +21,7 @@ else {
 
 		if($num > 0){
 			$data = array();
-		while($row = mysqli_fetch_array($result)){
+			while($row = mysqli_fetch_array($result)){
 				$data[] = $row;
 			}		
 			echo json_encode($data);
@@ -29,7 +29,7 @@ else {
 	}
 	else if($_SERVER['REQUEST_METHOD'] === 'POST'){ //delete doesn't seem to work
 
-		if(isset($_POST['delete')){
+		if(isset($_POST['delete'])){
 
 		$name = $_POST['name'];
 		$time = $_POST['time'];

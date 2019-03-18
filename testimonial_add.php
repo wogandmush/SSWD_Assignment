@@ -2,7 +2,7 @@
 include 'header.php';
 
 # for testing purposes
-$_SESSION['first_name'] = 'Dan';
+$_SESSION['first_name'] = 'Martin';
 $_SESSION['user_no'] = 1;
 
 if(!isset($_SESSION['user_no'])){

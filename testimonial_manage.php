@@ -23,15 +23,22 @@ else {
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'testimonial_db.php');
 	xhr.onload = function(){ // function to be executed when response recieved
+		console.log(xhr);
 		var res = xhr.responseText; // assign response data to variable res
 		if(res === ""){ //if there are no unapproved messages in database
-			return; // add function to display no pending messages here
+			var message = document.createElement("div");
+			message.innerHTML = `
+				<h3 class='text-success'>There are no testimonials pending approval at this time</h3>
+				<button class='btn btn-primary' onclick='location.href="testimonial.php"'>Return to testimonials page</button>
+			`;
+			container.appendChild(message);
 		}
+
 		else{
 			/*
 				pending = array of not-yet-approved testimonials from database
 			 */
-			var pending = JSON.parse(xhr); 
+			var pending = JSON.parse(xhr.responseText); 
 			//create an HTML element for each message
 			var messages = pending.map(msg => {
 
@@ -42,6 +49,7 @@ else {
 				message.innerHTML = `
 				<h1>${msg.first_name}</h1>
 				<p>${msg.message}</p>
+				<small>${msg.date}</small>
 				`;
 
 				//create a button element
