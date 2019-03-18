@@ -3,6 +3,10 @@
 ini_set('display_errors', 1);
 session_start();
 
+#for testing
+$_SESSION['is_admin'] = 1;
+$_SESSION['user_no'] = 1;
+
 include 'components/Input.php';
 include 'components/Select.php';
 include 'components/Radio.php';
@@ -17,21 +21,48 @@ include 'components/TextArea.php';
 		<title>=Fitness Club Website</title>
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
-                <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/materia/bootstrap.min.css">
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+			<!--
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/materia/bootstrap.min.css">
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+-->
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
 		<header>
-			<h1><a href='index.php'>Home</a></h1>
-			<nav>
-				<ul>
-					<li><a href="class.php">Classes</a></li>
-					<li><a href="testimonial.php">Testimonials</a></li>
-					<li><a href="register.php">Register</a></li>
-					<li><a href="contact.php">Contact Us</a></li>
-				</ul>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<a class="navbar-brand" href='index.php'>Home</a>
+				<button class="navbar-toggler" type="button" id="navbar-toggler"> 
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-div" aria-controls="nav-div" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button> -->
+				<div class=" collapse navbar-collapse" id="nav-div">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="class.php">Classes</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="testimonial.php">Testimonials</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="register.php">Register</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="contact.php">Contact Us</a>
+						</li>
+					</ul>
+				</div>
 			</nav>
+			<script>
+				//bootstrap wasn't working, so I had to do toggle manually
+				var navdiv = document.getElementById("nav-div");
+				var navToggle = document.getElementById("navbar-toggler");
+				navToggle.addEventListener("click", _=> {
+					navdiv.classList.toggle("show");
+				});
+			</script>
+
 		</header>
 

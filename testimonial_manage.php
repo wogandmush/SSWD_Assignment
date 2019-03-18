@@ -2,7 +2,6 @@
 include 'header.php'; 
 #^^this should be the first line of the file. Body tags are already opened
 
-$_SESSION['is_admin'] = 1;
 if(!$_SESSION['is_admin']){
 	header('Location: index.php');
 	exit();
@@ -50,7 +49,7 @@ else {
 
 				var approveBtn = document.createElement("button");
 				approveBtn.textContent = "Approve";
-				approveBtn.className = "btn btn-primary";
+				approveBtn.className = "btn btn-success btn-sm";
 				approveBtn.addEventListener("click", _=> {
 					post("approve", msg.first_name, msg.date);
 					container.removeChild(message);
@@ -66,7 +65,7 @@ else {
 				rejectBtn.textContent = "Reject";
 				//add an event listener function to be executed when button
 				//is clicked
-				rejectBtn.className = "btn btn-danger";
+				rejectBtn.className = "btn btn-danger btn-sm";
 				rejectBtn.addEventListener("click", _=> {
 					//reject sends request to delete message from db
 					post("delete", msg.first_name, msg.date);

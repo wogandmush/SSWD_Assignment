@@ -14,3 +14,20 @@
 	padding: 1em;
 	justify-items: end;
 }
+
+/* style to get navbar working
+ * don't change this!
+ */
+#nav-div {
+	display: block;
+}
+
+.collapse {
+	height: 0px;
+	transition: 400ms;
+}
+
+.show {
+	height: 15em;
+}
+/*End of navbar stuff*/

@@ -9,7 +9,6 @@ if($_SESSION['is_admin']){
 
 }
 
-$_SESSION['user_no'] = 1;
 if(isset($_SESSION['user_no'])){
 
 	echo "<a href='testimonial_add.php'>Add a testimonial</a>";
