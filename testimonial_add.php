@@ -11,6 +11,7 @@ if(!isset($_SESSION['user_no'])){
 }
 else {
 
+	//initialize objects for each of our form fields
 	$testimonial = new TextArea('testimonial', "Add your testimonial: ");
 	$testimonial->setAttributes(array(
 		'maxlength'=>200, 
@@ -54,6 +55,7 @@ else {
 		include '../config/connect.php';
 		$class_name = mysqli_real_escape_string($conn, $class->getData());
 		$message = mysqli_real_escape_string($conn, $testimonial->getData());
+
 		$sql = "INSERT INTO testimonial(first_name, class_name, message) VALUES(
 			'${_SESSION['first_name']}',
 			'$class_name',
@@ -63,8 +65,7 @@ else {
 		if($result = mysqli_query($conn, $sql)){
 			echo "Testimonial submitted for approval";
 			
-			// if ! success, form will be display;
-			$success = true;
+			$success = true; // don't display form
 		}
 		else {
 			echo "Error: ".mysqli_error($conn);
@@ -72,7 +73,7 @@ else {
 		mysqli_close($conn);
 	}
 
-	if(!$success){
+	if(!$success){ // if a successful query has not been made
 
 
 ?>
@@ -80,7 +81,20 @@ else {
 	<div class="column mx-auto">
 		<form method="POST" action="#">
 <?php
+		/*
+		 * $testimonial->render() = 
+		 * <div class="form-group>
+		 * <label for='testimonial'>Add your testimonial</label>
+		 * <textarea name='testimonial' id='testimonial class='form-control' rows=5 cols=20 maxlength=200 placeholder='write your message' required></textarea>
+		 * </div>
+		 *
+		 * Also displays error message, and is sticky
+		 *
+		 * As you can see, using objects make writing forms MUCH easier
+		 *
+		 */
 	$testimonial->render();
+	//so concise!
 	$class->render();
 ?>
 			<button class="btn btn-primary">Submit</button>

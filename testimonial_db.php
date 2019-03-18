@@ -27,7 +27,9 @@ else {
 			echo json_encode($data);
 		}
 	}
-	else if($_SERVER['REQUEST_METHOD'] === 'POST'){
+	else if($_SERVER['REQUEST_METHOD'] === 'POST'){ //delete doesn't seem to work
+
+		if(isset($_POST['delete')){
 
 		$name = $_POST['name'];
 		$time = $_POST['time'];
@@ -36,6 +38,7 @@ else {
 		$result = mysqli_query($conn, $sql);
 		echo $result;
 
+		}
 
 	}
 
