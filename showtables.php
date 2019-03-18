@@ -25,7 +25,7 @@ require '../config/connect.php';
 
         <?php
        
-        $sql = "SELECT * FROM members";
+        $sql = "SELECT * FROM member";
 if($result = mysqli_query($conn, $sql)){
    // print_r($result); 
     if(mysqli_num_rows($result)>0){
