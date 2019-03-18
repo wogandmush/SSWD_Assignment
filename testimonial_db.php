@@ -27,8 +27,14 @@ else {
 			echo json_encode($data);
 		}
 	}
-	else if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+	else if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
+		$name = $_POST['name'];
+		$time = $_POST['time'];
+
+		$sql = "DELETE FROM testimonial WHERE first_name = '$name' AND date = '$time'";
+		$result = mysqli_query($conn, $sql);
+		echo $result;
 
 
 	}
