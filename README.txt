@@ -9,7 +9,7 @@ Oisin: Getting Registration + Login working ~50% done - registration is working 
 Martin:                      
 
 Dan: Creating reusable code for form fields - done; // will add more functionality if needed
-	 Testimonial Approval System
+	 Testimonial Approval System - db logic done!
 
     ----Web Application Requirements----
 

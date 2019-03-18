@@ -29,14 +29,24 @@ else {
 	}
 	else if($_SERVER['REQUEST_METHOD'] === 'POST'){ //delete doesn't seem to work
 
-		if(isset($_POST['delete'])){
 
 		$name = $_POST['name'];
 		$time = $_POST['time'];
 
-		$sql = "DELETE FROM testimonial WHERE first_name = '$name' AND date = '$time'";
-		$result = mysqli_query($conn, $sql);
-		echo $result;
+		if(isset($_POST['delete'])){
+
+			$sql = "DELETE FROM testimonial WHERE first_name = '$name' AND date = '$time'";
+			$result = mysqli_query($conn, $sql);
+			echo $result;
+
+		}
+		else if(isset($_POST['approve'])){
+
+			$sql = "UPDATE testimonial SET approved = 1 WHERE first_name = '$name' AND date = '$time'";
+
+
+			$result = mysqli_query($conn, $sql);
+			echo $result;
 
 		}
 

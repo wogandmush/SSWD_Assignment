@@ -26,12 +26,7 @@ else {
 		console.log(xhr);
 		var res = xhr.responseText; // assign response data to variable res
 		if(res === ""){ //if there are no unapproved messages in database
-			var message = document.createElement("div");
-			message.innerHTML = `
-				<h3 class='text-success'>There are no testimonials pending approval at this time</h3>
-				<button class='btn btn-primary' onclick='location.href="testimonial.php"'>Return to testimonials page</button>
-			`;
-			container.appendChild(message);
+			noPending();
 		}
 
 		else{
@@ -50,23 +45,43 @@ else {
 				<h1>${msg.first_name}</h1>
 				<p>${msg.message}</p>
 				<small>${msg.date}</small>
+				<br/>
 				`;
 
+				var approveBtn = document.createElement("button");
+				approveBtn.textContent = "Approve";
+				approveBtn.className = "btn btn-primary";
+				approveBtn.addEventListener("click", _=> {
+					post("approve", msg.first_name, msg.date);
+					container.removeChild(message);
+					if(container.children.length === 0){
+						noPending();
+					}
+				});
+
+				message.appendChild(approveBtn);
+
 				//create a button element
-				var button = document.createElement("button");
-				button.textContent = "Delete";
+				var rejectBtn = document.createElement("button");
+				rejectBtn.textContent = "Reject";
 				//add an event listener function to be executed when button
 				//is clicked
-				button.addEventListener("click", _=> {
+				rejectBtn.className = "btn btn-danger";
+				rejectBtn.addEventListener("click", _=> {
 					//reject sends request to delete message from db
-					reject(msg.first_name, msg.date);
+					post("delete", msg.first_name, msg.date);
 
 					//delete message from the page
 					container.removeChild(message);
+
+					if(container.children.length === 0){
+						noPending();
+					}
 				});
 
 				//append the button to the message div
-				message.appendChild(button);
+				message.appendChild(rejectBtn);
+				message.style.margin = "10px auto";
 
 				//add message to the array, messages
 				return message;
@@ -86,20 +101,40 @@ else {
 		* and time of the testimonial as parameters. 
 		* (http DELETE request don't seem to be allowed on knuth)
 	 */
-	function reject(name, time){
-		var deleteReq = new XMLHttpRequest();
+	function post(action, name, time){
+		var req = new XMLHttpRequest();
 		//DELETE doesn't seem to be allowed on knuth :(
-		deleteReq.open("POST", "testimonial_db.php");
-		deleteReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		req.open("POST", "testimonial_db.php");
+		req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
 		//function to be executed when message deleted from db
-		deleteReq.onload = function(){
-			console.log(deleteReq);
-			console.log(deleteReq.responseText);
+		req.onload = function(){
+			console.log(req);
+			console.log(req.responseText);
 		}
 		//send request to delete the rejected testimonial
-		deleteReq.send(`delete=true&name=${name}&time=${time}`);
+		req.send(`${action}=true&name=${name}&time=${time}`);
 	}
+	function noPending(){
+
+			var message = document.createElement("div");
+			message.innerHTML = `
+				<h3 class='text-success'>There are no testimonials pending approval at this time</h3>
+				<button class='btn btn-primary' onclick='location.href="testimonial.php"'>Return to testimonials page</button>
+			`;
+			container.appendChild(message);
+
+	}
+
+	/*
+	function approve(name, time){
+		var putReq = new XMLHttpRequest();
+		putReq.open("PUT", "testimonial_db.php");
+		putReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+		de
+
+	 */
 
 
 </script>

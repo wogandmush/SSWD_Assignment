@@ -5,3 +5,12 @@
 .error {
 	color: red;
 }
+
+.testimonial {
+	width: 80%;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 4fr 1fr;
+	padding: 1em;
+	justify-items: end;
+}
