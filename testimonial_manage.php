@@ -40,10 +40,10 @@ else {
 
 				//inner html of the div:
 				message.innerHTML = `
-				<h1>${msg.first_name}</h1>
-				<p>${msg.message}</p>
-				<small>${msg.date}</small>
-				<br/>
+				<h1>${msg.first_name}<\/h1>
+				<p>${msg.message}<\/p>
+				<small>${msg.date}<\/small>
+				<br\/>
 				`;
 
 				var approveBtn = document.createElement("button");
@@ -118,8 +118,8 @@ else {
 		var message = document.createElement("div");
 		//set the content of the element
 		message.innerHTML = `
-			<h3 class='text-success'>There are no testimonials pending approval at this time</h3>
-			<button class='btn btn-primary' onclick='location.href="testimonial.php"'>Return to testimonials page</button>
+			<h3 class='text-success'>There are no testimonials pending approval at this time<\/h3>
+			<button class='btn btn-primary' onclick='location.href="testimonial.php"'>Return to testimonials page<\/button>
 		`;
 		//append the element to the container
 		container.appendChild(message);

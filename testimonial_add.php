@@ -34,21 +34,20 @@ else {
 			$testimonial->setError("Text Area was left blank");
 		}
 		else{
-			$temp = $_POST['testimonial'];
-			//validate
-			$testimonial->setData($temp);
+			//setData automatically call htmlspecialchars
+			$testimonial->setData($_POST['testimonial');
 		}
 
 		if(empty($_POST['class'])){
 			$class->setError('Please choose a class');
 		}
+		else if(!in_array($_POST['class'], $class->getOptions())){
+			$class->setError('Not a valid value for class');
+		}
 		else {
-			$temp = $_POST['class'];
-			//validate
-			$class->setData($temp);
+			$class->setData($_POST['class']);
 		}
 
-		$testimonial->setError("You are a poo");
 
 		//noErrors returns false if any input object has an error
 		//it can take any number of arguments

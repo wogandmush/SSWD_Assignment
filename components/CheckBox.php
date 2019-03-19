@@ -36,7 +36,7 @@ class CheckBox{
 		return $this->data;
 	}
 	public function setData($data){
-		$this->data = $data;
+		$this->data = htmlspecialchars($data);
 	}
 	public function getErrors(){
 		return $this->errors;
@@ -68,20 +68,20 @@ class CheckBox{
 			$output .= "<small class='text-danger'>$error</small>";
 		}
 
-		foreach($this->options as $value=>$label){
-			if(is_numeric($value)){
+		foreach($this->options as $label=>$value){
+			if(is_numeric($label)){
 				$output .= "<div class='form-check'>
 								<input 
 									class='form-check-input' 
-									id='$this->name-$label'
+									id='$this->name-$value'
 									name='$this->name[]'
 									type='checkbox'
-									value='$label'";
+									value='$value'";
 				if(in_array('required', $this->attributes)){
 					$output .= " required ";
 				}
 				$output .= ">
-								<label class='form-check-label' for='$this->name-$label'>$label</label>
+								<label class='form-check-label' for='$this->name-$value'>$value</label>
 							</div>";
 			}
 			else {
@@ -112,15 +112,15 @@ class CheckBox{
 		$output = "<div class='form-group'>
 					<label class='text-success'>$this->label</label>";
 
-		foreach($this->options as $value=>$label){
-			if(is_numeric($value)){
+		foreach($this->options as $label=>$value){
+			if(is_numeric($label)){
 				$output .= "<div class='form-check'>
 								<input 
 									class='form-check-input' 
 									id='$this->name-$label'
 									name='$this->name[]'
 									type='checkbox'
-									value='$label'";
+									value='$value'";
 				if(in_array($label, $this->data)) {
 					$output .= " checked='checked' ";
 				}
@@ -128,7 +128,7 @@ class CheckBox{
 						$output .= " required ";
 				}
 				$output .= ">
-								<label class='form-check-label' for='$this->name-$label'>$label</label>
+								<label class='form-check-label' for='$this->name-$value'>$value</label>
 							</div>";
 			}
 			else {
@@ -164,25 +164,24 @@ class CheckBox{
 		$output = "<div class='form-group'>
 					<label>$this->label</label>";
 
-		foreach($this->options as $value=>$label){
-			if(is_numeric($value)){
+		foreach($this->options as $label=>$value){
+			if(is_numeric($label)){
 				$output .= "<div class='form-check'>
 								<input 
 									class='form-check-input' 
-									id='$this->name-$label'
+									id='$this->name-$value'
 									name='$this->name[]'
 									type='checkbox'
-									value='$label'";
+									value='$value'";
 
 				if(in_array('required', $this->attributes)){
 						$output .= " required ";
 				}
 				$output.= "	>
-								<label class='form-check-label' for='$this->name-$label'>$label</label>
+								<label class='form-check-label' for='$this->name-$value'>$value</label>
 							</div>";
 			}
 			else {
-				// add code for 'is required' here
 				$output .= "<div class='form-check'>
 								<input 
 									class='form-check-input' 

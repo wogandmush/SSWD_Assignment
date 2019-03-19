@@ -24,7 +24,7 @@ class Input{
 		return $this->data;
 	}
 	public function setData($data){
-		$this->data = $data;
+		$this->data = trim(htmlspecialchars($data));
 	}
 	public function getErrors(){
 		return $this->errors;

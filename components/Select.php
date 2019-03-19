@@ -11,7 +11,7 @@ class Select{
 		//$this->name  === this.name in java
 		$this->name = $name;
 		$this->label = $label;			
-		$this->options = $options;
+		$this->options = $options; // labeltext => value
 		$this->attributes = $attributes; //attributes are optional
 	}
 	public function getName(){
@@ -21,7 +21,7 @@ class Select{
 		return $this->data;
 	}
 	public function setData($data){
-		$this->data = $data;
+		$this->data = htmlspecialchars($data);
 	}
 	public function getErrors(){
 		return $this->errors;
@@ -33,6 +33,7 @@ class Select{
 		$this->attributes += $attributes;
 	}
 	public function setOptions(array $options){
+		//option: LabelText => Value
 		$this->options += $options;
 	}
 	public function getOptions(){
@@ -59,7 +60,7 @@ class Select{
 
 	if(!empty($this->errors)){
 		$output =  "<div class='form-group'>
-			<label class='text-danger' for='$this->name'>$this->label</label>";
+			<label class='text-danger' for='$this->name'>$this->label </label>";
 
 		foreach($this->errors as $error){
 			$output .= "<small class='text-danger'>$error</small>";
@@ -80,13 +81,13 @@ class Select{
 
 		$output .=">";
 
-		foreach($this->options as $value=>$text){
+		foreach($this->options as $label=>$value){
 
 			if(is_numeric($value)){			
-				$output .= "<option>$text</option>";
+				$output .= "<option>$value</option>";
 			}
 			else {
-				$output .= "<option value='$value'>$text</option>";
+				$output .= "<option value='$value'>$label</option>";
 			}
 		}
 
@@ -115,22 +116,22 @@ class Select{
 				
 		$output .=">";
 
-		foreach($this->options as $value=>$text){
+		foreach($this->options as $label=>$value){
 
-			if(is_numeric($value)){			
-				if($this->data === $text){
-					$output .= "<option selected='selected'>$text</option>";
+			if(is_numeric($label)){			
+				if($this->data === $value){
+					$output .= "<option selected='selected'>$value</option>";
 				}
 				else {
-					$output .= "<option>$text</option>";
+					$output .= "<option>$value</option>";
 				}
 			}
 			else {
 				if($this->data === $value){
-					$output .= "<option value='$value' selected='selected'>$text</option>";
+					$output .= "<option value='$value' selected='selected'>$label</option>";
 				}
 				else{
-					$output .= "<option value='$value'>$text</option>";
+					$output .= "<option value='$value'>$label</option>";
 				}
 			}
 		}
@@ -160,13 +161,13 @@ class Select{
 		}	 
 		$output .=">";
 
-		foreach($this->options as $value=>$text){
+		foreach($this->options as $label=>$value){
 
-			if(is_numeric($value)){			
-				$output .= "<option>$text</option>";
+			if(is_numeric($label)){			
+				$output .= "<option>$value</option>";
 			}
 			else {
-				$output .= "<option value='$value'>$text</option>";
+				$output .= "<option value='$value'>$label</option>";
 			}
 		}
 

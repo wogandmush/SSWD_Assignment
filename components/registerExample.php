@@ -44,8 +44,7 @@ $date_of_birth->setAttributes(array('required'=>true));
  * The third optional argument is 'Options', which should be an array.
  * Options can be indexed or not. 
  *
- * If indexed, the key is the value sent, and the value is set label text
- * i.e. setOptions(array($value=>$labeltext));
+ * If indexed, the key is the label text, and the value is set is the value sent* i.e. setOptions(array($labelText=>$value));
  *
  * Otherwise, the value and label text will both be set to the array value
  *
@@ -53,7 +52,7 @@ $date_of_birth->setAttributes(array('required'=>true));
  */
 
 $gender = new Radio('gender', 'Gender: ');
-$gender->setOptions(array('male'=>'Male', 'female'));
+$gender->setOptions(array('Male'=>'male', 'female'));
 
 /*
  * Select takes the same arguments as radio
