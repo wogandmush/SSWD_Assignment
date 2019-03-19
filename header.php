@@ -53,9 +53,17 @@ include 'components/noErrors.php';
 						<li class="nav-item">
 							<a class="nav-link" href="register.php">Register</a>
 						</li>
+                        <li class="nav-item">
+							<a class="nav-link" href="login.php">Login</a>
+						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="contact.php">Contact Us</a>
 						</li>
+                        <button class="btn btn-success ml-auto">logged in as <?php $_SESSION['first_name'] ?></button>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <p> </p>
 					</ul>
 				</div>
 			</nav>
