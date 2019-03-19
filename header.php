@@ -1,17 +1,19 @@
 <?php
 
-ini_set('display_errors', 1);
 session_start();
 
-#for testing
+###for testing###
 $_SESSION['is_admin'] = 1;
+$_SESSION['first_name'] = 'Dan';
 $_SESSION['user_no'] = 1;
+ini_set('display_errors', 1);
 
 include 'components/Input.php';
 include 'components/Select.php';
 include 'components/Radio.php';
 include 'components/CheckBox.php';
 include 'components/TextArea.php';
+include 'components/noErrors.php';	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +23,8 @@ include 'components/TextArea.php';
 		<title>=Fitness Club Website</title>
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
+
+			<!-- commented out until needed -->
 			<!--
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/materia/bootstrap.min.css">
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -63,6 +67,4 @@ include 'components/TextArea.php';
 					navdiv.classList.toggle("show");
 				});
 			</script>
-
 		</header>
-

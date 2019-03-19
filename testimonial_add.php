@@ -1,10 +1,6 @@
 <?php 
 include 'header.php';
 
-# for testing purposes
-$_SESSION['first_name'] = 'Martin';
-$_SESSION['user_no'] = 1;
-
 if(!isset($_SESSION['user_no'])){
 	header('Location: index.php');
 	exit();
@@ -51,26 +47,33 @@ else {
 			//validate
 			$class->setData($temp);
 		}
-				
-		include '../config/connect.php';
-		$class_name = mysqli_real_escape_string($conn, $class->getData());
-		$message = mysqli_real_escape_string($conn, $testimonial->getData());
 
-		$sql = "INSERT INTO testimonial(first_name, class_name, message) VALUES(
-			'${_SESSION['first_name']}',
-			'$class_name',
-			'$message'
-			)";
-		#echo $sql;
-		if($result = mysqli_query($conn, $sql)){
-			echo "Testimonial submitted for approval";
-			
-			$success = true; // don't display form
+		$testimonial->setError("You are a poo");
+
+		//noErrors returns false if any input object has an error
+		//it can take any number of arguments
+		if(noErrors($class, $testimonial)){
+					
+			include '../config/connect.php';
+			$class_name = mysqli_real_escape_string($conn, $class->getData());
+			$message = mysqli_real_escape_string($conn, $testimonial->getData());
+
+			$sql = "INSERT INTO testimonial(first_name, class_name, message) VALUES(
+				'${_SESSION['first_name']}',
+				'$class_name',
+				'$message'
+				)";
+			#echo $sql;
+			if($result = mysqli_query($conn, $sql)){
+				echo "Testimonial submitted for approval";
+				
+				$success = true; // don't display form
+			}
+			else {
+				echo "Error: ".mysqli_error($conn);
+			}
+			mysqli_close($conn);
 		}
-		else {
-			echo "Error: ".mysqli_error($conn);
-		}
-		mysqli_close($conn);
 	}
 
 	if(!$success){ // if a successful query has not been made
@@ -101,26 +104,6 @@ else {
 		</form>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php
 	}

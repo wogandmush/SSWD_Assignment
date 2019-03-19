@@ -148,6 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "ERROR: Unable to execute $sql" . mysql_error($conn);   
         }     
             
+		mysqli_close($conn);
 		exit(); // terminates the script
 	} 
     

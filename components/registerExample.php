@@ -7,7 +7,8 @@
  * Don't forget to pass in options and attributes as arrays
  *
  */
-#include '../header.php';
+include '../header.php';
+
 #include 'Input.php'; //import the Input class
 #include 'Radio.php'; //import the Radio class
 #include 'Select.php'; //import the Select class
@@ -63,12 +64,12 @@ $major->setOptions(array('Computer Science', 'Business', 'Journalism'));
 
 //etc
 
+$success = false;
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 	// validate
 
 	//$first_name->setData('Martin');
-	var_dump($_POST);
 
 	//use setError or setData when validating
 	$date_of_birth->setError('Not a valid date of birth');
@@ -78,8 +79,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	$major->setData($_POST[$major->getName()]);
 	$first_name->setData($_POST[$first_name->getName()]);
 	$student_no->setData($_POST[$student_no->getName()]);
-}
 
+	if(noErrors($date_of_birth, $gender, $major, $first_name, $student_no)){
+
+		//do database stuff;
+
+		$success = true;
+
+	}
+}
+if(!$success){ //display the form if db stuff/form stuff not done
 	// render
 
 	echo "<form method='POST' action=''>
@@ -92,9 +101,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		$gender->render();
 		$major->render();
 
-	echo "<button type='submit'>Register Student</button>
+	echo "<button class='btn btn-secondary' type='submit'>Register Student</button>
 		</div>
 		</form>";
-
+}
 include '../footer.php';
 ?>

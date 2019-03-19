@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `testimonial`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `testimonial` (
   `first_name` varchar(30) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `class_name` varchar(30) DEFAULT NULL,
   `message` varchar(200) DEFAULT NULL,
   `approved` tinyint(1) NOT NULL DEFAULT '0',

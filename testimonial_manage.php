@@ -17,17 +17,16 @@ else {
 	//select the div with id container
 	var container = document.getElementById("container");
 
-
-	//http GET request to be sent to testimonial_db.php
+	//when page loaded, http GET request sent to testimonial_db.php
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'testimonial_db.php');
 	xhr.onload = function(){ // function to be executed when response recieved
-		console.log(xhr);
+		//console.log(xhr);
 		var res = xhr.responseText; // assign response data to variable res
+
 		if(res === ""){ //if there are no unapproved messages in database
 			noPending();
 		}
-
 		else{
 			/*
 				pending = array of not-yet-approved testimonials from database
@@ -90,7 +89,6 @@ else {
 				container.appendChild(message);
 			});
 		}
-
 	}
 	//send request to get pending testimonials from db
 	xhr.send();
@@ -108,33 +106,24 @@ else {
 
 		//function to be executed when message deleted from db
 		req.onload = function(){
-			console.log(req);
 			console.log(req.responseText);
 		}
 		//send request to delete the rejected testimonial
 		req.send(`${action}=true&name=${name}&time=${time}`);
 	}
+
+	//function to display a message when no messages awaiting review
 	function noPending(){
-
-			var message = document.createElement("div");
-			message.innerHTML = `
-				<h3 class='text-success'>There are no testimonials pending approval at this time</h3>
-				<button class='btn btn-primary' onclick='location.href="testimonial.php"'>Return to testimonials page</button>
-			`;
-			container.appendChild(message);
-
+		//create a div element
+		var message = document.createElement("div");
+		//set the content of the element
+		message.innerHTML = `
+			<h3 class='text-success'>There are no testimonials pending approval at this time</h3>
+			<button class='btn btn-primary' onclick='location.href="testimonial.php"'>Return to testimonials page</button>
+		`;
+		//append the element to the container
+		container.appendChild(message);
 	}
-
-	/*
-	function approve(name, time){
-		var putReq = new XMLHttpRequest();
-		putReq.open("PUT", "testimonial_db.php");
-		putReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-		de
-
-	 */
-
 
 </script>
 

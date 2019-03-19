@@ -2,7 +2,6 @@
 include 'header.php'; 
 #^^this should be the first line of the file. Body tags are already opened
 
-
 if($_SESSION['is_admin']){
 
 	echo "<div><a href='testimonial_manage.php'>Manage Testimonials</a></div>";
@@ -30,22 +29,8 @@ if($result = mysqli_query($conn, $sql)){
 </span>
 			
 			</div>";
-
-		/*
-		foreach($row as $key=>$value){
-			if(is_numeric($key))
-				continue;
-			echo "<p><strong>$key</strong>: $value</p>";
-			
-		}
-		echo "</div>";
-		 */
-
 	}
-
 }
-
-
 
 ?>
 

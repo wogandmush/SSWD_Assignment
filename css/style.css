@@ -10,9 +10,14 @@
 	width: 80%;
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: 4fr 1fr;
+	grid-template-columns: 1fr 12em;
 	padding: 1em;
 	justify-items: end;
+}
+
+.testimonial span{
+	font-size: 12px;
+	align-self: end;
 }
 
 /* style to get navbar working

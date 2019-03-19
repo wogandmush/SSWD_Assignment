@@ -1,6 +1,5 @@
 <?php
 
-ini_set('display_errors', 1);
 include 'header.php';
 require '../config/connect.php';
        
@@ -56,6 +55,7 @@ if($result = mysqli_query($conn, $sql)){
     echo "<p>Unable to excecute: $sql. " . mysqli_error($conn) ."</p>";   
 }
 
+mysqli_close($conn);
 include 'footer.php';
 
 ?>
