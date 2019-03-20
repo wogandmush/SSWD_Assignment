@@ -1,4 +1,5 @@
 <?php
+phpinfo();
 /* 
  * An abridged version of lab5, using objects
  *
@@ -31,13 +32,19 @@ include '../header.php';
  * 	do the same thing
  */
 $student_no = new Input('student_no', 'Student number: ', 'number');
-$student_no->setAttributes(array('required'=>true));
+$student_no->setAttributes(array('required'));
 
 $first_name = new Input('first_name', 'First Name: ', 'text');
-$first_name->setAttributes(array('required'=>true, 'maxlength'=>20));
+$first_name->setAttributes(array('required', 'maxlength'=>20));
+
+$last_name = new Input('last_name', 'Last Name: ', 'text');
+$last_name->setAttributes(array('required', 'maxlength'=>20));
+
+$mobile = new Input('mobile', 'Mobile: ', 'tel');
+$mobile->setAttributes(array('required', 'maxlength'=>20));
 
 $date_of_birth = new Input('date_of_birth', 'Date of Birth: ', 'date');
-$date_of_birth->setAttributes(array('required'=>true));
+$date_of_birth->setAttributes(array('required'));
 
 /*
  * The Radio class' constructor takes at least two arguments, Name and Label;
@@ -71,19 +78,50 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	//$first_name->setData('Martin');
 
 	//use setError or setData when validating
-	$date_of_birth->setError('Not a valid date of birth');
+	$date_of_birth->setData($_POST['date_of_birth']);
 	// you can use the objects getName() method to dereference it's value from $_POST
 	// $_POST[$gender->getName()] === $_POST['gender']
 	$gender->setData($_POST[$gender->getName()]); 
 	$major->setData($_POST[$major->getName()]);
 	$first_name->setData($_POST[$first_name->getName()]);
+	$last_name->setData($_POST[$last_name->getName()]);
+	$mobile->setData($_POST[$mobile->getName()]);
 	$student_no->setData($_POST[$student_no->getName()]);
 
-	if(noErrors($date_of_birth, $gender, $major, $first_name, $student_no)){
+	if(noErrors($date_of_birth, $gender, $major, $first_name, $last_name, $mobile, $student_no)){
 
 		//do database stuff;
+		include '../../config/connect.php';
+		
+		// pass $conn to $field->getData() method to call mysqli_real_escape_string
 
-		$success = true;
+		$sql = "INSERT INTO student (
+					student_no,
+					first_name,
+					last_name,
+					mobile,
+					gender,
+					date_of_birth,
+					major
+				) VALUES (
+					".$student_no->getData($conn).", 
+					'".$first_name->getData($conn)."',
+					'".$last_name->getData($conn)."',
+					'".$mobile->getData($conn)."',
+					'".$gender->getData($conn)."',
+					'".$date_of_birth->getData($conn)."',
+					'".$major->getData($conn)."'
+				)";
+				
+	
+		$result = mysqli_query($conn, $sql);
+		if($result){
+			echo $result;
+			$success = true;
+		}
+		else {
+			echo "<h4 class='text-danger'>Error: ".mysqli_error($conn)."</h4>";
+		}
 
 	}
 }
@@ -96,6 +134,8 @@ if(!$success){ //display the form if db stuff/form stuff not done
 		//$object_name->render() to display the input field
 		$student_no->render();
 		$first_name->render();
+		$last_name->render();
+		$mobile->render();
 		$date_of_birth->render();
 		$gender->render();
 		$major->render();

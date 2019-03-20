@@ -35,7 +35,7 @@ else {
 		}
 		else{
 			//setData automatically call htmlspecialchars
-			$testimonial->setData($_POST['testimonial');
+			$testimonial->setData($_POST['testimonial']);
 		}
 
 		if(empty($_POST['class'])){

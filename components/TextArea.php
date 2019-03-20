@@ -15,7 +15,9 @@ class TextArea{
 	public function getName(){
 		return $this->name;
 	}
-	public function getData(){
+	public function getData($conn = null){
+		if($conn)
+			return mysqli_real_escape_string($conn, $this->data);
 		return $this->data;
 	}
 	public function setData($data){

@@ -20,7 +20,9 @@ class Input{
 	public function getName(){
 		return $this->name;
 	}
-	public function getData(){
+	public function getData($conn = null){
+		if($conn)
+			return mysqli_real_escape_string($conn, $this->data);
 		return $this->data;
 	}
 	public function setData($data){
@@ -31,6 +33,10 @@ class Input{
 	}
 	public function setError($error){
 		$this->errors[] = $error;
+	}
+	public function escape($conn){
+		$this->data = mysqli_real_escape_string($conn, $this->data);
+		return $this->data;
 	}
 	public function isRequired(bool $which){
 		if($which){
@@ -59,7 +65,7 @@ class Input{
 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
-				if ($key === 'required'){
+				if ($value === 'required'){
 					$output .='required ';
 				}
 				else{
@@ -84,7 +90,7 @@ class Input{
 				 
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
-				if ($key === 'required'){
+				if ($value === 'required'){
 					$output .='required ';
 				}
 				else{
@@ -108,7 +114,7 @@ class Input{
 					<input name='$this->name' id='$this->name' class='form-control' type='$this->type' ";
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
-				if ($key === 'required'){
+				if ($value === 'required'){
 					$output .='required ';
 				}
 				else{

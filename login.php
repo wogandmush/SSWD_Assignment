@@ -5,13 +5,13 @@
 include 'header.php';
 require '../config/connect.php';
 
-
-session_start();
-   
-$myusername = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-$password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
+//session started in header.php
+#session_start();
 
    if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+	   $myusername = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+	   $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
       // username and password sent from form 
       
       $myusername = mysqli_real_escape_string($conn, $myusername);
@@ -41,14 +41,9 @@ $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
               }
    }
 
+//<body>
 ?>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<body>
     <div id="login">
         <h3 class="text-center text-white pt-5">Login form</h3>
         <div class="container">
@@ -78,18 +73,8 @@ $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
             </div>
         </div>
     </div>
-</body>
-
-
-
-
-
-
-
-
-
-
 
 <?php
+//</body>
 include 'footer.php';
 ?>

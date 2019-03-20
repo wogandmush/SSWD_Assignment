@@ -1,5 +1,5 @@
 <?php
-
+#header("Access-Control-Allow-Origin: *");
 session_start();
 
 $_SESSION['is_admin'] = 1;

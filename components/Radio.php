@@ -29,7 +29,9 @@ class Radio{
 	public function removeOption($option){
 		unset($this->options[$option]);
 	}
-	public function getData(){
+	public function getData($conn = null){
+		if($conn)
+			$this->data = mysqli_real_escape_string($conn, $this->data);
 		return $this->data;
 	}
 	public function setData($data){
@@ -40,6 +42,10 @@ class Radio{
 	}
 	public function setError($error){
 		$this->errors[] = $error;
+	}
+	public function escape($conn){
+		$this->data = mysqli_real_escape_string($conn, $this->data);
+		return $this->data;
 	}
 	public function isRequired(bool $which){
 		if($which){
@@ -136,7 +142,7 @@ class Radio{
 									name='$this->name'
 									type='radio'
 									value='$value'";
-				if(in_array('required', $this->data)){
+				if(in_array('required', $this->attributes)){
 					$output .= ' required ';
 				}
 				if($this->data === $value) {

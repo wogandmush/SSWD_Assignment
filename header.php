@@ -22,10 +22,13 @@ include 'components/noErrors.php';
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>=Fitness Club Website</title>
 		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 			<!-- commented out until needed -->
 			<!--
+		<link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/materia/bootstrap.min.css">
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -39,9 +42,15 @@ include 'components/noErrors.php';
 				<button class="navbar-toggler" type="button" id="navbar-toggler"> 
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-div" aria-controls="nav-div" aria-expanded="false" aria-label="Toggle navigation">
+				<!--
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-div" aria-controls="nav-div" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
-				</button> -->
+				</button>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<p> </p>
+				-->
 				<div class=" collapse navbar-collapse" id="nav-div">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">
@@ -59,12 +68,8 @@ include 'components/noErrors.php';
 						<li class="nav-item">
 							<a class="nav-link" href="contact.php">Contact Us</a>
 						</li>
-                        <button class="btn btn-success ml-auto">logged in as <?php $_SESSION['first_name'] ?></button>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <p> </p>
 					</ul>
+					<button class="btn btn-success ml-auto">logged in as <?php $_SESSION['first_name'] ?></button>
 				</div>
 			</nav>
 			<script>
