@@ -63,20 +63,6 @@ class Input{
 		}
 		$output .="	<input name='$this->name' id='$this->name' class='form-control' type=$this->type ";
 
-		if(!empty($this->attributes)){
-			foreach($this->attributes as $key=>$value){
-				if ($value === 'required'){
-					$output .='required ';
-				}
-				else{
-					$output .= "$key='$value' ";
-				}
-			}
-		}
-
-		$output .="	/>
-				</div>";
-		return $output;
 	}
 
 /* print the sticky version of the input
@@ -88,30 +74,14 @@ class Input{
 					<label class='text-success' for='$this->name'>$this->label</label>
 					<input name='$this->name' id='$this->name' class='form-control' type='$this->type' value='$this->data' ";
 				 
-		if(!empty($this->attributes)){
-			foreach($this->attributes as $key=>$value){
-				if ($value === 'required'){
-					$output .='required ';
-				}
-				else{
-					$output .= "$key='$value' ";
-				}
-			}
-		}
-				
-				
-		$output .= " />
-				</div>";
-		return $output;
 	}
 	else {
-		/* if both errors and data are unset for this field, just print the 
-		 * default form
-		 * This such as required, maxlength etc can be stored in an attributes array
-		 */
+		//print default form
 		$output = "<div class='form-group'>
 					<label for='$this->name'>$this->label</label>
 					<input name='$this->name' id='$this->name' class='form-control' type='$this->type' ";
+	}
+
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
 				if ($value === 'required'){
@@ -127,7 +97,6 @@ class Input{
 		return $output;
 	}
 
-	}
 }
 
 

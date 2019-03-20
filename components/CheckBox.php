@@ -33,12 +33,16 @@ class CheckBox{
 		unset($this->options[$option]);
 	}
 	public function getData($conn = null){
-		if($conn)
-			return mysqli_real_escape_string($conn, $this->data);
+		if($conn) //fix this to work with array
+			return array_map(function($value){
+				return mysqli_real_escape_string($conn, $value);
+			}, $this->data);
 		return $this->data;
 	}
 	public function setData($data){
-		$this->data = htmlspecialchars($data);
+		$this->data = array_map(function($value){
+			return htmlspecialchars($value);
+		}, $data);
 	}
 	public function getErrors(){
 		return $this->errors;
@@ -62,151 +66,54 @@ class CheckBox{
 
 	public function getString(){
 
-	if(!empty($this->errors)){
-		$output =  "<div class='form-group'>
-			<label class='text-danger'>$this->label</label>";
+		if(!empty($this->errors)){
+			$output =  "<div class='form-group'>
+				<label class='text-danger'>$this->label</label>";
 
-		foreach($this->errors as $error){
-			$output .= "<small class='text-danger'>$error</small>";
+			foreach($this->errors as $error){
+				$output .= "<small class='text-danger'>$error</small>";
+			}
 		}
 
+		elseif (!empty($this->data)){
+			$output = "<div class='form-group'>
+						<label class='text-success'>$this->label</label>";
+
+		}
+		else {
+			/* if both errors and data are unset for this field, just print the 
+			 * default form
+			 * This such as required, maxlength etc can be stored in an attributes array
+			 */
+			$output = "<div class='form-group'>
+						<label>$this->label</label>";
+		}
 		foreach($this->options as $label=>$value){
-			if(is_numeric($label)){
-				$output .= "<div class='form-check'>
-								<input 
-									class='form-check-input' 
-									id='$this->name-$value'
-									name='$this->name[]'
-									type='checkbox'
-									value='$value'";
-				if(in_array('required', $this->attributes)){
+			$output .= "<div class='form-check'>
+							<input 
+								class='form-check-input' 
+								id='$this->name-$value'
+								name='$this->name[]'
+								type='checkbox'
+								value='$value'";
+			if(isset($this->data) && in_array($value, $this->data)) {
+				$output .= " checked='checked' ";
+			}
+			if(in_array('required', $this->attributes)){
 					$output .= " required ";
-				}
-				$output .= ">
-								<label class='form-check-label' for='$this->name-$value'>$value</label>
+			}
+			$output.= "	>";
+			if(is_numeric($label)){
+				$output .= "	<label class='form-check-label' for='$this->name-$value'>$value</label>
 							</div>";
 			}
 			else {
-				// add code for 'is required' here
-				$output .= "<div class='form-check'>
-								<input 
-									class='form-check-input' 
-									id='$this->name-$value'
-									name='$this->name[]'
-									type='checkbox'
-									value='$value'";
-				if(in_array('required', $this->attributes)){
-						$output .= " required ";
-				}
-
-				$output .= ">
-								<label class='form-check-label' for='$this->name-$value'>$label</label>
+                $output .= "	<label class='form-check-label' for='$this->name-$value'>$label</label>
 							</div>";
 			}
 		}
 		$output .= "</div>";
-
-
 		return $output;
-	}
-
-	elseif (!empty($this->data)){
-		$output = "<div class='form-group'>
-					<label class='text-success'>$this->label</label>";
-
-		foreach($this->options as $label=>$value){
-			if(is_numeric($label)){
-				$output .= "<div class='form-check'>
-								<input 
-									class='form-check-input' 
-									id='$this->name-$label'
-									name='$this->name[]'
-									type='checkbox'
-									value='$value'";
-				if(in_array($label, $this->data)) {
-					$output .= " checked='checked' ";
-				}
-				if(in_array('required', $this->attributes)){
-						$output .= " required ";
-				}
-				$output .= ">
-								<label class='form-check-label' for='$this->name-$value'>$value</label>
-							</div>";
-			}
-			else {
-				// add code for 'is required' here
-				$output .= "<div class='form-check'>
-								<input 
-									class='form-check-input' 
-									id='$this->name-$value'
-									name='$this->name[]'
-									type='checkbox'
-									value='$value'";
-				if(in_array($value, $this->data)) {
-					$output .= " checked='checked' ";
-				}
-				if(in_array('required', $this->attributes)){
-					$output .= " required ";
-				}
-				$output .= ">
-								<label class='form-check-label' for='$this->name-$value'>$label</label>
-							</div>";
-			}
-		}
-
-		$output .= "</div>";
-				
-		return $output;
-	}
-	else {
-		/* if both errors and data are unset for this field, just print the 
-		 * default form
-		 * This such as required, maxlength etc can be stored in an attributes array
-		 */
-		$output = "<div class='form-group'>
-					<label>$this->label</label>";
-
-		foreach($this->options as $label=>$value){
-			if(is_numeric($label)){
-				$output .= "<div class='form-check'>
-								<input 
-									class='form-check-input' 
-									id='$this->name-$value'
-									name='$this->name[]'
-									type='checkbox'
-									value='$value'";
-
-				if(in_array('required', $this->attributes)){
-						$output .= " required ";
-				}
-				$output.= "	>
-								<label class='form-check-label' for='$this->name-$value'>$value</label>
-							</div>";
-			}
-			else {
-				$output .= "<div class='form-check'>
-								<input 
-									class='form-check-input' 
-									id='$this->name-$value'
-									name='$this->name[]'
-									type='checkbox'
-									value='$value'";
-				if(in_array('required', $this->attributes)){
-						$output .= " required ";
-				}
-
-				$output .= ">
-								<label class='form-check-label' for='$this->name-$value'>$label</label>
-							</div>";
-			}
-		}
-			$output .= "</div>";
-
-			return $output;
-
-
-		}
-
 	}
 }
 

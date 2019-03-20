@@ -29,7 +29,7 @@ $inputTest->render();
 
 $selectTest = new Select("favorite_movie", "Select your favorite movie");
 
-$selectTest->setOptions(array("Mrs Doubtfire", "star_wars"=>"Star Wars"));
+$selectTest->setOptions(array("Mrs Doubtfire", "Star Wars"=>"star_wars"));
 $selectTest->render();
 
 $selectTest->setData("star_wars");
@@ -57,15 +57,14 @@ $checkTest->setAttributes(array('required'));
 $checkTest->setOptions(array("Music", "Drinking", "Fishing"));
 
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-	$checkTest->setData($_POST[$checkTest->getName()]);
-}
+$checkTest->setData(array("Music", "Drinking"));
 $checkTest->render();
 
 $checkTest->setError("What did you do?!");
 $checkTest->render();
 
 $testArea = new TextArea('address', 'Enter Address: ');
+//$testArea->setData("This is the data");
 
 $testArea->render();
 

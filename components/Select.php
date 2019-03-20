@@ -67,81 +67,13 @@ class Select{
 		foreach($this->errors as $error){
 			$output .= "<small class='text-danger'>$error</small>";
 		}
-
-		$output .="	<select name='$this->name' id='$this->name' class='form-control' ";
-
-		if(!empty($this->attributes)){
-			foreach($this->attributes as $key=>$value){
-				if ($value === 'required'){
-					$output .='required ';
-				}
-				else{
-					$output .= "$key='$value' ";
-				}
-			}
-		}
-
-		$output .=">";
-
-		foreach($this->options as $label=>$value){
-
-			if(is_numeric($value)){			
-				$output .= "<option>$value</option>";
-			}
-			else {
-				$output .= "<option value='$value'>$label</option>";
-			}
-		}
-
-		$output .= "</select>
-				</div>";
-
-
-		return $output;
 	}
 
 	elseif (!empty($this->data)){
 		$output = "<div class='form-group'>
-					<label class='text-success' for='$this->name'>$this->label</label>
-					<select name='$this->name' id='$this->name' class='form-control' ";
+					<label class='text-success' for='$this->name'>$this->label</label>";
 				 
-		if(!empty($this->attributes)){
-			foreach($this->attributes as $key=>$value){
-				if ($value === 'required'){
-					$output .='required ';
-				}
-				else{
-					$output .= "$key='$value' ";
-				}
-			}
-		}
-				
-		$output .=">";
 
-		foreach($this->options as $label=>$value){
-
-			if(is_numeric($label)){			
-				if($this->data === $value){
-					$output .= "<option selected='selected'>$value</option>";
-				}
-				else {
-					$output .= "<option>$value</option>";
-				}
-			}
-			else {
-				if($this->data === $value){
-					$output .= "<option value='$value' selected='selected'>$label</option>";
-				}
-				else{
-					$output .= "<option value='$value'>$label</option>";
-				}
-			}
-		}
-
-		$output .= "</select>
-				</div>";
-				
-		return $output;
 	}
 	else {
 		/* if both errors and data are unset for this field, just print the 
@@ -149,8 +81,9 @@ class Select{
 		 * This such as required, maxlength etc can be stored in an attributes array
 		 */
 		$output = "<div class='form-group'>
-					<label for='$this->name'>$this->label</label>
-					<select name='$this->name' id='$this->name' class='form-control' ";
+					<label for='$this->name'>$this->label</label>";
+	}
+	$output .= "<select name='$this->name' id='$this->name' class='form-control' ";
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
 				if ($value === 'required'){
@@ -166,10 +99,21 @@ class Select{
 		foreach($this->options as $label=>$value){
 
 			if(is_numeric($label)){			
-				$output .= "<option>$value</option>";
+				if(isset($this->data) && $this->data === $value){
+					$output .= "<option selected='selected'>$value</option>";
+				}
+				else {
+					echo $value;
+					$output .= "<option>$value</option>";
+				}
 			}
 			else {
-				$output .= "<option value='$value'>$label</option>";
+				if(isset($this->data) && $this->data === $value){
+					$output .= "<option selected='selected' value='$value'>$label</option>";
+				}
+				else {
+					$output .= "<option value='$value'>$label</option>";
+				}
 			}
 		}
 
@@ -179,7 +123,6 @@ class Select{
 		return $output;
 	}
 
-	}
 }
 
 

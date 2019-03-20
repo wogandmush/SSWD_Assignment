@@ -55,22 +55,6 @@ class TextArea{
 		foreach($this->errors as $error){
 			$output .= "<small class='text-danger'>$error</small>";
 		}
-		$output .="	<textarea name='$this->name' id='$this->name' class='form-control'";
-
-		if(!empty($this->attributes)){
-			foreach($this->attributes as $key=>$value){
-				if ($value === 'required'){
-					$output .='required ';
-				}
-				else{
-					$output .= "$key='$value' ";
-				}
-			}
-		}
-
-		$output .="	></textarea>
-				</div>";
-		return $output;
 	}
 
 /* print the sticky version of the input
@@ -79,24 +63,8 @@ class TextArea{
  */
 	elseif (!empty($this->data)){
 		$output = "<div class='form-group'>
-					<label class='text-success' for='$this->name'>$this->label</label>
-					<textarea name='$this->name' id='$this->name' class='form-control'";
+					<label class='text-success' for='$this->name'>$this->label</label>";
 				 
-		if(!empty($this->attributes)){
-			foreach($this->attributes as $key=>$value){
-				if ($value === 'required'){
-					$output .='required ';
-				}
-				else{
-					$output .= "$key='$value' ";
-				}
-			}
-		}
-				
-				
-		$output .= ">$this->data</textarea>
-				</div>";
-		return $output;
 	}
 	else {
 		/* if both errors and data are unset for this field, just print the 
@@ -104,8 +72,9 @@ class TextArea{
 		 * This such as required, maxlength etc can be stored in an attributes array
 		 */
 		$output = "<div class='form-group'>
-					<label for='$this->name'>$this->label</label>
-					<textarea name='$this->name' id='$this->name' class='form-control'";
+					<label for='$this->name'>$this->label</label>";
+	}
+	$output .= "<textarea name='$this->name' id='$this->name' class='form-control'";
 		if(!empty($this->attributes)){
 			foreach($this->attributes as $key=>$value){
 				if ($value === 'required'){
@@ -116,11 +85,10 @@ class TextArea{
 				}
 			}
 		}	 
-		$output .= "></textarea>
+		//thought this might give an error, but no
+		$output .= ">$this->data</textarea>
 				</div>";
 		return $output;
-	}
-
 	}
 }
 
