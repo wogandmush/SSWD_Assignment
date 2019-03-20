@@ -19,6 +19,7 @@ include '../config/connect.php';
 $sql = "SELECT * FROM testimonial WHERE approved = 1 ORDER BY date DESC";
 if($result = mysqli_query($conn, $sql)){
 
+	echo "<div id='testimonial-container'>";
 	while($row = mysqli_fetch_array($result)){
 
 		echo "<div class='testimonial'>
@@ -30,6 +31,7 @@ if($result = mysqli_query($conn, $sql)){
 			
 			</div>";
 	}
+	echo "</div>";
 }
 
 ?>

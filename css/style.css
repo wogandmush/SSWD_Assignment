@@ -6,13 +6,24 @@
 	color: red;
 }
 
+#testimonial-container {
+	width: 80%;
+	margin: 2em auto;
+}
+
 .testimonial {
 	width: 80%;
-	margin: 0 auto;
+	margin: 0.5em auto;
 	display: grid;
+	background: #ddd;
+	border-radius: 4px;
 	grid-template-columns: 1fr 12em;
-	padding: 1em;
+	padding: 0.5em;
+	
 	justify-items: end;
+}
+.testimonial:nth-child(even) {
+	background: #aaa;
 }
 
 .testimonial span{

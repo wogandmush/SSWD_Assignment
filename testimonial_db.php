@@ -26,6 +26,7 @@ else {
 			}		
 			echo json_encode($data);
 		}
+		mysqli_free_result($result);
 	}
 	else if($_SERVER['REQUEST_METHOD'] === 'POST'){ //delete doesn't seem to work
 
@@ -38,6 +39,7 @@ else {
 			$sql = "DELETE FROM testimonial WHERE first_name = '$name' AND date = '$time'";
 			$result = mysqli_query($conn, $sql);
 			echo $result;
+			mysqli_free_result($result);
 
 		}
 		else if(isset($_POST['approve'])){
@@ -47,6 +49,7 @@ else {
 
 			$result = mysqli_query($conn, $sql);
 			echo $result;
+			mysqli_free_result($result);
 
 		}
 

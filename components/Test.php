@@ -11,7 +11,7 @@ include '../header.php';
  * type="text":
  */
 
-$inputTest = new Input("name", "Enter Name", "text");
+$inputTest = new Input("name", "Enter Name", "password");
 $inputTest->setAttributes(array('placeholder' => "E.g. John Doe", 'required'=>true));
 
 //default input
