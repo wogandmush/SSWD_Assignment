@@ -3,9 +3,9 @@
 session_start();
 
 ###for testing###
-$_SESSION['is_admin'] = 1;
-$_SESSION['first_name'] = 'Dan';
-$_SESSION['user_no'] = 1;
+#$_SESSION['is_admin'] = 1;
+#$_SESSION['first_name'] = 'Dan';
+#$_SESSION['user_no'] = 1;
 ini_set('display_errors', 1);
 
 include 'components/Input.php';
@@ -69,7 +69,12 @@ include 'components/noErrors.php';
 							<a class="nav-link" href="contact.php">Contact Us</a>
 						</li>
 					</ul>
-					<button class="btn btn-success ml-auto">logged in as <?php $_SESSION['first_name'] ?></button>
+					<?php if(isset($_SESSION['user_no'])){ ?>
+					<button class="btn btn-success ml-auto">logged in as <?php echo $_SESSION['first_name'] ?></button>
+					<form action="logout.php">
+						<button class="btn btn-warning ml-auto">Logout</button>
+					</form>
+					<?php } ?>
 				</div>
 			</nav>
 			<script>

@@ -1,5 +1,4 @@
 <?php
-
 function noErrors(){
 	$answer = true;
 	$fields = func_get_args();
@@ -8,4 +7,3 @@ function noErrors(){
 	}
 	return $answer;
 }
-

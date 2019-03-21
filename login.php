@@ -35,8 +35,10 @@ require '../config/connect.php';
         else {
             //log the user in: Set session variables
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+			$_SESSION['first_name'] = $row['first_name'];
+			$_SESSION['user_no'] = $row['user_no'];
             $_SESSION['email']=$row['email'];
-            $_SESSION['password']=$row['password'];
+			//$_SESSION['password']=$row['password'];
             echo " You are Logged in as " . $myusername;
               }
    }
