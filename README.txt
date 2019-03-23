@@ -5,7 +5,8 @@
     ----Currently Working on----
 
 Oisin: Getting Registration + Login working - done //Added an if statement to filter content.
-	 Contact form - 20% done
+	 Contact form Template - 90% done//email not sending, will revisit later
+	 
 
 Martin:                      
 
