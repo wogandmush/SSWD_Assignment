@@ -57,6 +57,9 @@ include 'components/noErrors.php';
 							<a class="nav-link" href="class.php">Classes</a>
 						</li>
 						<li class="nav-item">
+							<a class="nav-link" href="fees.php">Fees</a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link" href="testimonial.php">Testimonials</a>
 						</li>
 						<li class="nav-item">
@@ -74,6 +77,10 @@ include 'components/noErrors.php';
 					<form action="logout.php">
 						<button class="btn btn-warning ml-auto">Logout</button>
 					</form>
+					<?php if($_SESSION['membership'] == 'Admin')
+					{ ?>
+					<button class="btn btn-warning ml-auto">Special Admin Button</button>
+					<?php } ?>
 					<?php } ?>
 				</div>
 			</nav>
