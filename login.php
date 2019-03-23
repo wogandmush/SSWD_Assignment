@@ -38,6 +38,7 @@ require '../config/connect.php';
 			$_SESSION['first_name'] = $row['first_name'];
 			$_SESSION['user_no'] = $row['user_no'];
             $_SESSION['email']=$row['email'];
+            $_SESSION['membership']=$row['membership'];
 			//$_SESSION['password']=$row['password'];
             echo " You are Logged in as " . $myusername;
               }
