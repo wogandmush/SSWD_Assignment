@@ -1,12 +1,10 @@
 <?php
-
 abstract class Field{
 	protected $name; // the name attribute
 	protected $label; // The text for the label field
 	protected $attributes; // array to set things like maxlength, required, etc
 	protected $data; // data retrieved from GET/POST request
 	protected $errors; // array of errors to print out
-
 	public function getName(){
 		return $this->name;
 	}

@@ -1,5 +1,5 @@
 <?php
-
+include_once 'Field.abs.php';
 abstract class OptionField extends Field{
 	protected $options; //array of options
 	public function getOptions(){
