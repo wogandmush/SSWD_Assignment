@@ -1,13 +1,23 @@
 <?php
-include_once 'OptionField.php';
-class CheckBox extends OptionField{
+class CheckBox{
+	private $name; // the name attribute
+	private $label; // The text for the label field
+	private $options; //array of options
+	private $attributes; // array to set things like maxlength, required, etc
+	private $data; // data retrieved from GET/POST request
+	private $errors; // array of errors to print out
 	public function __construct(string $name, string $label, array $options = array(), array $attributes = array()){
 		$this->name = $name;
 		$this->label = $label;			
 		$this->options = $options;
 		$this->attributes = $attributes; //attributes are optional
 	}
-	//Override
+	public function getName(){
+		return $this->name;
+	}
+	public function setName(string $name){
+		$this->name = $name;
+	}
 	public function getData($conn = null){
 		if($conn) //fix this to work with array
 			return array_map(function($value){
@@ -20,7 +30,41 @@ class CheckBox extends OptionField{
 			return htmlspecialchars($value);
 		}, $data);
 	}
-	public function getHTMLString(){
+	public function getErrors(){
+		return $this->errors;
+	}
+	public function setError($error){
+		$this->errors[] = $error;
+	}
+	public function getOptions(){
+		return $this->options;	
+	}
+	public function setOptions(array $options){
+		$this->options += $options;
+	}
+	public function removeOption($option){
+		unset($this->options[$option]);
+	}
+	public function getAttributes(){
+		return $this->attributes;
+	}
+	public function setAttributes(array $attributes){ //pass in an array of attributes
+		$this->attributes += $attributes;
+	}
+	public function isRequired(bool $which){
+		if($which){
+			$this->attributes[] = 'required';
+		}
+		else {
+			$this->attributes = array_filter($this->attributes, function($val){
+				return $val !== 'required';
+			});
+		}
+	}
+	public function render(){
+		echo $this->getString();
+	}
+	public function getString(){
 		if(!empty($this->errors)){
 			$output =  "<div class='form-group'>
 				<label class='text-danger'>$this->label</label>";
