@@ -40,12 +40,12 @@ $selectTest->render();
 
 
 $radioTest = new Radio("gender", "Gender: ");
-$radioTest->isRequired(true);
+$radioTest->setRequired(true);
 $radioTest->setOptions(array("male", "female"));
 $radioTest->render();
 
 $radioTest->setData('female');
-$radioTest->isRequired(false);
+$radioTest->setRequired(false);
 $radioTest->render();
 
 $radioTest->setError('not a flying toy');

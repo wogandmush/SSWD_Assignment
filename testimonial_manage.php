@@ -38,7 +38,7 @@ else {
 				// a div element for each message:
 				let message = document.createElement("div");
 
-				//inner html of the div:
+				// inner html of the div:
 				message.innerHTML = `
 				<h1>${msg.first_name}<\/h1>
 				<p>${msg.message}<\/p>

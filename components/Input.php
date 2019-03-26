@@ -9,6 +9,12 @@ class Input extends Field{
 		$this->type = $type;
 		$this->attributes = $attributes; //attributes are optional
 	}
+	public function getType(){
+		return $this->type;
+	}
+	public function setType(string $type){
+		$this->type = $type;
+	}
 	public function getHTMLString(){
 		if(!empty($this->errors)){
 			$output =  "<div class='form-group'>
