@@ -1,7 +1,8 @@
 <?php 
 include 'header.php'; 
 #^^this should be the first line of the file. Body tags are already opened
-
+$_SESSION['is_admin'] = true;
+$_SESSION['user_no'] = 1;
 if($_SESSION['is_admin']){
 
 	echo "<div><a href='testimonial_manage.php'>Manage Testimonials</a></div>";
