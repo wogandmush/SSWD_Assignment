@@ -31,7 +31,7 @@ abstract class Field{
 	public function setAttributes(array $attributes){ //pass in an array of attributes
 		$this->attributes += $attributes;
 	}
-	public function isRequired(bool $which){
+	public function setRequired(bool $which){
 		if($which){
 			$this->attributes[] = 'required';
 		}

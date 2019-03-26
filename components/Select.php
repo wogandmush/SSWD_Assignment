@@ -43,7 +43,6 @@ class Select extends OptionField{
 					$output .= "<option selected='selected'>$value</option>";
 				}
 				else {
-					echo $value;
 					$output .= "<option>$value</option>";
 				}
 			}

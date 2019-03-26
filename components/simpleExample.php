@@ -22,7 +22,7 @@ include '../header.php';
 # The constructor for each class takes a minimum 2 arguments:
 # (string $name, string $label);
 
-$exampleInput = new Input('first_name', 'Enter your first name: ');
+$fname = new Input('first_name', 'Enter your first name: ');
 
 # the first is the name attribute, by which the field is identified when
 # a form has been submitted
@@ -33,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 # the second argument is the inner text to be displayed within the label tags
 # which accompany the input
-# i.e. the example Input above will render as:
+# i.e. the example Input above will render as (abbreviated):
 #	<label for="first_name">Enter your first name: </label>
 #	<input name="first_name" id="first_name" type="text" />
 
@@ -41,7 +41,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 # on the type.
 # e.g. in the case of the Input class:
 
-$exampleInput2 = new Input('email', 'Enter your email: ', 'email');
+$email = new Input('email', 'Enter your email: ', 'email');
 
 # - the third argument is the type attribute of the input (set to 'text' by default);
 
@@ -50,11 +50,15 @@ $exampleInput2 = new Input('email', 'Enter your email: ', 'email');
 # setAttributes() method, which takes an array of key/value pairs. eg:
 
 $attributes = array("maxlength"=>20, "required");
-$exampleInput->setAttributes($attributes);
+$fname->setAttributes($attributes);
 
-# you can also used the isRequired() method, which takes a boolean
+# you can also pass in an anonymous array directly.
 
-$exampleInput2->isRequired(false);
+$email->setAttributes(array("maxlength"=>30));
+
+# you can used the setRequired() method, which takes a boolean
+
+$email->setRequired(false);
 
 
 	### RENDERING THE FORM FIELD ###
@@ -64,8 +68,8 @@ $exampleInput2->isRequired(false);
 
 <form method="POST" action="simpleExample.php">
 	<?php
-	$exampleInput->render();
-	$exampleInput2->render();
+	$fname->render();
+	$email->render();
 	?>
 	<button type="submit">Submit</button>
 </form>
@@ -77,12 +81,12 @@ $exampleInput2->isRequired(false);
 # When validating, use the setData() and setError() methods, e.g.
 
 if(!isset($_POST['first_name'])){
-	$exampleInput->setError('First name is a required field');
+	$fname->setError('First name is a required field');
 }
 else {
-	$exampleInput->setData($_POST['first_name']);
+	$fname->setData($_POST['first_name']);
 // or
-	$exampleInput->setData($_POST[$exampleInput->getName()]); // === $_POST['first_name']
+	$fname->setData($_POST[$fname->getName()]); // === $_POST['first_name']
 }
 
 # note that setData() calls the htmlspecialchars and trim methods by default.
@@ -91,10 +95,10 @@ else {
 if(isset($_POST['email'])){
 	$temp = $_POST['email'];
 	if($temp = filter_var($temp, FILTER_VALIDATE_EMAIL)){
-		$exampleInput2->setData($temp);
+		$email->setData($temp);
 	}
 	else {
-		$exampleInput2->setError("Entered invalid email address");
+		$email->setError("Entered invalid email address");
 	}
 }
 
@@ -106,7 +110,7 @@ if(isset($_POST['email'])){
 #
 # include 'noErrors.php' // included in header.php
 
-if(noErrors($exampleInput, $exampleInput2)){ //simply load all of you fields into this function
+if(noErrors($fname, $email)){ //simply load all of you fields into this function
 
 # when building your query string, use the getData() method.
 # passng in the connection variable calls the mysqli_real_escape_string() method,
@@ -118,8 +122,8 @@ if(noErrors($exampleInput, $exampleInput2)){ //simply load all of you fields int
 				first_name,
 				email)
 			VALUES (
-				'".$exampleInput->getData($conn)."', // be careful when concatenating
-				'".$exampleInput2->getData($conn)."'
+				'".$fname->getData($conn)."', // be careful when concatenating
+				'".$email->getData($conn)."'
 			)";
 	echo $sql;
 }
