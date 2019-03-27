@@ -1,13 +1,16 @@
 <?php 
 include 'header.php';
 
-if(!isset($_SESSION['user_no'])){
+if(!isset($_SESSION['first_name'])){
+	//if user not logged in, redirect them to main page
 	header('Location: index.php');
+	//end script
 	exit();
 }
 else {
 
-	//initialize objects for each of our form fields
+	#initialize objects for each of our form fields
+	// create a textarea element for user to write their message
 	$testimonial = new TextArea('testimonial', "Add your testimonial: ");
 	$testimonial->setAttributes(array(
 		'maxlength'=>200, 
@@ -16,6 +19,8 @@ else {
 		'rows'=>5,
 		'cols'=>20
 	));
+
+	// create a select element for users 
 	$class = new Select('class', 'Which class did you take?');
 	$class->setAttributes(array(
 		'required',
@@ -31,7 +36,7 @@ else {
 	if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 		if(empty($_POST['testimonial'])){
-			$testimonial->setError("Text Area was left blank");
+			$testimonial->setError("Message was left blank");
 		}
 		else{
 			//setData automatically call htmlspecialchars
@@ -54,23 +59,25 @@ else {
 		if(noErrors($class, $testimonial)){
 					
 			include '../config/connect.php';
-			$class_name = mysqli_real_escape_string($conn, $class->getData());
-			$message = mysqli_real_escape_string($conn, $testimonial->getData());
 
+			// insert a new tuple into table 'testimonial' (approved = 0; i.e. not approved);
+			// passing connection variable to component's getData() method calls mysqli_real_escape_string()
+			// on data value and returns it
 			$sql = "INSERT INTO testimonial(first_name, class_name, message) VALUES(
 				'${_SESSION['first_name']}',
-				'$class_name',
-				'$message'
+				'".$class->getData($conn)."', 
+				'".$message->getData($conn)."'
 				)";
-			#echo $sql;
-			if($result = mysqli_query($conn, $sql)){
-				echo "Testimonial submitted for approval";
-				
+			#echo $sql; // for testing
+
+			if($result = mysqli_query($conn, $sql)){ // if query was successful
+				echo "Thank you! Your testimonial has been submitted!";
 				$success = true; // don't display form
 			}
 			else {
-				echo "Error: ".mysqli_error($conn);
+				echo "Something went wrong";
 			}
+			// close the db connection
 			mysqli_close($conn);
 		}
 	}
@@ -79,6 +86,7 @@ else {
 
 
 ?>
+<!-- some div elements for bootstrap formatting -->
 <div class="container">
 	<div class="column mx-auto">
 		<form method="POST" action="#">
