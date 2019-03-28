@@ -3,17 +3,11 @@
 session_start();
 
 ###for testing###
-#$_SESSION['is_admin'] = 1;
+#$_SESSION['membership'] = 'admin';
 #$_SESSION['first_name'] = 'Dan';
 #$_SESSION['user_no'] = 1;
 ini_set('display_errors', 1);
 
-include 'components/Input.php';
-include 'components/Select.php';
-include 'components/Radio.php';
-include 'components/CheckBox.php';
-include 'components/TextArea.php';
-include 'components/noErrors.php';	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,16 +17,12 @@ include 'components/noErrors.php';
 		<title>=Fitness Club Website</title>
 		<link rel="stylesheet" href="css/reset.css">
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<!-- commented out until needed -->
-			<!--
+		
 		<link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/materia/bootstrap.min.css">
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
--->
+  
+  
+      <link rel="stylesheet" href="css/stylefees.css">
+
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
@@ -42,15 +32,6 @@ include 'components/noErrors.php';
 				<button class="navbar-toggler" type="button" id="navbar-toggler"> 
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<!--
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-div" aria-controls="nav-div" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<p> </p>
-				-->
 				<div class=" collapse navbar-collapse" id="nav-div">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">
@@ -72,16 +53,17 @@ include 'components/noErrors.php';
 							<a class="nav-link" href="contact.php">Contact Us</a>
 						</li>
 					</ul>
-					<?php if(isset($_SESSION['user_no'])){ ?>
-					<button class="btn btn-success ml-auto">logged in as <?php echo $_SESSION['first_name'] ?></button>
-					<form action="logout.php">
-						<button class="btn btn-warning ml-auto">Logout</button>
-					</form>
-					<?php if($_SESSION['membership'] == 'Admin')
-					{ ?>
-					<button class="btn btn-warning ml-auto">Special Admin Button</button>
-					<?php } ?>
-					<?php } ?>
+					<?php 
+					if(isset($_SESSION['user_no'])){
+					echo "<button class='btn btn-success ml-auto'>logged in as ${_SESSION['first_name']}</button>
+					<form action='logout.php'>
+						<button class='btn btn-warning ml-auto'>Logout</button>
+					</form>";
+						if($_SESSION['membership'] == 'Admin'){
+						echo "<button class='btn btn-warning ml-auto'>Special Admin Button</button>";
+						}
+					}
+					?>
 				</div>
 			</nav>
 			<script>
@@ -93,3 +75,10 @@ include 'components/noErrors.php';
 				});
 			</script>
 		</header>
+<?php
+				include 'components/Input.php';
+				include 'components/Select.php';
+				include 'components/Radio.php';
+				include 'components/CheckBox.php';
+				include 'components/TextArea.php';
+				include 'components/noErrors.php';	

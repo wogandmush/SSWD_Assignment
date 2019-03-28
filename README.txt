@@ -12,6 +12,7 @@ Martin:
 
 Dan: Creating reusable code for form fields - done; // will add more functionality if needed
 	 Testimonial Approval System - db logic done!
+	 Class pages
 
     ----Web Application Requirements----
 
