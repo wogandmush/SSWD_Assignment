@@ -43,12 +43,18 @@ ini_set('display_errors', 1);
 						<li class="nav-item">
 							<a class="nav-link" href="testimonial.php">Testimonials</a>
 						</li>
+					<?php 
+					if(empty($_SESSION['user_no'])){
+					?>
 						<li class="nav-item">
 							<a class="nav-link" href="register.php">Register</a>
 						</li>
                         <li class="nav-item">
 							<a class="nav-link" href="login.php">Login</a>
 						</li>
+					<?php
+					}
+					?>
 						<li class="nav-item">
 							<a class="nav-link" href="contact.php">Contact Us</a>
 						</li>

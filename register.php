@@ -1,6 +1,4 @@
 <?php
-
-
 include 'header.php';
 require '../config/connect.php';
 
@@ -10,15 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	function validate($str) {
 		return trim(htmlspecialchars($str));
 	}    
-	           
 	
     if (empty($_POST['userno'])) {
 		$usernoError = 'userno should be filled';
 	} else {
 		$userno = validate($_POST['userno']);
-         if (!preg_match('/^[0-9]{0,15}+$/', $userno)) {
+         if (!preg_match('/^[0-9]{0,15}$/', $userno)) {
         $usernoError = 'userno can only contain numbers'; } 
-     
 	}
     
 	if (empty($_POST['name'])) {
@@ -45,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$dateofbirth = validate($_POST['dateofbirth']);
             
             $temp_date = $dateofbirth;
-            $date_arr  = explode('/', $temp_date);
+            $date_arr  = explode('-', $temp_date);
             if (checkdate($date_arr[0], $date_arr[1], $date_arr[2])) {
                 $dateofbirthError = 'date of birth must be written in the correct format';
             }         	
@@ -137,10 +133,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>                       
         </body>
 
-
-
         <?php
             
+		// mysqli_real_escape_string needed here
         $sql = "INSERT INTO member (user_no, first_name, last_name, date_of_birth, gender, mobile, home_tel, email, address, membership, password) VALUES ('$userno', '$name', '$lname', '$dateofbirth', '$gender', '$mobilephoneno', '$phoneno', '$email', '$address', '$membership', '$password')";
         if(mysqli_query($conn, $sql)){
             echo "<p>New row added successfully!</p>";  
@@ -155,10 +150,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
-
-
-    
-	
 	
     <div class="container"> 
     <h2><br>Member Registration</h2><br><br>
@@ -243,7 +234,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="form-group"> 
         <label class="control-label col-sm-2" for="dateofbirth">Date of Birth *</label>
         <div class="col-sm-10">
-            <input type="date" class="form-control" name="dateofbirth" placeholder="Enter date of birth" value="<?php if (isset($dateofbirth)) echo $dateofbirth ?>"/>
+            <input type="date" class="form-control" name="dateofbirth" placeholder="Enter date of birth" value="<?php if (isset($dateofbirth)) echo $dateofbirth; else echo '1990-01-01'; ?>"/>
         </div>
         <span class="error"><?php if (isset($dateofbirthError)) echo $dateofbirthError ?></span><br>
     </div>  

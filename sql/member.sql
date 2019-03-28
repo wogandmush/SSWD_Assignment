@@ -1,4 +1,4 @@
-CREATE TABLE member2(
+CREATE TABLE member(
 	user_no INT NOT NULL,
 	first_name VARCHAR(30),
 	last_name VARCHAR(30),
