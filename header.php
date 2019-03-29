@@ -2,6 +2,16 @@
 
 session_start();
 
+/*
+ * // code that might be used to make header directory insensitive
+$cwd = explode("/", getcwd());
+while($cwd[sizeof($cwd)-1] !== 'SSWD_Assignment'){
+	var_dump($cwd);
+	chdir('../');
+	$cwd = explode("/", getcwd());
+}
+$cwd = getcwd();
+ */
 ###for testing###
 #$_SESSION['membership'] = 'admin';
 #$_SESSION['first_name'] = 'Dan';

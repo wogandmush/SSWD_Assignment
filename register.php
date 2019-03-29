@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(mysqli_query($conn, $sql)){
             echo "<p>New row added successfully!</p>";  
         }else{
-        echo "ERROR: Unable to execute $sql" . mysql_error($conn);   
+        echo "ERROR: Unable to execute $sql" . mysqli_error($conn);   
         }     
             
 		mysqli_close($conn);
