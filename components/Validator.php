@@ -7,7 +7,6 @@ class Validator{
 		}
 		return true;
 	}
-
 	public static function validateDate($data){
 		$exploded = explode("-", $data);
 		if(!checkdate($exploded[1], $exploded[2], $exploded[0]))

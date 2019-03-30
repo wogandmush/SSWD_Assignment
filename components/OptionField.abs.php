@@ -8,6 +8,10 @@ abstract class OptionField extends Field{
 	public function setOptions(array $options){
 		$this->options += $options;
 	}
+	public function validate(){
+		if(!in_array($this->data, $this->options))
+			$this->setError('Invalid option');
+	}
 	public function removeOption($option){
 		unset($this->options[$option]);
 	}

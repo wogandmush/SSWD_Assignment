@@ -16,9 +16,29 @@ class CheckBox extends OptionField{
 		return $this->data;
 	}
 	public function setData($data = null){
-		$this->data = array_map(function($value){
-			return htmlspecialchars($value);
-		}, $data);
+		if(isset($data)){
+			$this->data = array_map(function($value){
+				return htmlspecialchars($value);
+			}, $data);
+		}
+		else {
+			if(isset($_POST[$this->getName()])){
+				$this->data = array_map(function($value){
+					return trim(htmlspecialchars($value));
+				}, $_POST[$this->getName()]);
+			}
+		}
+	}
+	public function validate(){
+		if(empty($this->data)){
+			$this->setError('No options selected');
+		}
+		else{
+			foreach($this->data as $datum){
+				if(!in_array($datum, $this->options))
+					$this->setError('Invalid option selected');
+			}
+		}
 	}
 	public function getHTMLString(){
 		if(!empty($this->errors)){

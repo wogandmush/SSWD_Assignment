@@ -1,4 +1,7 @@
 <?php
+
+include_once 'Validator.php';
+
 abstract class Field{
 	protected $name; // the name attribute
 	protected $label; // The text for the label field
@@ -26,8 +29,7 @@ abstract class Field{
 				$this->setError($this->name." was not set.");
 			}
 			else {
-				$data = $_POST[$this->name];
-				$this->validate($data);
+				$this->data = trim(htmlspecialchars($_POST[$this->name]));
 			}
 		}
 	}
@@ -56,14 +58,9 @@ abstract class Field{
 	public function setValidator(callable $validator){
 		$this->validator = $validator;		
 	}
-	public function validate($data, string $error = "Input invalid"){
-		//echo $this->validator;
-		if(call_user_func($this->validator, $data)){
-			$this->setData($data);
-		}
-		else{
+	public function validate(){
+		if(isset($this->validator) && !call_user_func($this->validator, $this->data))
 			$this->setError($error);
-		}
 	}
 	public function render(){
 		echo $this->getHTMLString();

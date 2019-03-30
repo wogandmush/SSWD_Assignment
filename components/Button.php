@@ -34,6 +34,7 @@ class Button{
 		$output = 
 		"<button 
 			type='submit' 
+			class='btn btn-primary'
 			name='$this->name'
 			value='$this->value'
 		>$this->text</button>";

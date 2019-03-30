@@ -24,11 +24,11 @@ class Form {
 	public function setMethod($method){
 		$this->method = $method;
 	}
-	public function addField(){
+	public function addFields(){
 		$fields = func_get_args();
 		$this->fields += $fields;
 	}
-	public function addButton(){
+	public function addButtons(){
 		$buttons = func_get_args();
 		$this->buttons += $buttons;
 	}
