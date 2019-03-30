@@ -92,9 +92,6 @@ ini_set('display_errors', 1);
 			</script>
 		</header>
 <?php
-				include 'components/Input.php';
-				include 'components/Select.php';
-				include 'components/Radio.php';
-				include 'components/CheckBox.php';
-				include 'components/TextArea.php';
-				include 'components/noErrors.php';	
+				spl_autoload_register(function($class_name){
+					include './components/'.$class_name .'.php';
+				});

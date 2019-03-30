@@ -2,7 +2,7 @@
 include 'header.php'; 
 #^^this should be the first line of the file. Body tags are already opened
 
-if(!$_SESSION['is_admin']){
+if(!isset($_SESSION['membership']) && $_SESSION['membership'] != 'admin'){
 	header('Location: index.php');
 	exit();
 }

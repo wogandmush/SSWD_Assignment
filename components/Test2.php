@@ -1,7 +1,7 @@
 <?php
 
 include '../header.php';
-include 'validator_functions.php';
+include 'Validator.php';
 
 ini_set('display_errors', 1);
 $name = new Input('name', 'Enter name');
@@ -15,9 +15,9 @@ function validator($data){
 $name->setValidator('validator');
 
 $email = new Input('email', 'Enter email', 'email');
-$email->setValidator('email_validator');
+$email->setValidator('Validator::validateEmail');
 $date = new Input('date', 'Pick date', 'date');
-$date->setValidator('date_validator');
+$date->setValidator('Validator::validateDate');
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 

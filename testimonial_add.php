@@ -56,7 +56,7 @@ else {
 
 		//noErrors returns false if any input object has an error
 		//it can take any number of arguments
-		if(noErrors($class, $testimonial)){
+		if(Form::noErrors($class, $testimonial)){
 					
 			include '../config/connect.php';
 
@@ -66,7 +66,7 @@ else {
 			$sql = "INSERT INTO testimonial(first_name, class_name, message) VALUES(
 				'${_SESSION['first_name']}',
 				'".$class->getData($conn)."', 
-				'".$message->getData($conn)."'
+				'".$testimonial->getData($conn)."'
 				)";
 			#echo $sql; // for testing
 
