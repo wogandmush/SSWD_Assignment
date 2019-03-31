@@ -55,4 +55,11 @@
 		transition: opacity 200ms !important;
 	}
 }
+
+#login-form input {
+	margin-right: 0.5em;
+}
+#login-form input::placeholder {
+	color: #666;
+
 /*End of navbar stuff*/

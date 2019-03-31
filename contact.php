@@ -66,8 +66,8 @@ include 'header.php';
 				</div>
 				<!--Grid row-->
 			</form>
-
 		</div>
+
 	</div>
 	<!--Grid column-->
 	<div class="h1-responsive font-weight-bold text-center my-4">

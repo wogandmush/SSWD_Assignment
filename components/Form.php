@@ -1,12 +1,15 @@
 <?php
 class Form {
 
+	private $id;
 	private $action;
 	private $method;
 	private $fields;
 	private $buttons;
+	private $classList = 'form';
 
-	public function __construct($action, $method = 'POST', $fields = array(), $buttons = array()){
+	public function __construct($id, $action, $method = 'POST', $fields = array(), $buttons = array()){
+		$this->id = $id;
 		$this->action = $action;
 		$this->method = $method;
 		$this->fields = $fields;	
@@ -42,6 +45,16 @@ class Form {
 			$field->setData();
 		}
 	}
+	public function hasErrors(){
+		foreach($this->fields as $field){
+			if(!empty($field->getErrors))
+				return true;
+		}
+		return false;
+	}
+	public function setClassList(string $classList){
+		$this->classList = $classList;
+	}
 	public static function noErrors(){
 		$answer = true;
 		$fields = func_get_args();
@@ -55,8 +68,7 @@ class Form {
 	}
 	public function getHTMLString(){
 		$output = 
-		"<div class='container'>
-			<form method='$this->method' action='$this->action'>";
+			"<form id='$this->id' class='$this->classList' method='$this->method' action='$this->action'>";
 		foreach($this->fields as $field){
 			$output .= $field->getHTMLString();
 		}
@@ -64,8 +76,7 @@ class Form {
 			$output .= $button->getHTMLString();
 		}
 		$output .=
-		"	</form>
-		</div>";
+		"	</form>";
 		return $output;
 	}
 }

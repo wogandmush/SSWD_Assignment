@@ -9,6 +9,7 @@ abstract class Field{
 	protected $data; // data retrieved from GET/POST request
 	protected $errors; // array of errors to print out
 	protected $validator;
+	protected $defaultError = 'Invalid input';
 	public function getName(){
 		return $this->name;
 	}
@@ -55,12 +56,14 @@ abstract class Field{
 			});
 		}
 	}
-	public function setValidator(callable $validator){
+	public function setValidator(callable $validator, $defaultError = FALSE){
 		$this->validator = $validator;		
+		if($defaultError)
+			$this->defaultError = $defaultError;
 	}
 	public function validate(){
 		if(isset($this->validator) && !call_user_func($this->validator, $this->data))
-			$this->setError($error);
+			$this->setError($this->defaultError);
 	}
 	public function render(){
 		echo $this->getHTMLString();

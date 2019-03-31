@@ -11,6 +11,8 @@ else {
 
 	#initialize objects for each of our form fields
 	// create a textarea element for user to write their message
+	$testimonialForm = new Form('testimonial_add', 'testimonial_add.php');
+
 	$testimonial = new TextArea('testimonial', "Add your testimonial: ");
 	$testimonial->setAttributes(array(
 		'maxlength'=>200, 
@@ -22,41 +24,36 @@ else {
 
 	// create a select element for users 
 	$class = new Select('class', 'Which class did you take?');
-	$class->setAttributes(array(
-		'required',
-	));
-	$class->setOptions(array(
-		'Hot Yoga',
-		'Pilates',
-		'Aerobics'
-	));
+	$class->setRequired(true);
+
+	$classOptions = array();
+	include '../config/connect.php';
+	$sql = "SELECT class_title FROM class;";
+	$result = mysqli_query($conn, $sql);
+	if($result){
+		while($row = mysqli_fetch_assoc($result)){
+			$classOptions[] = $row['class_title'];
+		}
+	}
+	mysqli_close($conn);
+	$class->setOptions($classOptions);
+
+	$testimonialForm->addFields($testimonial, $class);
+
+	$testimonialButton = new Button("Submit");
+	$testimonialForm->addButtons($testimonialButton);
 
 	$success = false; // if false, form will be displayed
 
 	if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-		if(empty($_POST['testimonial'])){
-			$testimonial->setError("Message was left blank");
-		}
-		else{
-			//setData automatically call htmlspecialchars
-			$testimonial->setData($_POST['testimonial']);
-		}
-
-		if(empty($_POST['class'])){
-			$class->setError('Please choose a class');
-		}
-		else if(!in_array($_POST['class'], $class->getOptions())){
-			$class->setError('Not a valid value for class');
-		}
-		else {
-			$class->setData($_POST['class']);
-		}
+		$testimonialForm->setData();
+		$testimonialForm->validate();
 
 
 		//noErrors returns false if any input object has an error
 		//it can take any number of arguments
-		if(Form::noErrors($class, $testimonial)){
+		if(!$testimonialForm->hasErrors()){
 					
 			include '../config/connect.php';
 
@@ -83,36 +80,9 @@ else {
 	}
 
 	if(!$success){ // if a successful query has not been made
-
-
-?>
-<!-- some div elements for bootstrap formatting -->
-<div class="container">
-	<div class="column mx-auto">
-		<form method="POST" action="#">
-<?php
-		/*
-		 * $testimonial->render() = 
-		 * <div class="form-group>
-		 * <label for='testimonial'>Add your testimonial</label>
-		 * <textarea name='testimonial' id='testimonial class='form-control' rows=5 cols=20 maxlength=200 placeholder='write your message' required></textarea>
-		 * </div>
-		 *
-		 * Also displays error message, and is sticky
-		 *
-		 * As you can see, using objects make writing forms MUCH easier
-		 *
-		 */
-	$testimonial->render();
-	//so concise!
-	$class->render();
-?>
-			<button class="btn btn-primary">Submit</button>
-		</form>
-	</div>
-</div>
-
-<?php
+		echo "<div class='container'>";
+		$testimonialForm->render();
+		echo "</div>";
 	}
 }
 include 'footer.php';

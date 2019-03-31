@@ -27,14 +27,19 @@ ini_set('display_errors', 1);
 		<title>=Fitness Club Website</title>
 		<link rel="stylesheet" href="css/reset.css">
 
-		
 		<link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
-  
-  
-      <link rel="stylesheet" href="css/stylefees.css">
+	<!--	
+  -->
+
+		<link rel="stylesheet" href="css/stylefees.css">
 
 		<link rel="stylesheet" href="css/style.css">
 	</head>
+<?php
+spl_autoload_register(function($class_name){
+	include './components/'.$class_name .'.php';
+});
+?>
 	<body>
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -54,13 +59,10 @@ ini_set('display_errors', 1);
 							<a class="nav-link" href="testimonial.php">Testimonials</a>
 						</li>
 					<?php 
-					if(empty($_SESSION['user_no'])){
+					if(!isset($_SESSION['user_no'])){
 					?>
 						<li class="nav-item">
 							<a class="nav-link" href="register.php">Register</a>
-						</li>
-                        <li class="nav-item">
-							<a class="nav-link" href="login.php">Login</a>
 						</li>
 					<?php
 					}
@@ -71,12 +73,57 @@ ini_set('display_errors', 1);
 					</ul>
 					<?php 
 					if(isset($_SESSION['user_no'])){
-					echo "<button class='btn btn-success ml-auto'>logged in as ${_SESSION['first_name']}</button>
+					echo "<h5 class='text-secondary my-2 mr-lg-2'>logged in as ${_SESSION['first_name']}</h5>
 					<form action='logout.php'>
 						<button class='btn btn-warning ml-auto'>Logout</button>
 					</form>";
 						if($_SESSION['membership'] == 'Admin'){
 						echo "<button class='btn btn-warning ml-auto'>Special Admin Button</button>";
+						}
+					}
+					else {
+						$loginSuccess = false;
+						$loginForm = new Form('login-form', '');
+						$loginForm->setClassList('form-inline my-2 my-lg-10');
+						$loginEmail = new Input('email', '', 'email');
+						$loginEmail->setAttributes(array(
+							'placeholder'=>'Email',
+							'required'));
+						$loginEmail->setValidator('Validator::validateEmail', 'Email invalid');
+						$loginPassword = new Input('password', '', 'password');
+						$loginPassword->setAttributes(array(
+							'placeholder'=>'Password',
+							'required'));
+						$loginForm->addFields($loginEmail, $loginPassword);
+						$loginButton = new Button('login');
+						$loginForm->addButtons($loginButton);
+						if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST[$loginButton->getValue()])){
+							$loginForm->setData();
+							$loginForm->validate();
+							if(!$loginForm->hasErrors()){
+								include '../config/connect.php';
+								$sql = "SELECT * FROM member 
+											WHERE email = '".$loginEmail->getData($conn)."' 
+											AND password = '".$loginPassword->getData($conn)."';";
+
+								$result = mysqli_query($conn, $sql);
+								$num_rows = mysqli_num_rows($result);								
+								if($num_rows === 1){
+									$tuple = mysqli_fetch_array($result, MYSQLI_ASSOC);
+									$_SESSION['user_no'] = $tuple['user_no'];
+									$_SESSION['first_name'] = $tuple['first_name'];
+									$_SESSION['email'] = $tuple['email'];
+									$_SESSION['membership'] = $tuple['membership'];
+									$loginSuccess = true;
+									header('Refresh: 0');
+									mysqli_close($conn);
+									exit();
+								}
+								mysqli_close($conn);
+							}
+						}
+						if(!$loginSuccess){
+							$loginForm->render();
 						}
 					}
 					?>
@@ -91,7 +138,3 @@ ini_set('display_errors', 1);
 				});
 			</script>
 		</header>
-<?php
-				spl_autoload_register(function($class_name){
-					include './components/'.$class_name .'.php';
-				});

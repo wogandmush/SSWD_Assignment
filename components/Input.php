@@ -23,7 +23,7 @@ class Input extends Field{
 			foreach($this->errors as $error){
 				$output .= "<small class='text-danger'>$error</small>";
 			}
-			$output .="	<input name='$this->name' id='$this->name' class='form-control' type=$this->type ";
+			$output .="	<input name='$this->name' id='$this->name' class='form-control' type='$this->type' ";
 		}
 		elseif (!empty($this->data)){
 			$output = "<div class='form-group'>
