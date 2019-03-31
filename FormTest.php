@@ -1,12 +1,12 @@
 <?php
 include 'header.php';
 
-$form = new Form('FormTest.php');
+$form = new Form('test-form', 'FormTest.php');
 
 $name = new Input('name', 'Enter name: ');
 
 $email = new Input('email', 'Enter email: ');
-$email->setValidator('Validator::validateEmail');
+$email->setValidator('Validator::validateEmail', 'not a valid email');
 
 $gender = new Radio('gender', 'Choose your gender: ');
 $gender->setOptions(array('male', 'female'));
@@ -29,7 +29,6 @@ if($_SERVER['REQUEST_METHOD'] === $form->getMethod()){
 	$form->setData();
 	$form->validate();
 }
-
 $form->render();
 
 include 'footer.php';

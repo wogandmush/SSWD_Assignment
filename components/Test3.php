@@ -1,15 +1,12 @@
 <?php
 
-ini_set('display_errors', 1);
-include 'Validator.php';
-include 'Form.php';
-include 'Button.php';
-include 'Input.php';
+include '../header.php';
 
-$form = new Form('Test3.php', 'POST');
+$form = new Form('test-form', 'Test3.php', 'POST');
 $name = new Input('name', 'Enter name: ');
-$name->setValidator('Validator::validateEmail');
+$name->setValidator('Validator::validateEmail', 'Everything is fucked');
 $button = new Button('submit');
+$button->setClassList("btn btn-secondary");
 $form->addField($name);
 $form->addButton($button);
 

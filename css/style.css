@@ -34,6 +34,7 @@
 /* style to get navbar working
  * don't change this!
  */
+	/*
 @media (max-width: 991px){
 	#nav-div {
 		display: block;
@@ -55,11 +56,13 @@
 		transition: opacity 200ms !important;
 	}
 }
+*/
 
 #login-form input {
 	margin-right: 0.5em;
 }
 #login-form input::placeholder {
 	color: #666;
+}
 
 /*End of navbar stuff*/

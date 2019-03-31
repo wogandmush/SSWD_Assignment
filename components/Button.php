@@ -4,6 +4,7 @@ class Button{
 	private $name;
 	private $value;
 	private $text;
+	private $classList = 'btn btn-primary';
 	public function __construct($name, $value = null, $text = null){
 		$this->name = $name;
 		$this->value = isset($value) ? $value :  $name;
@@ -27,6 +28,12 @@ class Button{
 	public function setText($text){
 		$this->text = $text;
 	}
+	public function getClassList(){
+		return $this->classList;
+	}
+	public function setClassList($classList){
+		$this->classList = $classList;
+	}
 	public function render(){
 		echo $this->getHTMLString();
 	}
@@ -34,7 +41,7 @@ class Button{
 		$output = 
 		"<button 
 			type='submit' 
-			class='btn btn-primary'
+			class='$this->classList'
 			name='$this->name'
 			value='$this->value'
 		>$this->text</button>";

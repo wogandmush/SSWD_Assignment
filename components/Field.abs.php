@@ -61,6 +61,9 @@ abstract class Field{
 		if($defaultError)
 			$this->defaultError = $defaultError;
 	}
+	public function setDefaultError($errorMessage){
+		$this->defaultError = $errorMessage;
+	}
 	public function validate(){
 		if(isset($this->validator) && !call_user_func($this->validator, $this->data))
 			$this->setError($this->defaultError);

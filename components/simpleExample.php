@@ -110,7 +110,7 @@ if(isset($_POST['email'])){
 #
 # include 'noErrors.php' // included in header.php
 
-if(noErrors($fname, $email)){ //simply load all of you fields into this function
+if(Form::noErrors($fname, $email)){ //simply load all of you fields into this function
 
 # when building your query string, use the getData() method.
 # passng in the connection variable calls the mysqli_real_escape_string() method,
