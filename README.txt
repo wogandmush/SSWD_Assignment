@@ -1,5 +1,25 @@
 ---Read Me---
 
+*pages which include connect.php more than once raise errors
+ - I propose using a DBConnect class with static method getConnection to 
+get a connection variable instead.
+e.g.
+ 
+$conn = DBConnect::getConnection();
+
+//db logic
+
+mysqli_close($conn);
+
+*connect.php should just define constants required for connection
+<?php
+define('DB_HOST', 'localhost');
+define('DB_USER', 's2995020');
+define('DB_PWD', 'yourpassword');
+define('DB_NAME', 'yourdbname');
+?>
+
+
 *Copy template.php when creating a new file*
 
     ----Currently Working on----
@@ -11,8 +31,9 @@ Oisin: Getting Registration + Login working - done //Added an if statement to fi
 Martin:                      
 
 Dan: Creating reusable code for form fields - done; // will add more functionality if needed
-	 Testimonial Approval System - db logic done!
-	 Class pages
+	 Testimonial Approval System - db logic done! - need to work on front end
+	 Header - done (for now)
+	 Index.php presentations - todo!
 
     ----Web Application Requirements----
 

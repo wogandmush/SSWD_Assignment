@@ -99,7 +99,7 @@ spl_autoload_register(function($class_name){
 							$loginForm->setData();
 							$loginForm->validate();
 							if(!$loginForm->hasErrors()){
-								include '../config/connect.php';
+								$conn = DBConnect::getConnection();
 								$sql = "SELECT * FROM member 
 											WHERE email = '".$loginEmail->getData($conn)."' 
 											AND password = '".$loginPassword->getData($conn)."';";

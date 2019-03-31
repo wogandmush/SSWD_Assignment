@@ -4,6 +4,8 @@ require '../config/connect.php'; ?>
 
 <?php
 // if the user is logged in
+$feature1 = new Feature('feature1', 'Yoga', 'things about yoga', 'images/yoga.jpg', 'yoga.php');
+$feature1->render();
 if(isset($_SESSION['user_no'])) {
     // if the users membership is Student Monthly display Student Monthly Content
      if($_SESSION['membership'] == 'Student Monthly') {
