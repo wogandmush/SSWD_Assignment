@@ -1,8 +1,6 @@
 <?php 
 include 'header.php';
-require '../config/connect.php'; ?>
 
-<?php
 // if the user is logged in
 $feature1 = new Feature('feature1', 'Yoga', 'things about yoga', 'images/yoga.jpg', 'yoga.php');
 $feature1->render();
