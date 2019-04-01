@@ -1,7 +1,10 @@
 <?php
 #header("Access-Control-Allow-Origin: *");
 session_start();
-
+ini_set('display_errors', 1);
+spl_autoload_register(function($class_name){
+	include __DIR__.'/components/'.$class_name.'.php';
+});
 
 if(!(isset($_SESSION['membership']) && $_SESSION['membership'] === 'admin')){
 	echo "<h4 class='text-danger'>Unauthorized request made. Redirecting...</h4>";
@@ -10,7 +13,7 @@ if(!(isset($_SESSION['membership']) && $_SESSION['membership'] === 'admin')){
 }
 else {
 
-	include '../config/connect.php';
+	$conn = DBConnect::getConnection();
 	// get request made from testimonial_manage.php
 	if($_SERVER['REQUEST_METHOD'] === 'GET'){
 

@@ -27,7 +27,7 @@ else {
 	$class->setRequired(true);
 
 	$classOptions = array();
-	include '../config/connect.php';
+	$conn = DBConnect::getConnection();
 	$sql = "SELECT class_title FROM class;";
 	$result = mysqli_query($conn, $sql);
 	if($result){
@@ -55,7 +55,7 @@ else {
 		//it can take any number of arguments
 		if(!$testimonialForm->hasErrors()){
 					
-			include '../config/connect.php';
+			$conn = DBConnect::getConnection();
 
 			// insert a new tuple into table 'testimonial' (approved = 0; i.e. not approved);
 			// passing connection variable to component's getData() method calls mysqli_real_escape_string()

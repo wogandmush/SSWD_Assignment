@@ -11,7 +11,7 @@ if(isset($_SESSION['membership'])){
 }
 
 // get $conn connection resource for db work
-include '../config/connect.php';
+$conn = DBConnect::getConnection();
 
 // get all admin-approved testimonial from database (approved = 1)
 $sql = "SELECT * FROM testimonial WHERE approved = 1 ORDER BY date DESC LIMIT 5";

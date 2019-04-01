@@ -2,18 +2,13 @@
 
 session_start();
 
-/*
- * // code that might be used to make header directory insensitive
-$cwd = explode("/", getcwd());
-while($cwd[sizeof($cwd)-1] !== 'SSWD_Assignment'){
-	var_dump($cwd);
-	chdir('../');
-	$cwd = explode("/", getcwd());
-}
-$cwd = getcwd();
- */
-###for testing###
+spl_autoload_register(function($class_name){
+	include __DIR__.'/components/'.$class_name .'.php';
+});
 
+$root = Helper::getRoot();
+
+###for testing###
 #$_SESSION['membership'] = 'admin';
 #$_SESSION['first_name'] = 'Dan';
 #$_SESSION['user_no'] = 1;
@@ -33,46 +28,41 @@ ini_set('display_errors', 1);
 
 		<link rel="stylesheet" href="css/style.css">
 	</head>
-<?php
-spl_autoload_register(function($class_name){
-	include __DIR__.'/components/'.$class_name .'.php';
-});
-?>
 	<body>
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<a class="navbar-brand" href='index.php'>Home</a>
+			<a class="navbar-brand" href='<?php echo $root;?>'>Home</a>
 				<button class="navbar-toggler" type="button" id="navbar-toggler"> 
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class=" collapse navbar-collapse" id="nav-div">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="class.php">Classes</a>
+						<a class="nav-link" href="<?php echo $root;?>/class.php">Classes</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="fees.php">Fees</a>
+						<a class="nav-link" href="<?php echo $root?>/fees.php">Fees</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="testimonial.php">Testimonials</a>
+						<a class="nav-link" href="<?php echo $root?>/testimonial.php">Testimonials</a>
 						</li>
 					<?php 
 					if(!isset($_SESSION['user_no'])){
 					?>
 						<li class="nav-item">
-							<a class="nav-link" href="register.php">Register</a>
+						<a class="nav-link" href="<?php echo $root?>/register.php">Register</a>
 						</li>
 					<?php
 					}
 					?>
 						<li class="nav-item">
-							<a class="nav-link" href="contact.php">Contact Us</a>
+						<a class="nav-link" href="<?php echo $root?>/contact.php">Contact Us</a>
 						</li>
 					</ul>
 					<?php 
 					if(isset($_SESSION['user_no'])){
 					echo "<h5 class='text-secondary my-2 mr-lg-2'>logged in as ${_SESSION['first_name']}</h5>
-					<form action='logout.php'>
+					<form action='$root/logout.php'>
 						<button class='btn btn-warning ml-auto'>Logout</button>
 					</form>";
 						if($_SESSION['membership'] == 'Admin'){
