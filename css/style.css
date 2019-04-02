@@ -13,20 +13,11 @@
 
 .testimonial {
 	width: 80%;
-	margin: 0 auto;
-	display: grid;
-	background: #ddd;
-	border-radius: 4px;
-	grid-template-columns: 1fr 12em;
-	padding: 0.5em;
-	
-	justify-items: end;
-}
-.testimonial:nth-child(even) {
-	background: #aaa;
+	height: auto;
+	display: none;
 }
 
-.testimonial span{
+.testimonial small{
 	font-size: 12px;
 	align-self: end;
 }
