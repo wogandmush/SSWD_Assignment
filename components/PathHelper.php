@@ -1,6 +1,6 @@
 <?php
 
-class Helper {
+class PathHelper {
 
 	public static function getRoot(){
 	$uri = $_SERVER['REQUEST_URI'];

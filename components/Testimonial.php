@@ -2,9 +2,9 @@
 
 class Testimonial {
 	private $name;
-	private $date;
 	private $message;
 	private $class;
+	private $date;
 	public function __construct($name, $message, $class, $date){
 		$this->name = $name;
 		$this->message = $message;
@@ -16,10 +16,11 @@ class Testimonial {
 	}
 	public function getHTMLString(){
 		$output = 
-		"<div class='testimonial'
+		"<div class='hidden testimonial'
 			<h1>$this->name</h1>
 			<p>$this->message</p>
-			<small>$this-date</small>
+			<small>$this->date</small>
 		</div>";
+		return $output;
 	}
 }

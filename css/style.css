@@ -13,7 +13,7 @@
 
 .testimonial {
 	width: 80%;
-	margin: 0.5em auto;
+	margin: 0 auto;
 	display: grid;
 	background: #ddd;
 	border-radius: 4px;

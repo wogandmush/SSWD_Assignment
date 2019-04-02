@@ -13,4 +13,11 @@ class Validator{
 			return false;
 		return true;
 	}
+	public static function validatePhoneNumber($data){
+		//needs work
+		return preg_match('/^\+?[\d\s\-()]{7,}$/',$data);
+	}
+	public static function validatePassword(){
+
+	}
 }

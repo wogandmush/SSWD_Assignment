@@ -15,26 +15,51 @@ $conn = DBConnect::getConnection();
 
 // get all admin-approved testimonial from database (approved = 1)
 $sql = "SELECT * FROM testimonial WHERE approved = 1 ORDER BY date DESC LIMIT 5";
+
 if($result = mysqli_query($conn, $sql)){
 
+	$testimonials = array();
+		
 	// div to contain all testimonials
 	echo "<div id='testimonial-container'>";
 	while($row = mysqli_fetch_array($result)){
+		$name = $row['first_name'];
+		$message = $row['message'];
+		$class = $row['class_name'];
+		$date = $row['date'];
 
-		// create testimonial string using values from each row
-		echo
-		"<div class='testimonial'>
-			<p>${row['message']}</p>
-			<span><strong>- ${row['first_name']}</strong> (${row['class_name']})
-				<br/>
-				<small>${row['date']}</small>
-			</span>
-		</div>";
+		$testimonials[] = new Testimonial($name, $message, $class, $date);
+	}
+	foreach($testimonials as $testimonial){
+		$testimonial->render();
 	}
 	echo "</div>";
 }
 // close the database connection
 mysqli_close($conn);
+?>
 
+<script>
+
+var testimonials = document.getElementsByClassName('testimonial');
+
+
+$(testimonials).hide();
+var shown = testimonials[Math.floor(Math.random() * testimonials.length)];
+var fadeTime = 500;
+var delayTime = 4000;
+function changeShown(){
+	 shown = testimonials[Math.floor(Math.random() * testimonials.length)];
+	$(shown)
+		.fadeIn(fadeTime)
+		.delay(delayTime)
+		.fadeOut(fadeTime);
+};
+changeShown();
+setInterval(changeShown, fadeTime*3 + delayTime);
+
+</script>
+
+<?php
 include 'footer.php';
 ?>
