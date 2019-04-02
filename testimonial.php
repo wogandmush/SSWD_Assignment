@@ -17,17 +17,14 @@ $conn = DBConnect::getConnection();
 $sql = "SELECT * FROM testimonial WHERE approved = 1 ORDER BY date DESC LIMIT 5";
 
 if($result = mysqli_query($conn, $sql)){
-
 	$testimonials = array();
-		
 	// div to contain all testimonials
-	echo "<div id='testimonial-container'>";
+	echo "<div class='container' id='testimonial-container'>";
 	while($row = mysqli_fetch_array($result)){
 		$name = $row['first_name'];
 		$message = $row['message'];
 		$class = $row['class_name'];
 		$date = $row['date'];
-
 		$testimonials[] = new Testimonial($name, $message, $class, $date);
 	}
 	foreach($testimonials as $testimonial){
@@ -41,12 +38,17 @@ mysqli_close($conn);
 
 <script>
 var testimonials = document.getElementsByClassName('testimonial');
-$(testimonials).hide();
-var shown = testimonials[Math.floor(Math.random() * testimonials.length)];
-var fadeTime = 500;
+var shownIndex = Math.floor(Math.random() * testimonials.length);
+var shown = testimonials[shownIndex];
+var fadeTime = 800;
 var delayTime = 4000;
 function changeShown(){
-	 shown = testimonials[Math.floor(Math.random() * testimonials.length)];
+	// ensure that same message is not displayed twice in succession
+	oldIndex = shownIndex; 
+	while(oldIndex === shownIndex) 
+		shownIndex = Math.floor(Math.random() * testimonials.length);
+	shown = testimonials[shownIndex];
+
 	$(shown)
 		.fadeIn(fadeTime)
 		.delay(delayTime)
