@@ -40,10 +40,7 @@ mysqli_close($conn);
 ?>
 
 <script>
-
 var testimonials = document.getElementsByClassName('testimonial');
-
-
 $(testimonials).hide();
 var shown = testimonials[Math.floor(Math.random() * testimonials.length)];
 var fadeTime = 500;
@@ -53,11 +50,9 @@ function changeShown(){
 	$(shown)
 		.fadeIn(fadeTime)
 		.delay(delayTime)
-		.fadeOut(fadeTime);
+		.fadeOut(fadeTime, changeShown);
 };
 changeShown();
-setInterval(changeShown, fadeTime*3 + delayTime);
-
 </script>
 
 <?php
