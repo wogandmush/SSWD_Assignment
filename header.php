@@ -6,7 +6,7 @@ spl_autoload_register(function($class_name){
 	include __DIR__.'/components/'.$class_name .'.php';
 });
 
-$root = Helper::getRoot();
+$root = PathHelper::getRoot();
 
 ###for testing###
 #$_SESSION['membership'] = 'admin';
@@ -119,7 +119,7 @@ ini_set('display_errors', 1);
 			</nav>
 			<script>
 				$('#navbar-toggler').click( _=> {
-					$('#nav-div').toggle('fast', _ => {
+					$('#nav-div').toggle(400, _ => {
 						$('#nav-div').toggleClass("show");
 					});
 				});

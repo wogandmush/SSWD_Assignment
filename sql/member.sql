@@ -1,5 +1,7 @@
+DROP TABLE IF EXISTS member;
+
 CREATE TABLE member(
-	user_no INT NOT NULL AUTOINCREMENT,
+	user_no INT NOT NULL AUTO_INCREMENT,
 	first_name VARCHAR(30),
 	last_name VARCHAR(30),
 	date_of_birth DATE,

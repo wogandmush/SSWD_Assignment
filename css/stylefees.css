@@ -47,6 +47,7 @@ body {
 }
 .card .card-block {
   padding-top: 0;
+  padding-left: 2rem;
 }
 .card .list-group-item {
   border: 0px;
