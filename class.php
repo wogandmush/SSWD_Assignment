@@ -3,10 +3,6 @@ include 'header.php';
 #^^this should be the first line of the file. Body tags are already opened
 ?>
 
-
-<body>
-
-    
     <!-- Hero Image -->
     <div class="jumbotron text-center">
 
@@ -175,26 +171,6 @@ include 'header.php';
       <!-- Card -->
 
     </div>    
-    
-    
-</body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
 #vv this should be the last line. body and html tags are closed
 include 'footer.php';
