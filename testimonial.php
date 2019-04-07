@@ -39,6 +39,7 @@ mysqli_close($conn);
 <script>
 var testimonials = document.getElementsByClassName('testimonial');
 var shownIndex = Math.floor(Math.random() * testimonials.length);
+var oldIndex;
 var shown = testimonials[shownIndex];
 var fadeTime = 800;
 var delayTime = 4000;
@@ -48,7 +49,6 @@ function changeShown(){
 	while(oldIndex === shownIndex) 
 		shownIndex = Math.floor(Math.random() * testimonials.length);
 	shown = testimonials[shownIndex];
-
 	$(shown)
 		.fadeIn(fadeTime)
 		.delay(delayTime)

@@ -70,9 +70,10 @@ ini_set('display_errors', 1);
 						}
 					}
 					else {
+echo "<a id='login-link'>Already a member?</a>";
 						$loginSuccess = false;
 						$loginForm = new Form('login-form', '');
-						$loginForm->setClassList('form-inline');
+						$loginForm->setClassList('hidden form-inline');
 						$loginEmail = new Input('login_email', '', 'email');
 						$loginEmail->setAttributes(array(
 							'placeholder'=>'Email',
@@ -123,5 +124,11 @@ ini_set('display_errors', 1);
 						$('#nav-div').toggleClass("show");
 					});
 				});
+
+		$('#login-form').hide();
+		$('#login-link').on("click", ()=>{
+			$('#login-link').hide();
+			$('#login-form').slideToggle(200);
+		});
 			</script>
 		</header>

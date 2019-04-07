@@ -2,6 +2,24 @@
 	box-sizing: border-box;
 }
 
+#login-form{
+	margin-left: 1em;
+}
+
+#login-form input {
+	margin-right: 0.5em;
+}
+
+#login-form input::placeholder {
+	color: #666;
+}
+
+.feature img {
+	border-radius: 100px;
+	width: 20%;
+	height: 20%;
+}
+
 .error {
 	color: red;
 }
@@ -22,21 +40,3 @@
 	align-self: end;
 }
 
-#login-form input {
-	margin-right: 0.5em;
-}
-#login-form input::placeholder {
-	color: #666;
-}
-
-.feature {
-
-
-}
-
-.feature img {
-	border-radius: 100px;
-	width: 20%;
-	height: 20%;
-
-}

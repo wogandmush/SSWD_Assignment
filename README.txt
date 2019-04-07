@@ -34,6 +34,11 @@ Dan: Creating reusable code for form fields - done; // will add more functionali
 	 Testimonial Approval System - db logic done! - need to work on front end
 	 Header - done (for now)
 	 Index.php presentations - todo!
+	 
+	Login - drop down
+ 	Classes - drop down
+ 	Admin toolbar
+	
 
     ----Web Application Requirements----
 
