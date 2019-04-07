@@ -70,7 +70,7 @@ ini_set('display_errors', 1);
 						}
 					}
 					else {
-						echo "<button type='button' class='btn btn-link' id='login-link'>Already a member?</button>";
+echo "<a id='login-link'>Already a member?</a>";
 						$loginSuccess = false;
 						$loginForm = new Form('login-form', '');
 						$loginForm->setClassList('hidden form-inline');
@@ -108,7 +108,6 @@ ini_set('display_errors', 1);
 									mysqli_close($conn);
 									exit();
 								}
-								else $loginEmail->setError('Incorrect email or password');
 								mysqli_close($conn);
 							}
 						}
@@ -125,16 +124,11 @@ ini_set('display_errors', 1);
 						$('#nav-div').toggleClass("show");
 					});
 				});
-		var loginLinkText = $('#login-link').html();
+
 		$('#login-form').hide();
 		$('#login-link').bind("click", function(){
-			if($(this).html() == loginLinkText){
-				$(this).html("&times;");
-				$('#login-form').slideToggle(200);
-			}
-			else {
-				$('#login-form').slideToggle(200, ()=>$(this).html(loginLinkText));
-			}
+			$(this).html($(this).html === "&times;" ? "Already a member?" : "&times;");
+			$('#login-form').slideToggle(200);
 		});
 			</script>
 		</header>

@@ -2,17 +2,25 @@
 	box-sizing: border-box;
 }
 
+#login-link{
+	display: inline-block;
+	text-decoration: none;
+}
+
 #login-form{
 	margin-left: 1em;
 }
 
 #login-form input {
 	margin-right: 0.5em;
+	margin-bottom: -2px;
+	margin-top: -2px;
 }
 
 #login-form input::placeholder {
 	color: #666;
 }
+
 
 .feature img {
 	border-radius: 100px;
