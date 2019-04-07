@@ -6,6 +6,13 @@ include 'header.php';
 #^^this should be the first line of the file. Body tags are already opened
 ?>
 
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="css/stylefees.css">
+
+	</head>
+
+
   <div class="container">
   <div class="row flex-items-xs-middle flex-items-xs-center">
 
