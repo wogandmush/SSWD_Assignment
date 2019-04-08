@@ -36,14 +36,40 @@
 	margin: 2em auto;
 }
 
+#testimonials{
+	background-image: url('../images/yoga.jpg');
+	padding: 10em 0;
+	height: 90vh;
+}
+
 .testimonial {
 	width: 80%;
 	height: auto;
 	display: none;
+	background: #EEED;
+}
+
+.testimonial blockquote{
+	text-align: center;
+	font-size: 2em;
+}
+
+.testimonial blockquote::before{
+	font-family: times;
+	content: '\201C';
+}
+
+.testimonial blockquote::after{
+	font-family: times;
+	content: '\201D';
+}
+
+.testimonial .lead{
+	text-align: right;
 }
 
 .testimonial small{
 	font-size: 12px;
-	align-self: end;
+	float: right;
+	text-align: right;
 }
-

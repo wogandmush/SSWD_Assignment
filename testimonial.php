@@ -19,7 +19,8 @@ $sql = "SELECT * FROM testimonial WHERE approved = 1 ORDER BY date DESC LIMIT 5"
 if($result = mysqli_query($conn, $sql)){
 	$testimonials = array();
 	// div to contain all testimonials
-	echo "<div class='container' id='testimonial-container'>";
+	echo "<main id='testimonials'>
+	   	<div class='container' id='testimonial-container'>";
 	while($row = mysqli_fetch_array($result)){
 		$name = $row['first_name'];
 		$message = $row['message'];
@@ -30,7 +31,8 @@ if($result = mysqli_query($conn, $sql)){
 	foreach($testimonials as $testimonial){
 		$testimonial->render();
 	}
-	echo "</div>";
+	echo "</div>
+		</main>";
 }
 // close the database connection
 mysqli_close($conn);
