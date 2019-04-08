@@ -2,7 +2,7 @@
 include 'header.php'; 
 #^^this should be the first line of the file. Body tags are already opened
 ?>
-    
+
     <!-- Hero Image -->
     <div class="jumbotron text-center">
 

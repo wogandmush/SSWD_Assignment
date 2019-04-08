@@ -17,7 +17,18 @@ CREATE TABLE member(
 );
 
 INSERT INTO member (
-	first_name, last_name, date_of_birth, gender, email, membership, class, password
-	)VALUES (
-		'Dan', 'Quinn', '1989-07-24', 'male', 'dan@swole.ie', 'admin', 'Cardio', 'password');
-
+	user_no, 
+	first_name, 
+	last_name, 
+	gender, 
+	email, 
+	membership, 
+	password
+	) VALUES
+	(0, 'Supreme', 'Overlord', 'male' 'admin@swole.ie', 'admin', 'password'),
+	(1, 'Dan', 'Quinn', 'male', 'dan@swole.ie', 'admin', 'password'),
+	(2, 'Martin', 'Feeley', 'male', 'martin@swole.ie', 'admin', 'password'),
+	(3, 'Oisin', 'MacSweeney', 'male', 'oisin@swole.ie', 'admin', 'password'),
+	(4, 'Student', 'Monthly', 'female', 'sm@swole.ie', 'Student Monthly', 'password'),
+	(5, 'Adult', 'Monthly', 'female', 'am@swole.ie', 'Adult Monthly', 'password'),
+	(6, 'Adult','Yearly', 'female', 'ay@swole.ie', 'Adult Yearly', 'password'); 
