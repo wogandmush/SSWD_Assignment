@@ -43,7 +43,7 @@ var oldIndex;
 var shown = testimonials[shownIndex];
 var fadeTime = 800;
 var delayTime = 4000;
-function changeShown(){
+(function changeShown(){
 	// ensure that same message is not displayed twice in succession
 	oldIndex = shownIndex; 
 	while(oldIndex === shownIndex) 
@@ -53,8 +53,7 @@ function changeShown(){
 		.fadeIn(fadeTime)
 		.delay(delayTime)
 		.fadeOut(fadeTime, changeShown);
-};
-changeShown();
+})();
 </script>
 
 <?php

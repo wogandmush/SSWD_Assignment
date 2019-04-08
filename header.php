@@ -40,21 +40,14 @@ ini_set('display_errors', 1);
 						<li class="nav-item">
 						<a class="nav-link" href="<?php echo $root;?>/class.php">Classes</a>
 						</li>
+<!--
 						<li class="nav-item">
 						<a class="nav-link" href="<?php echo $root?>/fees.php">Fees</a>
 						</li>
 						<li class="nav-item">
 						<a class="nav-link" href="<?php echo $root?>/testimonial.php">Testimonials</a>
 						</li>
-					<?php 
-					if(!isset($_SESSION['user_no'])){
-					?>
-						<li class="nav-item">
-						<a class="nav-link" href="<?php echo $root?>/register.php">Register</a>
-						</li>
-					<?php
-					}
-					?>
+-->
 						<li class="nav-item">
 						<a class="nav-link" href="<?php echo $root?>/contact.php">Contact Us</a>
 						</li>
@@ -70,7 +63,8 @@ ini_set('display_errors', 1);
 						}
 					}
 					else {
-						echo "<button type='button' class='btn btn-link' id='login-link'>Already a member?</button>";
+						echo "<button onclick='location.href=\"${root}/register.php\";' type='button' class='btn btn-link' id='register-link'>JOIN</button>";
+						echo "<button type='button' class='btn btn-link' id='login-link'>MEMBERS</button>";
 						$loginSuccess = false;
 						$loginForm = new Form('login-form', '');
 						$loginForm->setClassList('hidden form-inline');

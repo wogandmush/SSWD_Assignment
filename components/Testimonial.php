@@ -17,9 +17,8 @@ class Testimonial {
 	public function getHTMLString(){
 		$output = 
 		"<div class='jumbotron testimonial'>
-			<h1 class='display-3'>$this->name</h1>
-			<h4>$this->class</h4>
-			<p class='lead'>$this->message</p>
+			<h4>$this->message</h4>
+			<p class='lead'>$this->name ($this->class)</p>
 			<small>$this->date</small>
 		</div>";
 		return $output;
