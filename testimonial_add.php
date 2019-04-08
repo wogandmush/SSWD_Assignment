@@ -15,7 +15,7 @@ else {
 
 	$testimonial = new TextArea('testimonial', "Add your testimonial: ");
 	$testimonial->setAttributes(array(
-		'maxlength'=>200, 
+		'maxlength'=>400, 
 		'placeholder'=>'write your message',
 		'required',
 		'rows'=>5,
