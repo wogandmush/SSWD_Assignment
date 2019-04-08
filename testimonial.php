@@ -21,10 +21,11 @@ if($result = mysqli_query($conn, $sql)){
 	// div to contain all testimonials
 	echo "<main id='testimonials'>
 	   	<div class='container' id='testimonial-container'>";
+	
 	while($row = mysqli_fetch_array($result)){
 		$name = $row['first_name'];
 		$message = $row['message'];
-		$class = $row['class_name'];
+		$class = $row['class_title'];
 		$date = $row['date'];
 		$testimonials[] = new Testimonial($name, $message, $class, $date);
 	}
@@ -48,8 +49,10 @@ var delayTime = 4000;
 (function changeShown(){
 	// ensure that same message is not displayed twice in succession
 	oldIndex = shownIndex; 
+	if(testimonials.length > 1){
 	while(oldIndex === shownIndex) 
 		shownIndex = Math.floor(Math.random() * testimonials.length);
+	}
 	shown = testimonials[shownIndex];
 	$(shown)
 		.fadeIn(fadeTime)

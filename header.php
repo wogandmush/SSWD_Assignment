@@ -121,13 +121,18 @@ ini_set('display_errors', 1);
 				});
 		var loginLinkText = $('#login-link').html();
 		$('#login-form').hide();
+
 		$('#login-link').bind("click", function(){
 			if($(this).html() == loginLinkText){
 				$(this).html("&times;");
+				$('#register-link').toggle();
 				$('#login-form').slideToggle(200);
 			}
 			else {
-				$('#login-form').slideToggle(200, ()=>$(this).html(loginLinkText));
+				$('#login-form').slideToggle(200, ()=>{
+					$(this).html(loginLinkText);
+					$('#register-link').toggle();
+					});
 			}
 		});
 			</script>

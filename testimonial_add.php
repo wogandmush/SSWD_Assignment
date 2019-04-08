@@ -60,7 +60,7 @@ else {
 			// insert a new tuple into table 'testimonial' (approved = 0; i.e. not approved);
 			// passing connection variable to component's getData() method calls mysqli_real_escape_string()
 			// on data value and returns it
-			$sql = "INSERT INTO testimonial(first_name, class_name, message) VALUES(
+			$sql = "INSERT INTO testimonial(first_name, class_title, message) VALUES(
 				'${_SESSION['first_name']}',
 				'".$class->getData($conn)."', 
 				'".$testimonial->getData($conn)."'
