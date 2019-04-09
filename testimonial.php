@@ -10,35 +10,21 @@ if(isset($_SESSION['membership'])){
 	echo "<a href='testimonial_add.php'>Add a testimonial</a>";
 }
 
-// get $conn connection resource for db work
-$conn = DBConnect::getConnection();
+$testimonials = Testimonial::loadApproved();
 
-// get all admin-approved testimonial from database (approved = 1)
-$sql = "SELECT * FROM testimonial WHERE approved = 1 ORDER BY date DESC LIMIT 5";
-
-if($result = mysqli_query($conn, $sql)){
-	$testimonials = array();
 	// div to contain all testimonials
-	echo "<main id='testimonials'>
-	   	<div class='container' id='testimonial-container'>";
-	
-	while($row = mysqli_fetch_array($result)){
-		$name = $row['first_name'];
-		$message = $row['message'];
-		$class = $row['class_title'];
-		$date = $row['date'];
-		$testimonials[] = new Testimonial($name, $message, $class, $date);
-	}
+?>
+	<main id='testimonials'>
+	   	<div class='container' id='testimonial-container'>
+<?php
+if($testimonials){
 	foreach($testimonials as $testimonial){
 		$testimonial->render();
 	}
-	echo "</div>
-		</main>";
 }
-// close the database connection
-mysqli_close($conn);
 ?>
-
+		</div>
+	</main>
 <script>
 var testimonials = document.getElementsByClassName('testimonial');
 var shownIndex = Math.floor(Math.random() * testimonials.length);
