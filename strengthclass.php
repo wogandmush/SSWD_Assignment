@@ -21,7 +21,7 @@ include 'header.php';
         <p class="lead grey-text text-center w-responsive mx-auto mb-5"> Keep fit and future proof your body with mobility, weights and bodyweight exercises. Strength Class is designed to meet the needs of those who are over 50. </p>
 
     </div>
-
+    </div>
     <body>
 
         <!-- Section: Features v.2 -->

@@ -6,18 +6,21 @@ include 'header.php';
     <!-- Hero Image -->
     <div class="jumbotron text-center">
 
+      <!-- Title -->
+      <h2><strong>Classes</strong></h2>
+
       <!-- Card image -->
       <div class="view overlay my-4">
 
-          <!-- class="img-fluid" -->
         <img src="https://micksgym-iodv7bcgc4.stackpathdns.com/wp-content/uploads/2016/07/hiit-workout-header.jpg" class="img-fluid" alt="">
         <a href="#"></a>
       </div>
 
     <div class="container">
-       <h1 class="h1-responsive font-weight-bold text-center my-5">Classes</h1>
-        <p class="lead grey-text text-center w-responsive mx-auto mb-5">Perfect Form Fitness, where fitness and science combine. Our unique, creative classes are structured from the ground to give the absolutely best results and ensure you've got a good workout while also maintaining a fun engaging atmosphere. </p>
+      <h1>Classes</h1>
+        <p>Swole Fitness Class, where fitness and science combine. Our unique, creative classes are structured from the ground to give the absolutely best results and ensure you've got a good workout while also maintaining a fun engaging atmosphere. </p>
 
+    </div>
     </div>
 
      <!--Table-->   
@@ -107,7 +110,7 @@ include 'header.php';
               <!--Text-->
               <p class="card-text">Yoga Classes for all levels whether you're a vetern or beginner our classes will leave you feeling rejuvenated and stress free.</p>
               <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                <a href="yogaclass.php" class="btn btn-info btn-md">Read more</a>
+              <button type="button" class="btn btn-info btn-md">Read more</button>
 
             </div>
 
@@ -134,7 +137,7 @@ include 'header.php';
               <!--Text-->
               <p class="card-text">Strength Class is a brand new fitness class which will build your core strength and help prevent injury, imporve joint mobility and resilience</p>
               <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-              <a href="strengthclass.php" class="btn btn-info btn-md">Read more</a>
+              <button type="button" class="btn btn-info btn-md">Read more</button>
 
             </div>
 
@@ -161,7 +164,7 @@ include 'header.php';
               <!--Text-->
               <p class="card-text">Feel the burn with an intense cardio workout that'll leave you in much better shape and boost overall fitness levels. </p>
               <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-              <a href="cardioclass.php" class="btn btn-info btn-md">Read more</a>
+              <button type="button" class="btn btn-info btn-md">Read more</button>
 
             </div>
           </div>
