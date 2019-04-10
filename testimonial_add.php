@@ -13,8 +13,8 @@ else {
 	// create a textarea element for user to write their message
 	$testimonialForm = new Form('testimonial_add', 'testimonial_add.php');
 
-	$testimonial = new TextArea('testimonial', "Add your testimonial: ");
-	$testimonial->setAttributes(array(
+	$message = new TextArea('testimonial', "Add your testimonial: ");
+	$message->setAttributes(array(
 		'maxlength'=>400, 
 		'placeholder'=>'write your message',
 		'required',
@@ -38,10 +38,13 @@ else {
 	mysqli_close($conn);
 	$class->setOptions($classOptions);
 
-	$testimonialForm->addFields($testimonial, $class);
+	$testimonialForm->addFields($message, $class);
 
 	$testimonialButton = new Button("Submit");
-	$testimonialForm->addButtons($testimonialButton);
+	$previewButton = new Button("preview");
+	$previewButton->setClassList("btn btn-info");
+	$testimonialForm->addButtons($testimonialButton, $previewButton);
+
 
 	$success = false; // if false, form will be displayed
 
@@ -54,7 +57,27 @@ else {
 		//noErrors returns false if any input object has an error
 		//it can take any number of arguments
 		if(!$testimonialForm->hasErrors()){
+			if(isset($_POST['preview'])){
+?>
+<main id='testimonials'>
+	   	<div class='container' id='testimonial-container'>
+<?php
+
+				$preview = new Testimonial($_SESSION['first_name'], $message->getData(), $class->getData(), date("M,d,Y h:i:s"));
+				$preview->render();
+				var_dump($preview->toArray());
+								
+?>
+	</div>
+</main>
+<?php
+				var_dump($_POST);
+
+				$success = true;
+			}
 					
+			else {
+
 			$conn = DBConnect::getConnection();
 
 			// insert a new tuple into table 'testimonial' (approved = 0; i.e. not approved);
@@ -63,19 +86,24 @@ else {
 			$sql = "INSERT INTO testimonial(first_name, class_title, message) VALUES(
 				'${_SESSION['first_name']}',
 				'".$class->getData($conn)."', 
-				'".$testimonial->getData($conn)."'
+				'".$message->getData($conn)."'
 				)";
 			#echo $sql; // for testing
 
 			if($result = mysqli_query($conn, $sql)){ // if query was successful
 				echo "Thank you! Your testimonial has been submitted!";
+				echo "<p class='text-info'>Redirecting to testimonials page</p>";
 				$success = true; // don't display form
-			}
+				$url = $root."/testimonial.php";
+				header("Refresh: 2; url='$url'");
+				exit();
+				}
 			else {
 				echo "Something went wrong";
 			}
 			// close the db connection
 			mysqli_close($conn);
+			}
 		}
 	}
 

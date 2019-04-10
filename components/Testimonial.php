@@ -11,12 +11,15 @@ class Testimonial implements Crudable{
 		$this->class = $class;
 		$this->date = $date;
 	}
+	public function toArray(){
+		return ["first_name"=>$this->name, "message"=>$this->message, "class_title"=>$this->class, "date"=>$this->date];
+	}
 	public function create(){
 		$conn = DBConnect.getConnection();
 		$sql = "INSERT INTO testimonial VALUES(
-			'".$this->name."',
-			'".$this->class."',
-			'".$this->message."'
+			'".mysqli_real_escape_string($conn, $this->name)."',
+			'".mysqli_real_escape_string($this->class)."',
+			'".mysqli_real_escape_string($this->message)."'
 			);";
 				
 		mysqli_close($conn);

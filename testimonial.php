@@ -27,6 +27,7 @@ if($testimonials){
 	</main>
 <script>
 var testimonials = document.getElementsByClassName('testimonial');
+$(testimonials).hide();
 var shownIndex = Math.floor(Math.random() * testimonials.length);
 var oldIndex;
 var shown = testimonials[shownIndex];
