@@ -41,6 +41,7 @@ class Button{
 		$output = 
 		"<button 
 			type='submit' 
+			id='$this->name'
 			class='$this->classList'
 			name='$this->name'
 			value='$this->value'

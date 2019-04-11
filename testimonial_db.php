@@ -14,8 +14,9 @@ if(!(isset($_SESSION['membership']) && $_SESSION['membership'] === 'admin')){
 else {
  if($_SERVER['REQUEST_METHOD'] === 'POST'){ //delete doesn't seem to work
 
-		$name = $_POST['name'];
-		$time = $_POST['time'];
+	 	var_dump($_POST);
+		$name = $_POST['first_name'];
+		$time = $_POST['date'];
 
 		$testimonial = new Testimonial($name, "", "", $time);
 
@@ -23,8 +24,11 @@ else {
 			echo $testimonial->delete();
 		}
 		else if(isset($_POST['approve'])){
-
+			echo json_encode($testimonial->toArray());
 			echo $testimonial->update('approved', 1);
+		}
+		else if(isset($_POST['unapprove'])){
+			echo $testimonial->update('approved', 0);
 		}
 	}
 }

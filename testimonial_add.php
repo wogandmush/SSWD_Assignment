@@ -59,7 +59,7 @@ else {
 		if(!$testimonialForm->hasErrors()){
 			if(isset($_POST['preview'])){
 ?>
-<main id='testimonials'>
+<section id='testimonials'>
 	   	<div class='container' id='testimonial-container'>
 <?php
 
@@ -69,7 +69,7 @@ else {
 								
 ?>
 	</div>
-</main>
+</section>
 <?php
 				var_dump($_POST);
 
