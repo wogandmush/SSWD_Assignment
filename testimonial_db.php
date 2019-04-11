@@ -20,20 +20,22 @@ else {
 
 		$testimonial = new Testimonial($name, "", "", $time);
 
-		if(isset($_POST['delete'])){
-			echo $testimonial->delete();
-		}
-		else if(isset($_POST['approve'])){
-			//echo json_encode($testimonial->toArray());
-			echo $testimonial->update('approved', 1);
-		}
-		else if(isset($_POST['unapprove'])){
-			echo $testimonial->update('approved', 0);
-		}
-		else if(isset($_POST['create'])){
-			
+		if(isset($_POST['action'])){
+			switch($_POST['action']){
+				case 'delete': 
+					echo $testimonial->delete();
+					break;
+				case 'approve':
+					echo $testimonial->update('approved', 1);
+					break;
+				case 'unapprove':
+					echo $testimonial->update('approved', 0);
+					break;
+				default:
+				   	echo "error";
+					break;
+			}
 		}
 	}
 }
-
 

@@ -100,7 +100,7 @@ const testimonialAction = action => {
 		else location.href="testimonial_manage.php";
 	}	
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	var payload = Object.entries({...json[index], [action]: true}).map(x => x.join("=")).join("&");
+	var payload = Object.entries({...json[index], action}).map(x => x.join("=")).join("&");
 	xhr.send(payload);
 }
 
