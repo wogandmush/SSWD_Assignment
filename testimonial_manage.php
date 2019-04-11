@@ -81,9 +81,12 @@ backBtn.addEventListener("click", showPrev);
 var forwardBtn = document.querySelector(".fwd-btn");
 forwardBtn.addEventListener("click", showNext);
 
+/*
 var json = <?php echo json_encode(array_map(function($testimonial){
 	return $testimonial->toArray();
 }, $testimonials)); ?>;
+ */
+var json = <?php ContentHelper::toJSON($testimonials); ?>;
 
 const testimonialAction = action => {
 	var xhr = new XMLHttpRequest();

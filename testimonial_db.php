@@ -24,11 +24,14 @@ else {
 			echo $testimonial->delete();
 		}
 		else if(isset($_POST['approve'])){
-			echo json_encode($testimonial->toArray());
+			//echo json_encode($testimonial->toArray());
 			echo $testimonial->update('approved', 1);
 		}
 		else if(isset($_POST['unapprove'])){
 			echo $testimonial->update('approved', 0);
+		}
+		else if(isset($_POST['create'])){
+			
 		}
 	}
 }
