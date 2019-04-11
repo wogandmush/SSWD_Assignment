@@ -45,7 +45,6 @@
 .testimonial {
 	width: 80%;
 	height: auto;
-	display: none;
 	background: #EEED;
 }
 
@@ -72,4 +71,29 @@
 	font-size: 12px;
 	float: right;
 	text-align: right;
+}
+
+.admin-btns{
+	background: #DDDD;
+	display: flex;
+	flex-direction: row;
+	margin: 0 auto;
+	justify-content: space-around;
+	align-items: center;
+	padding: 1em;
+	width: 80%;
+}
+.back-btn, .fwd-btn{
+	height: 0;	
+	width: 0;
+	border-top: 3em solid transparent;
+	border-bottom: 3em solid transparent;
+	cursor: pointer;
+}
+.back-btn{
+	border-right: 6em solid blue;
+}
+
+.fwd-btn{
+	border-left: 6em solid blue;
 }
