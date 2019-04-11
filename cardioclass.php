@@ -21,7 +21,7 @@ include 'header.php';
         <p class="lead grey-text text-center w-responsive mx-auto mb-5"> The ultimate high-energy workout class that uses martial arts techniques inspired by Taekwondo, Kung Fu, Tai Chi and Karate. Increase your mobility and flexibility whilst burning calories and boosting metabolism in this fun-filled high energy class. </p>
 
     </div>
-
+    </div>
     <body>
 
         <!-- Section: Features v.2 -->

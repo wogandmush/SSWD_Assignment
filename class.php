@@ -19,7 +19,7 @@ include 'header.php';
         <p class="lead grey-text text-center w-responsive mx-auto mb-5">Perfect Form Fitness, where fitness and science combine. Our unique, creative classes are structured from the ground to give the absolutely best results and ensure you've got a good workout while also maintaining a fun engaging atmosphere. </p>
 
     </div>
-
+    </div>
      <!--Table-->   
     <div class="container">
       <div class="row">

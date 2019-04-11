@@ -21,7 +21,7 @@ include 'header.php';
         <p class="lead grey-text text-center w-responsive mx-auto mb-5"> Practicing yoga can help you live a healthier and happier lifestyle. It is a spiritual and physical practice that was first developed by the Indus-Sarasvati civilisation in India over 5,000 years ago. Yoga class at Gym Plus is an exercise that focuses on varied muscle groups. </p>
 
     </div>
-
+    </div>
     <body>
 
         <!-- Section: Features v.2 -->
