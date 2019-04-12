@@ -1,6 +1,6 @@
 <?php
 
-class Testimonial implements Crudable{
+class Testimonial implements Crudable, Component{
 	private $name;
 	private $message;
 	private $class;

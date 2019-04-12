@@ -20,6 +20,28 @@
 	color: #666;
 }
 
+#admin-toolbar{
+	display: flex;
+	flex-direction: row;
+	background: #aaa5;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	padding: 1em;
+}
+
+#admin-toolbar h5{
+	margin-bottom: 0;
+}
+
+#admin-toolbar ul{
+	display: flex;
+	flex-direction: row;
+	flex-basis: calc(100% - 10em);
+	margin: 0;
+	justify-content: space-around;
+	align-items: center;
+}
 
 .feature img {
 	border-radius: 100px;
@@ -70,6 +92,15 @@
 .testimonial small{
 	font-size: 12px;
 	float: right;
+	text-align: right;
+}
+
+#testimonial-share{
+	float: right;
+	background: #fffa;
+	padding: 1em;
+	border-radius: 5px;
+	display: inline-block;	
 	text-align: right;
 }
 

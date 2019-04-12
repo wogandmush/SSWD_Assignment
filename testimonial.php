@@ -1,14 +1,6 @@
 <?php 
 include 'header.php'; 
 
-if(isset($_SESSION['membership'])){
-   
-	if($_SESSION['membership'] === "admin"){
-	// if user is admin, echo link to testmonial_manage page
-	echo "<div><a href='testimonial_manage.php'>Manage Testimonials</a></div>";
-	}
-	echo "<a href='testimonial_add.php'>Add a testimonial</a>";
-}
 
 $testimonials = Testimonial::loadApproved();
 
@@ -21,6 +13,9 @@ if($testimonials){
 	foreach($testimonials as $testimonial){
 		$testimonial->render();
 	}
+}
+if(isset($_SESSION['membership'])){
+	echo "<p id='testimonial-share'>Want to share your experiences? <a href='testimonial_add.php'>Add a testimonial</a></p>";
 }
 ?>
 		</div>

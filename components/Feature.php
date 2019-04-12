@@ -1,5 +1,5 @@
 <?php
-class Feature {
+class Feature implements Crudable, Component{
 	private $id;
 	private $title;
 	private $detail;
@@ -11,6 +11,18 @@ class Feature {
 		$this->detail = $detail;
 		$this->image_url = $image_url;
 		$this->link = $link;
+	}
+	public function create(){
+
+	}
+	public static function read($conditions = "", $limit = 100, $order = ""){
+
+	}
+	public function update($field, $value){
+
+	}
+	public function delete(){
+
 	}
 	public function render(){
 		echo $this->getHTMLString();

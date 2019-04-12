@@ -2,7 +2,7 @@
 
 include_once 'Validator.php';
 
-abstract class Field{
+abstract class Field implements Component{
 	protected $name; // the name attribute
 	protected $label; // The text for the label field
 	protected $attributes; // array to set things like maxlength, required, etc
