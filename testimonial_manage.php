@@ -1,6 +1,10 @@
 <?php
 
 include './header.php';
+if(!(isset($_SESSION['first_name']) && $_SESSION['membership'] === 'admin')){
+	header("Location: testimonial.php");
+	exit();
+}
 
 $testimonials;
 if(isset($_GET['manage_approved']))

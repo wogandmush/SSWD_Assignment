@@ -84,6 +84,7 @@
 	width: 80%;
 }
 .back-btn, .fwd-btn{
+	filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));
 	height: 0;	
 	width: 0;
 	border-top: 3em solid transparent;
@@ -91,9 +92,14 @@
 	cursor: pointer;
 }
 .back-btn{
-	border-right: 6em solid blue;
+	border-right: 6em solid #0000ff;
 }
-
+.back-btn:hover{
+	border-right: 6em solid #0000cc;
+}
 .fwd-btn{
-	border-left: 6em solid blue;
+	border-left: 6em solid #0000ff;
+}
+.fwd-btn:hover{
+	border-left: 6em solid #0000cc;
 }
