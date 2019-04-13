@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin` (
+  `email` varchar(60) NOT NULL DEFAULT '',
+  `password` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin`
+--
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES ('admin@pff.ie','password'),('admin@swole.ie','password'),('dan@pff.ie','password'),('dan@swole.ie','password'),('martin@pff.ie','password'),('martin@swole.ie','password'),('oisin@pff.ie','password'),('oisin@swole.ie','password');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `benefit`
 --
 
@@ -130,7 +154,7 @@ CREATE TABLE `fees` (
 
 LOCK TABLES `fees` WRITE;
 /*!40000 ALTER TABLE `fees` DISABLE KEYS */;
-INSERT INTO `fees` VALUES ('admin','n/a'),('Adult Monthly','39.00'),('Adult Yearly','379.00'),('Student Monthly','29.00');
+INSERT INTO `fees` VALUES ('Adult Monthly','39.00'),('Adult Yearly','379.00'),('Student Monthly','29.00');
 /*!40000 ALTER TABLE `fees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +215,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (1,'Dan','Quinn','0000-00-00','male','','','dan@swole.ie','','admin','password'),(2,'Martin','Feeley','0000-00-00','male','','','martin@swole.ie','','admin','password'),(3,'Oisin','MacSweeney','0000-00-00','male','','','oisin@swole.ie','','admin','password'),(4,'Student','Monthly','0000-00-00','female','','','sm@swole.ie','','Student Monthly','password'),(5,'Adult','Monthly','0000-00-00','female','','','am@swole.ie','','Adult Monthly','password'),(6,'Adult','Yearly','0000-00-00','female','','','ay@swole.ie','','Adult Yearly','password'),(8002,'Supreme','Overlord','0000-00-00','male','','','admin@swole.ie','','admin','password');
+INSERT INTO `member` VALUES (4,'Student','Monthly','0000-00-00','female','','','sm@swole.ie','','Student Monthly','password'),(5,'Adult','Monthly','0000-00-00','female','','','am@swole.ie','','Adult Monthly','password'),(6,'Adult','Yearly','0000-00-00','female','','','ay@swole.ie','','Adult Yearly','password');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,6 +270,7 @@ CREATE TABLE `testimonial` (
 
 LOCK TABLES `testimonial` WRITE;
 /*!40000 ALTER TABLE `testimonial` DISABLE KEYS */;
+INSERT INTO `testimonial` VALUES ('Dan','2019-04-08 21:47:32','Cardio','Due to Aqeel\'s workout program and his understanding of my needs, I now have better balance and have less fatigue at the end of the day. He has been encouraging, uplifting, and convinced me that I was able to progress to a healthier weight and lifestyle. I am able to do planks, sit ups, and even several push ups.',1),('Dan','2019-04-13 08:50:58','Yoga','A whole new me!',1);
 /*!40000 ALTER TABLE `testimonial` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -258,4 +283,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-08 15:55:09
+-- Dump completed on 2019-04-13 14:40:11
