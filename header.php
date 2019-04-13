@@ -10,10 +10,10 @@ spl_autoload_register(function($class_name){
 $root = PathHelper::getRoot();
 
 ###for testing###
-#$_SESSION['membership'] = 'admin';
+#$_SESSION['admin'] = true;
 #$_SESSION['first_name'] = 'Dan';
 #$_SESSION['user_no'] = 1;
-ini_set('display_errors', 1);
+#ini_set('display_errors', 1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,14 +82,11 @@ ini_set('display_errors', 1);
                          
 					</ul>
 					<?php 
-					if(isset($_SESSION['user_no'])){
+					if(isset($_SESSION['first_name'])){
 					echo "<h5 class='text-secondary my-2 mr-lg-2'>logged in as ${_SESSION['first_name']}</h5>
 					<form action='$root/logout.php'>
 						<button class='btn btn-warning ml-auto'>Logout</button>
 					</form>";
-						if($_SESSION['membership'] == 'Admin'){
-						echo "<button class='btn btn-warning ml-auto'>Special Admin Button</button>";
-						}
 					}
 					else {
 						echo "<button onclick='location.href=\"${root}/register.php\";' type='button' class='btn btn-link' id='register-link'>JOIN</button>";

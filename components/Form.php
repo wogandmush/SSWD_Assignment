@@ -53,8 +53,9 @@ class Form {
 	}
 	public function hasErrors(){
 		foreach($this->fields as $field){
-			if(!empty($field->getErrors))
+			if(!empty($field->getErrors())){
 				return true;
+			}
 		}
 		return false;
 	}

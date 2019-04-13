@@ -6,7 +6,7 @@ spl_autoload_register(function($class_name){
 	include __DIR__.'/components/'.$class_name.'.php';
 });
 
-if(!(isset($_SESSION['membership']) && $_SESSION['membership'] === 'admin')){
+if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE)){
 	echo "<h4 class='text-danger'>Unauthorized request made. Redirecting...</h4>";
 	header("refresh: 2; url: 'index.php'");
 	exit();

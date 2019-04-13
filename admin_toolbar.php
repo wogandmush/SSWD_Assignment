@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['membership']) && $_SESSION['membership'] === 'admin'){
+if(isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE){
 ?>
 
 <nav id='admin-toolbar' class=''>

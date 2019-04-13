@@ -1,11 +1,13 @@
 <?php
 
 include './header.php';
-if(!(isset($_SESSION['first_name']) && $_SESSION['membership'] === 'admin')){
+# redirect user if not admin: 
+if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE)){
 	header("Location: testimonial.php");
 	exit();
 }
 
+# load approved or non-approved testimonials, depending on get request
 $testimonials;
 if(isset($_GET['manage_approved']))
 	$testimonials = Testimonial::loadApproved();
@@ -14,13 +16,18 @@ else $testimonials = Testimonial::loadUnapproved();
 	<section id='testimonials'>
 	   	<div class='container' id='testimonial-container'>
 <?php
+
+# provide a button to switch between approved and non-approved testimonials
 if(isset($_GET['manage_approved']))
 	echo "<button onclick='location.href=`testimonial_manage.php`;'>Manage unapproved</button>";
 else {
+	# form used to reload this page with 'manage_approved' get parameter
 	echo "<form action='testimonial_manage.php' method='GET'>
 			<button type='submit' name='manage_approved'>Manage approved</button>
 		</form>";
 }
+
+# if any testimonials were loaded, create some button components
 if($testimonials){
 	$approveBtn = new Button("approve");
 	$unapproveBtn = new Button("unapprove");
@@ -36,6 +43,8 @@ if($testimonials){
 	$deleteBtn->render();
 	echo "<div class='admin fwd-btn'></div>
 		</div>";
+	
+	# render each of our testimonial components
 	foreach($testimonials as $testimonial){
 		$testimonial->render();
 	}
@@ -45,10 +54,12 @@ if($testimonials){
 	</section>
 <script>
 
+//assign jquery wrapped testimonials to javascript array variable
 var testimonials = $('.testimonial');
+//hide all testimonials
 $(testimonials).hide();
 var index = 0, num = testimonials.length;
-console.log(num);
+
 var sorted = new Set();
 var info = document.getElementById("admin-info");
 const updateInfo = _ => {
