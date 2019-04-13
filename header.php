@@ -7,13 +7,16 @@ spl_autoload_register(function($class_name){
 	include __DIR__.'/components/'.$class_name .'.php';
 });
 
+$isMember = isset($_SESSION['email']);
+$isAdmin = isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE;
+
 $root = PathHelper::getRoot();
 
 ###for testing###
 #$_SESSION['admin'] = true;
 #$_SESSION['first_name'] = 'Dan';
 #$_SESSION['user_no'] = 1;
-#ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,14 +45,8 @@ $root = PathHelper::getRoot();
 					<span class="navbar-toggler-icon"></span>
 				</button>
                 
-                
-                
-                
-                
 				<div class=" collapse navbar-collapse" id="nav-div">
 					<ul class="navbar-nav mr-auto">
-                        
-       
                         <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="<?php echo $root;?>/class.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Classes </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -60,9 +57,6 @@ $root = PathHelper::getRoot();
                           <a class="dropdown-item" href="class.php">Schedule</a>           
                         </div>    
 						</li>
-                        
-                        
-                        
  <!--                       
 						<li class="nav-item">
 						<a class="nav-link" href="<?php echo $root;?>/class.php">Classes</a>
@@ -112,21 +106,22 @@ $root = PathHelper::getRoot();
 							if(!$loginForm->hasErrors()){
 								$conn = DBConnect::getConnection();
 								$sql = "SELECT * FROM member 
-											WHERE email = '".$loginEmail->getData($conn)."' 
-											AND password = '".$loginPassword->getData($conn)."';";
+											WHERE email = '".$loginEmail->getData($conn)."';";
 
 								$result = mysqli_query($conn, $sql);
 								$num_rows = mysqli_num_rows($result);								
 								if($num_rows === 1){
 									$tuple = mysqli_fetch_array($result, MYSQLI_ASSOC);
-									$_SESSION['user_no'] = $tuple['user_no'];
-									$_SESSION['first_name'] = $tuple['first_name'];
-									$_SESSION['email'] = $tuple['email'];
-									$_SESSION['membership'] = $tuple['membership'];
-									$loginSuccess = true;
-									header('Refresh: 0');
-									mysqli_close($conn);
-									exit();
+									if(password_verify($loginPassword->getData(), $tuple['password'])){
+										$_SESSION['user_no'] = $tuple['user_no'];
+										$_SESSION['first_name'] = $tuple['first_name'];
+										$_SESSION['email'] = $tuple['email'];
+										$_SESSION['membership'] = $tuple['membership'];
+										$loginSuccess = true;
+										header('Refresh: 0');
+										mysqli_close($conn);
+										exit();
+									}
 								}
 								else $loginEmail->setError('Incorrect email or password');
 								mysqli_close($conn);
@@ -158,7 +153,7 @@ $root = PathHelper::getRoot();
 				$('#login-form').slideToggle(200, ()=>{
 					$(this).html(loginLinkText);
 					$('#register-link').toggle();
-					});
+				});
 			}
 		});
 			</script>

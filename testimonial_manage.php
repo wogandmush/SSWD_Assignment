@@ -2,7 +2,7 @@
 
 include './header.php';
 # redirect user if not admin: 
-if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE)){
+if(!$isAdmin){
 	header("Location: testimonial.php");
 	exit();
 }

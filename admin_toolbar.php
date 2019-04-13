@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE){
+if($isAdmin){
 ?>
 
 <nav id='admin-toolbar' class=''>
@@ -15,7 +15,7 @@ if(isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE){
 			<a href="<?php echo $root;?>/class_manage.php">Classes</a>
 		</li>
 		<li>
-			<a href="<?php echo $root;?>/testimonial_manage.php">Testimonals</a>
+			<a href="<?php echo $root;?>/testimonial_manage.php">Testimonials</a>
 		</li>
 		<li>
 			<a href="<?php echo $root;?>/contact_manage.php">Enquiries</a>
