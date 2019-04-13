@@ -246,70 +246,6 @@ LOCK TABLES `member_class` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `post`
---
-
-DROP TABLE IF EXISTS `post`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `post` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `body` text,
-  `author` varchar(255) DEFAULT NULL,
-  `is_published` tinyint(1) DEFAULT '1',
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `post`
---
-
-LOCK TABLES `post` WRITE;
-/*!40000 ALTER TABLE `post` DISABLE KEYS */;
-INSERT INTO `post` VALUES (1,'The Hound of the Baskervilles','This is a scary book about dogs or something','Some englishman from the 19th century',1,'2019-03-20 18:32:21');
-/*!40000 ALTER TABLE `post` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `student`
---
-
-DROP TABLE IF EXISTS `student`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `student` (
-  `student_no` int(11) NOT NULL,
-  `first_name` varchar(30) NOT NULL,
-  `last_name` varchar(30) NOT NULL,
-  `date_of_birth` date NOT NULL,
-  `gender` varchar(20) NOT NULL,
-  `mobile` varchar(15) NOT NULL,
-  `home_tel` varchar(15) NOT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `address` varchar(100) NOT NULL,
-  `major` varchar(50) NOT NULL,
-  `course` varchar(20) NOT NULL,
-  `study_mode` varchar(30) NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  PRIMARY KEY (`student_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `student`
---
-
-LOCK TABLES `student` WRITE;
-/*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'Tom','Jones','1963-07-10','male','35387-245-4876','3531-835-2284','tjones@gmail.com','24 Green Lane, PA','Arts','BA','Full Time','2019-09-23','2019-11-01'),(2,'Peter','Piper','1990-01-01','male','+35387-538-2962','+3531-573-2762','pepiper@gmail.com','16 Piper\'s Lane, Dublin 7','Medicine','BSCH','Full Time','2019-09-12','2019-11-01'),(4,'John','Doe','1990-01-17','male','+35385-765-8439','+3531-832-5878','jdoe@gmail.com','64 Raglan Road, Dublin 4','Arts','PGD','part-time','2019-09-23','2019-11-20'),(5,'John','Doe','1990-01-17','male','35385-765-8439','3531-832-5878','jdoe@gmail.com','64 Raglan Road, Dublin 4','Arts','PGD','part-time','2019-09-23','2019-11-20'),(6,'Dan','Quinn','2019-03-21','male','5830581','08626298','quinnd6@tcd.ie','74 Clontarf Park','Business','HDip','full_time','2019-03-05','2019-03-15'),(7,'Tom','Jones','1963-07-10','male','35387-245-4876','3531-835-2284','tjones@gmail.com','24 Green Lane, PA','Arts','BA','Full Time','2019-09-23','2019-11-01'),(8,'Dan','Quinn','2019-03-21','male','5830581','08626298','quinnd6@tcd.ie','74 Clontarf Park','Business','HDip','full_time','2019-03-05','2019-03-15'),(252,'Dan','Quinn','2018-11-29','male','0862299539','05808208','quinnd6@tcd.ie','74 Clontarf Park','Computer Science','HDip','full_time','2017-10-30','2019-01-01'),(2869939,'Paul','Paulaner','1990-01-11','male','+35383-633-5842','+3531-284-5839','paulaner@gmai.com','42 Main Street, Skibbereen','Journalism','BA','full-time','2019-08-23','2019-11-01');
-/*!40000 ALTER TABLE `student` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `testimonial`
 --
 
@@ -338,31 +274,6 @@ INSERT INTO `testimonial` VALUES ('Dan','2019-04-13 08:50:58','Yoga','A whole ne
 /*!40000 ALTER TABLE `testimonial` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `week6practice`
---
-
-DROP TABLE IF EXISTS `week6practice`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `week6practice` (
-  `userID` varchar(10) NOT NULL,
-  `userFname` varchar(20) DEFAULT NULL,
-  `userLname` varchar(20) DEFAULT NULL,
-  `mobile` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `week6practice`
---
-
-LOCK TABLES `week6practice` WRITE;
-/*!40000 ALTER TABLE `week6practice` DISABLE KEYS */;
-INSERT INTO `week6practice` VALUES ('42','Dan','Quinn','208502');
-/*!40000 ALTER TABLE `week6practice` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
