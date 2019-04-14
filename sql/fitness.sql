@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.33, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: s2995020
+-- Host: 0.0.0.0    Database: fitness
 -- ------------------------------------------------------
--- Server version	5.7.25-0ubuntu0.16.04.2-log
+-- Server version	5.6.33-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -118,11 +118,14 @@ DROP TABLE IF EXISTS `feature`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `feature` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `feature_title` varchar(30) NOT NULL,
   `details` varchar(999) NOT NULL,
   `photo_url` varchar(999) DEFAULT NULL,
-  `date` datetime DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `link` varchar(999) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +134,34 @@ CREATE TABLE `feature` (
 
 LOCK TABLES `feature` WRITE;
 /*!40000 ALTER TABLE `feature` DISABLE KEYS */;
+INSERT INTO `feature` VALUES (1,'feature_one','',NULL,'2019-04-14 09:59:21',NULL),(2,'feature_two','',NULL,'2019-04-14 10:01:47',NULL);
 /*!40000 ALTER TABLE `feature` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `featured`
+--
+
+DROP TABLE IF EXISTS `featured`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `featured` (
+  `feature_id` int(11) DEFAULT NULL,
+  `feature_number` enum('1','2','3') NOT NULL DEFAULT '1',
+  PRIMARY KEY (`feature_number`),
+  KEY `feature_id` (`feature_id`),
+  CONSTRAINT `featured_ibfk_1` FOREIGN KEY (`feature_id`) REFERENCES `feature` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `featured`
+--
+
+LOCK TABLES `featured` WRITE;
+/*!40000 ALTER TABLE `featured` DISABLE KEYS */;
+INSERT INTO `featured` VALUES (1,'2'),(2,'1');
+/*!40000 ALTER TABLE `featured` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -273,7 +303,6 @@ LOCK TABLES `testimonial` WRITE;
 INSERT INTO `testimonial` VALUES ('Dan','2019-04-13 08:50:58','Yoga','A whole new me!',1);
 /*!40000 ALTER TABLE `testimonial` ENABLE KEYS */;
 UNLOCK TABLES;
-
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -284,4 +313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-13 18:50:09
+-- Dump completed on 2019-04-14 10:11:56
