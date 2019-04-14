@@ -10,7 +10,7 @@ if(!$isAdmin){
 
 	$password = new Input('password', 'Enter password', 'password');
 	function validatePassword($pwd){
-		return true;
+	return true;
 	}
 	$password->setValidator('validatePassword');
 

@@ -46,6 +46,7 @@ class Testimonial implements Crudable, Component{
 			mysqli_close($conn);
 			return $testimonials;
 		}
+		mysqli_close($conn);
 		return false;
 	}
 	public function update($field, $value){
