@@ -24,7 +24,7 @@ ini_set('display_errors', 1);
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>=Fitness Club Website</title>
-		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="<?php echo $root;?>/css/reset.css">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         
@@ -34,8 +34,8 @@ ini_set('display_errors', 1);
 		<link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
 		<!--<link rel="stylesheet" href="css/stylefees.css">-->
 
-		<link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Footer.css">
+		<link rel="stylesheet" href="<?php echo $root;?>/css/style.css">
+		<link rel="stylesheet" href="<?php echo $root;?>/css/Footer.css">
 	</head>
 	<body>
 		<header>           

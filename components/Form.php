@@ -4,14 +4,16 @@ class Form {
 	private $id;
 	private $action;
 	private $method;
+	private $enctype;
 	private $fields;
 	private $buttons;
 	private $classList = 'form';
 
-	public function __construct($id, $action, $method = 'POST', $fields = array(), $buttons = array()){
+	public function __construct($id, $action, $method = 'POST', $enctype = "", $fields = array(), $buttons = array()){
 		$this->id = $id;
 		$this->action = $action;
 		$this->method = $method;
+		$this->enctype = $enctype;
 		$this->fields = $fields;	
 		$this->buttons = $buttons;
 	}
@@ -26,6 +28,12 @@ class Form {
 	}
 	public function setMethod($method){
 		$this->method = $method;
+	}
+	public function getEnctype(){
+		return $this->enctype;
+	}
+	public function setEnctype($enctype){
+		$this->enctype = $enctype;
 	}
 	public function addField($field){
 		$this->fields[] = $field;
@@ -75,7 +83,8 @@ class Form {
 	}
 	public function getHTMLString(){
 		$output = 
-			"<form id='$this->id' class='$this->classList' method='$this->method' action='$this->action'>";
+			"<form id='$this->id' class='$this->classList' method='$this->method' action='$this->action'
+enctype='$this->enctype'>";
 		foreach($this->fields as $field){
 			$output .= $field->getHTMLString();
 		}
