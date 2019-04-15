@@ -41,24 +41,45 @@ upload.onload = function(){
 	var overlayCxt = overlay.getContext("2d");
 	overlayCxt.fillStyle = "grey";
 	overlayCxt.globalAlpha = 0.5;
+	const ASPECT_RATIO = 1/2;
+	console.log({ASPECT_RATIO});
 	var selection = {
 		x: 0,
 		y: 0,
 		w: 200,
-		h: 200,
+		h: 200 * ASPECT_RATIO,
 		clear: function(c){
 			c.clearRect(this.x, this.y, this.w, this.h);
 		},
-		scaleUp: function(){
-			this.w += 10;
-			this.h += 10;
+		move(x, y){
+			this.x += x;
+			this.y += y;
+			if(this.x < 0)
+				this.x = 0;
+			else if(this.x + this.w > width)
+				this.x = width - this.w;
+			if(this.y < 0)
+				this.y = 0;
+			else if(this.y + this.h > height)
+				this.y = height - this.h;
 		},
-		scaleDown: function(){
-			this.w -= 10;
-			this.h -= 10;
+		scaleUp: function(pix){
+			this.w += pix;
+			this.h += pix;
+			let offsetX = -pix/2;
+			let offsetY = offsetX * ASPECT_RATIO;
+			this.move(offsetX, offsetY);
+		},
+		scaleDown: function(pix){
+			this.w -= pix;
+			this.h -= pix;
+			let offsetX = pix/2;
+			let offsetY = offsetX * ASPECT_RATIO;
+			this.move(offsetX, offsetY);
 		}
 	}
 
+	console.log({selection});
 	
 	function draw(){
 		overlayCxt.clearRect(0, 0, width, height);
@@ -75,24 +96,17 @@ upload.onload = function(){
 			x: (e.pageX - canvas.offsetLeft) - (selection.w / 2),
 			y: (e.pageY - canvas.offsetTop) - (selection.h / 2)
 		});
-		if(selection.x < 0)
-			selection.x = 0;
-		else if(selection.x + selection.w > width)
-			selection.x = width - selection.w;
-		if(selection.y < 0)
-			selection.y = 0;
-		else if(selection.y + selection.h > height)
-			selection.y = height - selection.h;
+		selection.move(0, 0);
 		draw();
 	});
 	window.addEventListener("keydown", e => {
 		switch(e.keyCode){
 			case 219:
-				selection.scaleUp();
+				selection.scaleUp(10);
 				draw();
 				break;
 			case 221:
-				selection.scaleDown();
+				selection.scaleDown(10);
 				draw();
 				break;
 			default:
