@@ -65,7 +65,16 @@ else {
 
 				$preview = new Testimonial($_SESSION['first_name'], $message->getData(), $class->getData(), date("M,d,Y h:i:s"));
 				$preview->render();
-				var_dump($preview->toArray());
+				//var_dump($preview->toArray());
+
+				echo 
+					"<form method='POST' action='testimonial_db.php'>";
+				Form::forwardPOST();
+				echo 
+					"<input type='hidden' name='first_name' value='${_SESSION['first_name']}'>
+					<input class='btn btn-primary' type='submit' name='create' value='create' />
+					</form>";
+						
 								
 ?>
 	</div>

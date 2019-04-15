@@ -14,13 +14,10 @@ if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE)){
 else {
  if($_SERVER['REQUEST_METHOD'] === 'POST'){ //delete doesn't seem to work
 
-	 	var_dump($_POST);
+		if(isset($_POST['action'])){
 		$name = $_POST['first_name'];
 		$time = $_POST['date'];
-
 		$testimonial = new Testimonial($name, "", "", $time);
-
-		if(isset($_POST['action'])){
 			switch($_POST['action']){
 				case 'delete': 
 					echo $testimonial->delete();
@@ -35,6 +32,15 @@ else {
 				   	echo "error";
 					break;
 			}
+		}
+		elseif(isset($_POST['create'])){
+			var_dump($_POST);
+			$message = $_POST['testimonial'];
+			$class = $_POST['class'];
+			$name = $_POST['first_name'];
+			$testimonial = new Testimonial($name, $message, $class);
+			var_dump($testimonial->toArray());
+			$testimonial->create();
 		}
 	}
 }

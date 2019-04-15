@@ -78,6 +78,11 @@ class Form {
 		}
 		return $answer;
 	}
+	public static function forwardPOST(){
+		foreach($_POST as $key => $value){
+			echo "<input type='hidden' name='$key' value='$value' />";			
+		};
+	}
 	public function render(){
 		echo $this->getHTMLString();		
 	}
