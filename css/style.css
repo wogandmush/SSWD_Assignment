@@ -135,3 +135,10 @@
 .fwd-btn:hover{
 	border-left: 6em solid #0000cc;
 }
+
+
+#img-crop {
+	margin: 0 auto;
+	display: inline-block;
+
+}
