@@ -77,9 +77,6 @@ upload.onload = function(){
 			this.move(offsetX, offsetY);
 		}
 	}
-
-	console.log({selection});
-	
 	function draw(){
 		overlayCxt.clearRect(0, 0, width, height);
 		overlayCxt.fillStyle = "grey";
@@ -114,7 +111,7 @@ upload.onload = function(){
 		}
 	});
 	selectButton.addEventListener("click", submitImage);
-	async function submitImage(){
+	function submitImage(){
 		var imgData = cxt.getImageData(selection.x, selection.y, selection.w, selection.h);
 		var croppedImage = new Image();
 		var tempCanv = document.createElement("canvas");
@@ -122,11 +119,13 @@ upload.onload = function(){
 		tempCanv.width = imgData.width;
 		tempCanv.height = imgData.height;
 		tempCxt.putImageData(imgData, 0, 0);
-		var dataUrl = tempCanv.toDataURL("image/png");
+		//var dataUrl = tempCanv.toDataURL("image/png");
+		tempCanv.toBlob(postBlob);
+		/*
 		croppedImage.onload = function(){
-			tempCanv.toBlob(postBlob);
 		}
-		croppedImage.src = dataUrl;
+		*/
+		//croppedImage.src = dataUrl;
 		function postBlob(blob){
 			var fd = new FormData();
 			fd.append("image", blob);
