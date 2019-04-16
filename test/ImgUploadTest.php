@@ -1,3 +1,4 @@
+<section id='img-upload'>
 <?php
 include '../header.php';
 
@@ -9,22 +10,20 @@ $imgForm->addButtons($uploadBtn);
 $imgForm->setEnctype("multipart/form-data");
 $imgForm->render();
 
-
-
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-	$selectForm = new Form('select-form', 'ImgUploadTest.php', 'POST');
 	$selectBtn = new Button('select-btn', 'Crop Selection');
-	$selectForm->addButtons($selectBtn);
-	$selectForm->render();
+	$selectBtn->render();
+	
 	var_dump($_FILES);
 	$fsRoot = PathHelper::getFSRoot();
 	$filepath = $fsRoot . "/images/temp/".$_FILES['img-upload']['name'];
 	move_uploaded_file($_FILES['img-upload']['tmp_name'], $filepath);
 ?>
 <canvas id="img-crop"></canvas>
+</section>
 	<script>
 
-var selectButton = document.querySelector("select-btn");
+var selectButton = document.querySelector("#select-btn");
 var upload = new Image();
 
 upload.onload = function(){
@@ -113,9 +112,33 @@ upload.onload = function(){
 				console.log(e.keyCode);
 
 		}
-
-
 	});
+	selectButton.addEventListener("click", submitImage);
+	async function submitImage(){
+		var imgData = cxt.getImageData(selection.x, selection.y, selection.w, selection.h);
+		var croppedImage = new Image();
+		var tempCanv = document.createElement("canvas");
+		var tempCxt = tempCanv.getContext("2d");
+		tempCanv.width = imgData.width;
+		tempCanv.height = imgData.height;
+		tempCxt.putImageData(imgData, 0, 0);
+		var dataUrl = tempCanv.toDataURL("image/png");
+		croppedImage.onload = function(){
+			tempCanv.toBlob(postBlob);
+		}
+		croppedImage.src = dataUrl;
+		function postBlob(blob){
+			var fd = new FormData();
+			fd.append("image", blob);
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "ImgUploadDb.php", true);
+			xhr.onload = function(){
+				var res = xhr.responseText;
+				console.log(res);
+			}
+			xhr.send(fd);
+		}
+	}
 	
 }
 
