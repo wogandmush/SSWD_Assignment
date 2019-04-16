@@ -158,5 +158,6 @@ ini_set('display_errors', 1);
 		});
 			</script>
 		</header>
+		<main>
 <?php
 include 'admin_toolbar.php';

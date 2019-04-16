@@ -5,7 +5,7 @@ class Testimonial implements Crudable, Component{
 	private $message;
 	private $class;
 	private $date;
-	public function __construct($name, $message, $class, $date){
+	public function __construct($name, $message, $class, $date = ""){
 		$this->name = $name;
 		$this->message = $message;
 		$this->class = $class;
@@ -15,14 +15,16 @@ class Testimonial implements Crudable, Component{
 		return ["first_name"=>$this->name, "message"=>$this->message, "class_title"=>$this->class, "date"=>$this->date];
 	}
 	public function create(){
-		$conn = DBConnect.getConnection();
-		$sql = "INSERT INTO testimonial VALUES(
+		$conn = DBConnect::getConnection();
+		$sql = "INSERT INTO testimonial(first_name, message, class_title) VALUES(
 			'".mysqli_real_escape_string($conn, $this->name)."',
-			'".mysqli_real_escape_string($this->class)."',
-			'".mysqli_real_escape_string($this->message)."'
+			'".mysqli_real_escape_string($conn, $this->message)."',
+			'".mysqli_real_escape_string($conn, $this->class)."'
 			);";
 				
+		$result = mysqli_query($conn, $sql);
 		mysqli_close($conn);
+		return $result;
 	}
 	public static function read($conditions = "", $limit = 100, $order = ""){
 		$conn = DBConnect::getConnection();

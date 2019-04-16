@@ -8,7 +8,6 @@ if(!isset($_SESSION['first_name'])){
 	exit();
 }
 else {
-
 	#initialize objects for each of our form fields
 	// create a textarea element for user to write their message
 	$testimonialForm = new Form('testimonial_add', 'testimonial_add.php');
@@ -40,11 +39,10 @@ else {
 
 	$testimonialForm->addFields($message, $class);
 
-	$testimonialButton = new Button("Submit");
+	$submitButton = new Button("Submit");
 	$previewButton = new Button("preview");
 	$previewButton->setClassList("btn btn-info");
-	$testimonialForm->addButtons($testimonialButton, $previewButton);
-
+	$testimonialForm->addButtons($submitButton, $previewButton);
 
 	$success = false; // if false, form will be displayed
 
@@ -65,52 +63,50 @@ else {
 
 				$preview = new Testimonial($_SESSION['first_name'], $message->getData(), $class->getData(), date("M,d,Y h:i:s"));
 				$preview->render();
-				var_dump($preview->toArray());
+				//var_dump($preview->toArray());
+
+				echo 
+					"<form method='POST' action='testimonial_db.php'>";
+				Form::forwardPOST();
+				echo 
+					"<input type='hidden' name='first_name' value='${_SESSION['first_name']}'>
+					<input class='btn btn-primary' type='submit' name='create' value='create' />
+					</form>";
 								
 ?>
 	</div>
 </section>
 <?php
-				var_dump($_POST);
-
 				$success = true;
 			}
-					
 			else {
-
-			$conn = DBConnect::getConnection();
-
-			// insert a new tuple into table 'testimonial' (approved = 0; i.e. not approved);
-			// passing connection variable to component's getData() method calls mysqli_real_escape_string()
-			// on data value and returns it
-			$sql = "INSERT INTO testimonial(first_name, class_title, message) VALUES(
-				'${_SESSION['first_name']}',
-				'".$class->getData($conn)."', 
-				'".$message->getData($conn)."'
-				)";
-			#echo $sql; // for testing
-
-			if($result = mysqli_query($conn, $sql)){ // if query was successful
-				echo "Thank you! Your testimonial has been submitted!";
-				echo "<p class='text-info'>Redirecting to testimonials page</p>";
-				$success = true; // don't display form
-				$url = $root."/testimonial.php";
-				header("Refresh: 2; url='$url'");
-				exit();
+				$newTestimonial = new Testimonial($_SESSION['first_name'], $message->getData(), $class->getData());
+				if($newTestimonial->create()){
+					echo "<h4 class='text-success'>Great Success</h4>";
+					$success = true;
+					header("refresh: 2; url='$root/testimonial.php");	
 				}
-			else {
-				echo "Something went wrong";
-			}
-			// close the db connection
-			mysqli_close($conn);
 			}
 		}
 	}
-
 	if(!$success){ // if a successful query has not been made
 		echo "<div class='container'>";
 		$testimonialForm->render();
 		echo "</div>";
+?>
+<script>
+var textArea = document.querySelector("textarea");
+var maxLength = textArea.getAttribute("maxlength");
+var remainingChars = document.createElement("span");
+remainingChars.className = "word-count";
+remainingChars.textContent = `${maxLength}/${maxLength} characters remaining`;
+textArea.parentElement.insertBefore(remainingChars, textArea);
+textArea.addEventListener("keyup", e => {
+	remainingChars.textContent = `${maxLength - textArea.value.length}/${maxLength} characters remaining`;
+});
+console.log(textArea);
+</script>
+<?php
 	}
 }
 include 'footer.php';

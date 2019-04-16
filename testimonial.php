@@ -6,7 +6,7 @@ $testimonials = Testimonial::loadApproved();
 
 	// div to contain all testimonials
 ?>
-	<main id='testimonials'>
+	<section id='testimonials'>
 	   	<div class='container' id='testimonial-container'>
 <?php
 if($testimonials){
@@ -19,7 +19,7 @@ if(isset($_SESSION['membership'])){
 }
 ?>
 		</div>
-	</main>
+	</section>
 <script>
 var testimonials = document.getElementsByClassName('testimonial');
 $(testimonials).hide();
