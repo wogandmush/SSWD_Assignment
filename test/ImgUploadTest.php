@@ -22,14 +22,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <canvas id="img-crop"></canvas>
 </section>
 	<script>
-
 var selectButton = document.querySelector("#select-btn");
 var upload = new Image();
-
 upload.onload = function(){
+	var natWidth = upload.naturalWidth, natHeight = upload.naturalHeight;
+	var imgScale = 900 / natWidth;
 	var width = 900;
-	var height = (upload.naturalHeight / upload.naturalWidth) * width;
-	console.log({width, height});
+	var height = (natHeight / natWidth) * width;
 	var canvas = document.querySelector("#img-crop");
 	canvas.width =  width;
 	canvas.height = height;
@@ -41,7 +40,6 @@ upload.onload = function(){
 	overlayCxt.fillStyle = "grey";
 	overlayCxt.globalAlpha = 0.5;
 	const ASPECT_RATIO = 1/2;
-	console.log({ASPECT_RATIO});
 	var selection = {
 		x: 0,
 		y: 0,
@@ -107,26 +105,24 @@ upload.onload = function(){
 				break;
 			default:
 				console.log(e.keyCode);
-
 		}
 	});
 	selectButton.addEventListener("click", submitImage);
 	function submitImage(){
-		var imgData = cxt.getImageData(selection.x, selection.y, selection.w, selection.h);
-		var croppedImage = new Image();
+		//var imgData = cxt.getImageData(selection.x, selection.y, selection.w, selection.h);
 		var tempCanv = document.createElement("canvas");
 		var tempCxt = tempCanv.getContext("2d");
+		/*
 		tempCanv.width = imgData.width;
 		tempCanv.height = imgData.height;
 		tempCxt.putImageData(imgData, 0, 0);
-		//var dataUrl = tempCanv.toDataURL("image/png");
-		tempCanv.toBlob(postBlob);
-		/*
-		croppedImage.onload = function(){
-		}
-		*/
-		//croppedImage.src = dataUrl;
-		function postBlob(blob){
+		 */
+		tempCanv.width = natWidth;
+		tempCanv.height = natHeight;
+		tempCxt.drawImage(upload,
+			selection.x * imgScale, selection.y * imgScale, selection.w * imgScale, selection.h * imgScale,
+			0, 0, natWidth, natHeight);
+		tempCanv.toBlob(blob => {
 			var fd = new FormData();
 			fd.append("image", blob);
 			var xhr = new XMLHttpRequest();
@@ -136,18 +132,11 @@ upload.onload = function(){
 				console.log(res);
 			}
 			xhr.send(fd);
-		}
+		});
 	}
-	
 }
-
 upload.src = "<?php echo $root . "/images/temp/".$_FILES['img-upload']['name'];?>";
-
 	</script>
 <?php
-
 }
-
-
-
 include '../footer.php';
