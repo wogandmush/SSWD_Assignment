@@ -40,7 +40,9 @@ else {
 			$name = $_POST['first_name'];
 			$testimonial = new Testimonial($name, $message, $class);
 			var_dump($testimonial->toArray());
-			$testimonial->create();
+			echo $testimonial->create();
+			header("Location: testimonial.php");
+			exit();
 		}
 	}
 }

@@ -1,3 +1,4 @@
+	</main>
     <footer id="myFooter">
         <div class="container">
             <div class="row">

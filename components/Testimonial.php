@@ -22,7 +22,6 @@ class Testimonial implements Crudable, Component{
 			'".mysqli_real_escape_string($conn, $this->class)."'
 			);";
 				
-		echo $sql;
 		$result = mysqli_query($conn, $sql);
 		mysqli_close($conn);
 		return $result;
