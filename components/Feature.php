@@ -6,7 +6,7 @@ class Feature implements Crudable, Component{
 	private $image_url;
 	private $link;
 	private $feature_number;
-	public function __construct($id, $title, $detail, $image_url, $link = "", $feature_number = ""){
+	public function __construct($id = "", $title, $detail, $image_url, $link = "", $feature_number = ""){
 		$this->id = $id;
 		$this->title = $title;
 		$this->detail = $detail;
@@ -15,7 +15,19 @@ class Feature implements Crudable, Component{
 		$this->feature_number = $feature_number;
 	}
 	public function create(){
-
+		$conn = DBConnect::getConnection();
+		$title = mysqli_real_escape_string($conn, $this->title);
+		$detail = mysqli_real_escape_string($conn, $this->detail);
+		$image_url = mysqli_real_escape_string($conn, $this->image_url);
+		$sql = "INSERT INTO feature(title, detail, image_url) 
+					VALUES('$title', '$detail', '$image_url')";
+		if($result = mysqli_query($conn, $sql)){
+			mysqli_close($conn);
+			return result;
+		}
+		$err = mysqli_error($conn);
+		mysqli_close($conn);
+		return $err;
 	}
 	public static function read($conditions = "", $limit = 100, $order = ""){
 		$conn = DBConnect::getConnection();
@@ -63,6 +75,10 @@ class Feature implements Crudable, Component{
 		$result = mysqli_query($conn, $sql);
 		mysqli_close($conn);
 		return $result;
+	}
+	public static function getFeatured(){
+		$condition = "WHERE id IN (SELECT feature_id FROM featured)";
+		return self::read($condition);
 	}
 	public function render(){
 		echo $this->getHTMLString();

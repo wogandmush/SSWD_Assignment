@@ -47,6 +47,25 @@ main {
 	align-items: center;
 }
 
+#gallery{
+	display: grid;
+	width: 100%;
+	height: 20em;
+	grid-template-columns: repeat(5, 20%);
+	grid-gap: 1em;
+}
+#gallery img {
+	width: 100%;
+	opacity: 0.8;
+	height: 100%;
+	transition: opacity 0.2s;
+}
+
+#gallery img.selected{
+	opacity: 1;
+	transition: opacity 0.2s;
+}
+
 .feature img {
 	border-radius: 100px;
 	width: 20%;
