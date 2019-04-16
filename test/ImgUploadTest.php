@@ -26,9 +26,10 @@ var selectButton = document.querySelector("#select-btn");
 var upload = new Image();
 upload.onload = function(){
 	var natWidth = upload.naturalWidth, natHeight = upload.naturalHeight;
-	var imgScale = 900 / natWidth;
 	var width = 900;
 	var height = (natHeight / natWidth) * width;
+	var scaleX = natWidth / width;
+	var scaleY = natHeight / height;
 	var canvas = document.querySelector("#img-crop");
 	canvas.width =  width;
 	canvas.height = height;
@@ -109,19 +110,14 @@ upload.onload = function(){
 	});
 	selectButton.addEventListener("click", submitImage);
 	function submitImage(){
-		//var imgData = cxt.getImageData(selection.x, selection.y, selection.w, selection.h);
 		var tempCanv = document.createElement("canvas");
 		var tempCxt = tempCanv.getContext("2d");
-		/*
-		tempCanv.width = imgData.width;
-		tempCanv.height = imgData.height;
-		tempCxt.putImageData(imgData, 0, 0);
-		 */
-		tempCanv.width = natWidth;
-		tempCanv.height = natHeight;
+		/* This can be changed to absolute dimensions */
+		tempCanv.width = selection.w * scaleX;
+		tempCanv.height = selection.h * scaleY;
 		tempCxt.drawImage(upload,
-			selection.x * imgScale, selection.y * imgScale, selection.w * imgScale, selection.h * imgScale,
-			0, 0, natWidth, natHeight);
+			selection.x * scaleX, selection.y * scaleY, selection.w * scaleX, selection.h * scaleY,
+			0, 0, tempCanv.width, tempCanv.height);
 		tempCanv.toBlob(blob => {
 			var fd = new FormData();
 			fd.append("image", blob);
