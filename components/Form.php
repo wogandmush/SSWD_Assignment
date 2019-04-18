@@ -1,5 +1,5 @@
 <?php
-class Form {
+class Form implements Component{
 
 	private $id;
 	private $action;

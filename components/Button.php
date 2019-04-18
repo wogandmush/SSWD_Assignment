@@ -1,6 +1,6 @@
 <?php
 
-class Button{
+class Button implements Component{
 	private $name;
 	private $value;
 	private $text;
