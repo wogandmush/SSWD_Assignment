@@ -22,6 +22,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <canvas id="img-crop"></canvas>
 </section>
 	<script>
+const ASPECT_RATIO_WIDTH = 3;
+const ASPECT_RATIO_HEIGHT = 4;
+const ASPECT_RATIO = ASPECT_RATIO_WIDTH/ASPECT_RATIO_HEIGHT;
+const MAX_SIZE = 2000000; // roughly caps file size at 200Kb
+const MAX_WIDTH = Math.sqrt(MAX_SIZE) * (ASPECT_RATIO_HEIGHT/ASPECT_RATIO_WIDTH);
+const MAX_HEIGHT = Math.sqrt(MAX_SIZE) * (ASPECT_RATIO_WIDTH/ASPECT_RATIO_HEIGHT);
 var selectButton = document.querySelector("#select-btn");
 var upload = new Image();
 upload.onload = function(){
@@ -40,7 +46,7 @@ upload.onload = function(){
 	var overlayCxt = overlay.getContext("2d");
 	overlayCxt.fillStyle = "grey";
 	overlayCxt.globalAlpha = 0.5;
-	const ASPECT_RATIO = 1/2;
+
 	var selection = {
 		x: 0,
 		y: 0,
@@ -113,12 +119,37 @@ upload.onload = function(){
 		var tempCanv = document.createElement("canvas");
 		var tempCxt = tempCanv.getContext("2d");
 		/* This can be changed to absolute dimensions */
-		tempCanv.width = selection.w * scaleX;
-		tempCanv.height = selection.h * scaleY;
+		let w = selection.w * scaleX, h = selection.h * scaleY;
+		if(w < MAX_WIDTH && h < MAX_HEIGHT){
+			tempCanv.width = w;
+			tempCanv.height = h;
+		}
+		else{
+			tempCanv.width = MAX_WIDTH;
+			tempCanv.height = MAX_HEIGHT;
+		}
+		console.log({MAX_WIDTH, MAX_HEIGHT});
+		console.log({width: tempCanv.width, height: tempCanv.height});
+		/*
+		console.log({width: tempCanv.width, height: tempCanv.height});
+		var quality = 0.99;
+		var tempCanvArea = tempCanv.width * tempCanv.height;
+		
+		if(tempCanvArea > MAX_SIZE)
+			quality = MAX_SIZE / tempCanvArea;
+		
+	
+			
+		console.log({quality});
+		console.log({tempCanvArea, res: quality * tempCanvArea});
+		*/
 		tempCxt.drawImage(upload,
 			selection.x * scaleX, selection.y * scaleY, selection.w * scaleX, selection.h * scaleY,
 			0, 0, tempCanv.width, tempCanv.height);
-		tempCanv.toBlob(blob => {
+		tempCanv.toBlob(sendBlob, "image/jpeg");
+			
+		function sendBlob(blob){
+			console.log({blob});
 			var fd = new FormData();
 			fd.append("image", blob);
 			var xhr = new XMLHttpRequest();
@@ -128,7 +159,7 @@ upload.onload = function(){
 				console.log(res);
 			}
 			xhr.send(fd);
-		});
+		};
 	}
 }
 upload.src = "<?php echo $root . "/images/temp/".$_FILES['img-upload']['name'];?>";

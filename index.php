@@ -1,15 +1,14 @@
 <?php 
 include 'header.php';
 
-// if the user is logged in
-/*
-$feature1 = new Feature('feature1', 'Yoga', 'things about yoga', 'images/yoga.jpg', 'yoga.php');
+$feature1 = new Feature('feature1', 'Yoga', 'things about yoga', 'images/yoga/yoga.jpg', 'yoga.php');
 $feature1->render();
- */
 $features = Feature::getFeatured();
 foreach($features as $feature){
 	$feature->render();
 }
+
+// if the user is logged in
 if($isMember) {
     // if the users membership is Student Monthly display Student Monthly Content
 	/*
