@@ -77,8 +77,8 @@ class Feature implements Crudable, Component{
 		return $result;
 	}
 	public static function getFeatured(){
-		$condition = "WHERE id IN (SELECT feature_id FROM featured)";
-		return self::read($condition);
+		//$condition = "";
+		return self::read("WHERE id IN (SELECT feature_id FROM featured)");
 	}
 	public function render(){
 		echo $this->getHTMLString();

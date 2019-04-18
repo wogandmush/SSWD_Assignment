@@ -2,10 +2,17 @@
 include 'header.php';
 
 // if the user is logged in
+/*
 $feature1 = new Feature('feature1', 'Yoga', 'things about yoga', 'images/yoga.jpg', 'yoga.php');
 $feature1->render();
+ */
+$features = Feature::getFeatured();
+foreach($features as $feature){
+	$feature->render();
+}
 if($isMember) {
     // if the users membership is Student Monthly display Student Monthly Content
+	/*
      if($_SESSION['membership'] == 'Student Monthly') {
         ?>
         <section>
@@ -38,29 +45,7 @@ if($isMember) {
             <p>Accusamus animi architecto asperiores aspernatur at dolor eaque error est illum ipsam libero nam nemo nisi, officiis pariatur quae quidem quod sed sunt totam velit veniam vero voluptas voluptatem voluptatibus?</p>
         </section> <?php
      }
+	 */
  }
- 
- ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php
 include 'footer.php';
 ?>
