@@ -18,6 +18,9 @@ if($isAdmin){
 			<a href="<?php echo $root;?>/testimonial_manage.php">Testimonials</a>
 		</li>
 		<li>
+			<a href="<?php echo $root;?>/image_manage.php">Images</a>
+		</li>
+		<li>
 			<a href="<?php echo $root;?>/contact_manage.php">Enquiries</a>
 		</li>
 	</ul>

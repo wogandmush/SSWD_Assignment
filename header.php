@@ -11,6 +11,7 @@ $isMember = isset($_SESSION['email']);
 $isAdmin = isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE;
 
 $root = PathHelper::getRoot();
+$fsRoot = PathHelper::getFSRoot();
 
 ###for testing###
 #$_SESSION['admin'] = true;
