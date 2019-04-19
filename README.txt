@@ -32,7 +32,6 @@ Martin:
 
 Dan: (TODO)
  Document code (LOL!)
- Fix error messages in login form
  Complete feature manage page
  Reorganize image_manage page
  

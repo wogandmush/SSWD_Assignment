@@ -144,19 +144,26 @@ ini_set('display_errors', 1);
 		var loginLinkText = $('#login-link').html();
 		$('#login-form').hide();
 
-		$('#login-link').bind("click", function(){
-			if($(this).html() == loginLinkText){
-				$(this).html("&times;");
+		$('#login-link').on("click", toggleLogin);
+			
+		
+		function toggleLogin(){
+			if($('#login-link').html() == loginLinkText){
+				$('#login-link').html("&times;");
 				$('#register-link').toggle();
 				$('#login-form').slideToggle(200);
 			}
 			else {
 				$('#login-form').slideToggle(200, ()=>{
-					$(this).html(loginLinkText);
+					$('#login-link').html(loginLinkText);
 					$('#register-link').toggle();
 				});
 			}
-		});
+		};
+<?php 
+if(isset($loginForm) && $loginForm->hasErrors())
+	echo "toggleLogin();";
+?>
 			</script>
 		</header>
 		<main>
