@@ -1,4 +1,5 @@
 <?php
+
 class Feature implements Crudable, Component{
 	private $id;
 	private $title;

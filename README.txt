@@ -30,14 +30,12 @@ Oisin: Getting Registration + Login working - done //Added an if statement to fi
 
 Martin:                      
 
-Dan: Creating reusable code for form fields - done; // will add more functionality if needed
-	 Testimonial Approval System - db logic done! - need to work on front end
-	 Header - done (for now)
-	 Index.php presentations - todo!
-	 
-	Login - drop down
- 	Classes - drop down
- 	Admin toolbar
+Dan: (TODO)
+ Document code (LOL!)
+ Fix error messages in login form
+ Complete feature manage page
+ Reorganize image_manage page
+ 
 	
 
     ----Web Application Requirements----

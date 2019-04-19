@@ -1,5 +1,19 @@
 <?php
-include_once 'OptionField.abs.php';
+
+# 
+# The CheckBox component is used to create checkbox type input elements.
+#
+# it has getter and setter methods for name, label, attributes, and options
+# 
+# The getters and setters for the first three are defined in the Field.abs.php class, which its parent class extends
+#
+# The getter and setter method for the options field is defined in the OptionField.abs.php class, which it extends
+#
+# the validate method checks if the input received is among one of its options
+#
+#
+#
+
 class CheckBox extends OptionField{
 	public function __construct(string $name, string $label, array $options = array(), array $attributes = array()){
 		$this->name = $name;
