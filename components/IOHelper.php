@@ -3,7 +3,6 @@ class IOHelper{
 	public static function getDirectories($dirname){
 		if($dirname[strlen($dirname) - 1] !== "/")
 			$dirname .= "/";
-		echo $dirname;
 		$dir_handle = opendir($dirname);
 		$directories = array();
 		while($file = readdir($dir_handle)){

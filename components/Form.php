@@ -95,8 +95,6 @@ class Form implements Component{
 			$component->setData($value);
 			$this->fields[$key] = $component;
 		}
-		//$this->addFields($components);
-		echo count($this->getFields());
 	}
 	public function render(){
 		echo $this->getHTMLString();		

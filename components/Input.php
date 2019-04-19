@@ -28,7 +28,9 @@ class Input extends Field{
 		elseif (!empty($this->data)){
 			$output = "<div class='form-group'>
 						<label class='text-success' for='$this->name'>$this->label</label>
-						<input name='$this->name' id='$this->name' class='form-control' type='$this->type' value='$this->data' ";
+						<input name='$this->name' id='$this->name' class='form-control' type='$this->type' value=\"";
+			$output .= $this->data;
+			$output .= "\" ";
 		}
 		else {
 			//print default form

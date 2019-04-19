@@ -21,16 +21,23 @@ abstract class Field implements Component{
 			return mysqli_real_escape_string($conn, $this->data);
 		return $this->data;
 	}
-	public function setData($data = null){
+	public function setData($data = null, $sanitize = true){
+		
 		if($data){
-			$this->data = trim(htmlspecialchars($data));
+			if($sanitize)
+				$this->data = trim(htmlspecialchars($data));
+			else 
+				$this->data = $data;
 		}
 		else {
 			if(!isset($_POST[$this->name])){
 				$this->setError($this->name." was not set.");
 			}
 			else {
-				$this->data = trim(htmlspecialchars($_POST[$this->name]));
+				if($sanitize)
+					$this->data = trim(htmlspecialchars($_POST[$this->name]));
+				else 
+					$this->data = $_POST[$this->name];
 			}
 		}
 	}
