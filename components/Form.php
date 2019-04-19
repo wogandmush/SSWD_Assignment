@@ -36,11 +36,16 @@ class Form implements Component{
 		$this->enctype = $enctype;
 	}
 	public function addField($field){
-		$this->fields[] = $field;
+		$this->fields[$field->getName()] = $field;
 	}
 	public function addFields(){
 		$fields = func_get_args();
-		$this->fields += $fields;
+		foreach($fields as $field){
+			$this->fields[$field->getName()] = $field;
+		}
+	}
+	public function getFields(){
+		return $this->fields;
 	}
 	public function addButton($button){
 		$this->buttons[] = $button;
@@ -78,10 +83,20 @@ class Form implements Component{
 		}
 		return $answer;
 	}
-	public static function forwardPOST(){
+	public static function renderForwardPost(){
 		foreach($_POST as $key => $value){
 			echo "<input type='hidden' name='$key' value='$value' />";			
 		};
+	}
+	public function forwardPOST(){
+		$components = array();
+		foreach($_POST as $key=>$value){
+			$component = new Input($key, '', 'hidden');		
+			$component->setData($value);
+			$this->fields[$key] = $component;
+		}
+		//$this->addFields($components);
+		echo count($this->getFields());
 	}
 	public function render(){
 		echo $this->getHTMLString();		

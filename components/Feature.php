@@ -22,12 +22,14 @@ class Feature implements Crudable, Component{
 		$temp_title = mysqli_real_escape_string($conn, $this->title);
 		$temp_detail = mysqli_real_escape_string($conn, $this->detail);
 		$temp_image_url = mysqli_real_escape_string($conn, $this->image_url);
-		$sql = "INSERT INTO feature(title, detail, image_url) 
+		$sql = "INSERT INTO feature(feature_title, detail, img_url) 
 					VALUES('$temp_title', '$temp_detail', '$temp_image_url')";
+		echo $sql;
 		if($result = mysqli_query($conn, $sql)){
 			mysqli_close($conn);
 			return $result;
 		}
+
 		$err = mysqli_error($conn);
 		mysqli_close($conn);
 		return $err;

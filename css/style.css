@@ -54,14 +54,14 @@ main {
 	grid-template-columns: repeat(5, 20%);
 	grid-gap: 1em;
 }
-#gallery img {
+.gallery-img {
 	width: 100%;
 	opacity: 0.8;
 	height: 100%;
 	transition: opacity 0.2s;
 }
 
-#gallery img.selected{
+.gallery-img.selected{
 	opacity: 1;
 	transition: opacity 0.2s;
 }
