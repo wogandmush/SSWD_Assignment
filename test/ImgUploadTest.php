@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 const ASPECT_RATIO_WIDTH = 3;
 const ASPECT_RATIO_HEIGHT = 4;
 const ASPECT_RATIO = ASPECT_RATIO_WIDTH/ASPECT_RATIO_HEIGHT;
-const MAX_SIZE = 2000000; // roughly caps file size at 200Kb
+const MAX_SIZE = 2000000; // roughly caps file size at 250Kb
 const MAX_WIDTH = Math.sqrt(MAX_SIZE) * Math.sqrt(ASPECT_RATIO_HEIGHT/ASPECT_RATIO_WIDTH);
 const MAX_HEIGHT = Math.sqrt(MAX_SIZE) * Math.sqrt(ASPECT_RATIO_WIDTH/ASPECT_RATIO_HEIGHT);
 var selectButton = document.querySelector("#select-btn");
@@ -134,12 +134,8 @@ upload.onload = function(){
 		console.log({width: tempCanv.width, height: tempCanv.height});
 		var quality = 0.99;
 		var tempCanvArea = tempCanv.width * tempCanv.height;
-		
 		if(tempCanvArea > MAX_SIZE)
 			quality = MAX_SIZE / tempCanvArea;
-		
-	
-			
 		console.log({quality});
 		console.log({tempCanvArea, res: quality * tempCanvArea});
 		*/

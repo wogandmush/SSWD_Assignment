@@ -1,6 +1,5 @@
 <?php
 class IOHelper{
-
 	public static function getDirectories($dirname){
 		if($dirname[strlen($dirname) - 1] !== "/")
 			$dirname .= "/";
@@ -10,12 +9,11 @@ class IOHelper{
 		while($file = readdir($dir_handle)){
 			// is_dir didn't work properly
 			
-			if(mime_content_type($dirname.$file) === "directory")
+			if($file[0] != '.' && mime_content_type($dirname.$file) === "directory")
 				$directories[] = $file;
 		}
 		closedir($dir_handle);
-
-		return array_slice($directories, 2);
+		return $directories;
 	}
 	public static function getFiles($dirname){
 		if($dirname[strlen($dirname) - 1] !== "/")
@@ -23,11 +21,25 @@ class IOHelper{
 		$dir_handle = opendir($dirname);
 		$files = array();
 		while($file = readdir($dir_handle)){
-			if(mime_content_type($dirname.$file) !== "directory")
+			if($file[0] != '.' && mime_content_type($dirname.$file) !== "directory")
 				$files[] = $file;
 		}
 		closedir($dir_handle);
 		return $files;
+	}
+	public static function clearDirectory($dirname){
+		if($dirname[strlen($dirname) - 1] !== "/")		
+			$dirname .= "/";
+		$dir_handle = opendir($dirname);
+		while($file = readdir($dir_handle)){
+			if(mime_content_type($dirname.$file) !== 'directory'){
+				if(!unlink($dirname.$file)){
+					return FALSE;
+				}
+			}
+		}
+		closedir($dir_handle);
+		return TRUE;
 	}
 	public static function getImages($dirname){
 		if($dirname[strlen($dirname) - 1] !== "/")
@@ -40,8 +52,5 @@ class IOHelper{
 		}
 		closedir($dir_handle);
 		return $images;
-
-
-
 	}
 }

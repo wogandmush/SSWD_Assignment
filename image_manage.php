@@ -1,9 +1,16 @@
-<section id='img-upload'>
+<section id='img-manage'>
 <?php
 include './header.php';
 
-if(!isset($_FILES['img-uplad'])){
-$imgForm = new Form('img-form', 'ImgUploadTest.php', 'POST');
+if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['upload'])){
+
+	echo "<h4 class='text-${_GET['upload']}'>File uploaded</h4>";
+	echo "<img src='${_GET['path']}' />";
+
+}
+
+if(!isset($_FILES['img-upload'])){
+$imgForm = new Form('img-form', 'image_manage.php', 'POST');
 $imgUpload = new Input('img-upload', 'Upload an new image: ', 'file');
 
 $imgForm->addFields($imgUpload);
@@ -22,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	$category->render();
 	$filename = new Input("file-name", "Choose name for image");
 	$filename->render();
-	$filepath = $fsRoot . "/images/temp/".$_FILES['img-upload']['name'];
+	$filepath = $fsRoot . "/images/.temp/".$_FILES['img-upload']['name'];
 	move_uploaded_file($_FILES['img-upload']['tmp_name'], $filepath);
 ?>
 <canvas id="img-crop"></canvas>
@@ -148,20 +155,24 @@ upload.onload = function(){
 			console.log({blob});
 			var fd = new FormData();
 			fd.append("image", blob);
+			fd.append("temp-file", upload.src);
 			fd.append("img-category", imgCategory.value);
 			fd.append("file-name", fileName.value);
 			console.log(fd);
 			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "img_db.php", true);
+			xhr.open("POST", "image_db.php", true);
 			xhr.onload = function(){
-				var res = xhr.responseText;
+				var json = xhr.responseText;
+				var res = JSON.parse(json);
 				console.log(res);
+				if(res.status == "success")
+					location.href=`./image_manage.php?upload=success&path=${res.path}`;
 			}
 			xhr.send(fd);
 		};
 	}
 }
-upload.src = "<?php echo $root . "/images/temp/".$_FILES['img-upload']['name'];?>";
+upload.src = "<?php echo $root . "/images/.temp/".$_FILES['img-upload']['name'];?>";
 	</script>
 <?php
 }

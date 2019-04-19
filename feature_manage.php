@@ -15,10 +15,10 @@ $directories = IOHelper::getDirectories(getcwd() ."/images");
 $imgCategory->setOptions($directories);
 $imgCategory->render();
 
-$images = IOHelper::getImages(getcwd()."/images/pilates");
+$images = IOHelper::getImages(getcwd()."/images/yoga");
 echo "<div id='gallery'>";
 foreach($images as $image){
-	$url = "$root/images/pilates/$image";
+	$url = "$root/images/yoga/$image";
 	echo "<img src='$url'></img>";
 }
 echo "</div>";
