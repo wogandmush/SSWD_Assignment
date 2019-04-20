@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
 	$actionForm = new Form('action-form', 'feature_manage.php', 'POST');
 	$actionForm->addFields($stage, $action);
 	$actionForm->addButtons($createNew, $editExisting, $changeFeatured);
-
+	echo "<h2 class='text-default'>Manage Features:</h2>";
 	$actionForm->render();
 }
 else{
