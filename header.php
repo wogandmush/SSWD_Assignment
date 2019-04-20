@@ -60,18 +60,18 @@ ini_set('display_errors', 1);
 						</li>
  <!--                       
 						<li class="nav-item">
-						<a class="nav-link" href="<?php echo $root;?>/class.php">Classes</a>
+							<a class="nav-link" href="<?php echo $root;?>/class.php">Classes</a>
 						</li>
 <!--
 						<li class="nav-item">
-						<a class="nav-link" href="<?php echo $root?>/fees.php">Fees</a>
+							<a class="nav-link" href="<?php echo $root?>/fees.php">Fees</a>
 						</li>
 						<li class="nav-item">
-						<a class="nav-link" href="<?php echo $root?>/testimonial.php">Testimonials</a>
+							<a class="nav-link" href="<?php echo $root?>/testimonial.php">Testimonials</a>
 						</li>
 -->
 						<li class="nav-item">
-						<a class="nav-link" href="<?php echo $root?>/contact.php">Contact Us</a>
+							<a class="nav-link" href="<?php echo $root?>/contact.php">Contact Us</a>
 						</li>
                     
                          

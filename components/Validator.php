@@ -31,6 +31,6 @@ class Validator{
 	if(preg_match_all("/[A-Za-z]/", $password) < 2)
 		return false;
 	return true;
-		
 	}
 }
+

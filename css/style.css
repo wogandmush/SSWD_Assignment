@@ -2,9 +2,6 @@
 	box-sizing: border-box;
 }
 
-main {
-	min-height: 90vh;
-}
 
 #login-link{
 	display: inline-block;

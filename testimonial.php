@@ -1,5 +1,5 @@
 <?php 
-include 'header.php'; 
+include_once 'header.php'; 
 
 
 $testimonials = Testimonial::loadApproved();
@@ -44,5 +44,5 @@ var delayTime = 4000;
 </script>
 
 <?php
-include 'footer.php';
+include_once 'footer.php';
 ?>

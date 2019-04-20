@@ -1,0 +1,15 @@
+index.php
+
+registration
+ - Oisin
+ - security and hashing
+
+ - confirm password
+ - remove user no input
+ - contact number
+
+
+
+Dan: 
+ Link Fees to Database
+ 
