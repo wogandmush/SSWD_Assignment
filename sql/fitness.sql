@@ -120,12 +120,12 @@ DROP TABLE IF EXISTS `feature`;
 CREATE TABLE `feature` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `feature_title` varchar(30) NOT NULL,
-  `details` varchar(999) NOT NULL,
-  `photo_url` varchar(999) DEFAULT NULL,
+  `detail` varchar(999) DEFAULT NULL,
+  `img_url` varchar(999) DEFAULT NULL,
   `date` datetime DEFAULT CURRENT_TIMESTAMP,
   `link` varchar(999) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,7 +134,7 @@ CREATE TABLE `feature` (
 
 LOCK TABLES `feature` WRITE;
 /*!40000 ALTER TABLE `feature` DISABLE KEYS */;
-INSERT INTO `feature` VALUES (1,'feature_one','',NULL,'2019-04-14 09:59:21',NULL),(2,'feature_two','',NULL,'2019-04-14 10:01:47',NULL);
+INSERT INTO `feature` VALUES (1,'feature_one','This is my cute poggle-wog','test/success.png','2019-04-14 09:59:21',NULL),(2,'feature_two','',NULL,'2019-04-14 10:01:47',NULL),(3,'A whole new Feature!','Look at this bad boy','https://sswd-assignment-wogandmush.c9users.io/SSWD_Assignment/images/pilates/pee_pee_pog.jpg','2019-04-19 20:13:54',NULL),(4,'Let','I like big butts and I can not lie, all you other brothers can','https://sswd-assignment-wogandmush.c9users.io/SSWD_Assignment/images/yoga/coot_poggly_woggly2.jpg','2019-04-19 20:19:51',NULL);
 /*!40000 ALTER TABLE `feature` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -236,7 +236,7 @@ CREATE TABLE `member` (
   PRIMARY KEY (`user_no`),
   KEY `membership` (`membership`),
   CONSTRAINT `member_ibfk_1` FOREIGN KEY (`membership`) REFERENCES `fees` (`membership_type`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8003 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -313,4 +313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-14 10:11:56
+-- Dump completed on 2019-04-20 13:20:32
