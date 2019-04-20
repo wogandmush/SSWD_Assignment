@@ -9,9 +9,9 @@ class Form implements Component{
 	private $buttons;
 	private $classList = 'form';
 
-	public function __construct($id, $action, $method = 'POST', $enctype = "", $fields = array(), $buttons = array()){
+	public function __construct($id, $action = '', $method = 'POST', $enctype = "", $fields = array(), $buttons = array()){
 		$this->id = $id;
-		$this->action = $action;
+		$this->action = empty($action) ? $_SERVER['REQUEST_URI'] : $action;
 		$this->method = $method;
 		$this->enctype = $enctype;
 		$this->fields = $fields;	

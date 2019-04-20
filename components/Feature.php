@@ -17,6 +17,9 @@ class Feature implements Crudable, Component{
 		$this->feature_number = $feature_number;
 		$this->classList = "feature";
 	}
+	public function getId(){
+		return $this->id;
+	}
 	public function create(){
 		$conn = DBConnect::getConnection();
 		$temp_title = mysqli_real_escape_string($conn, $this->title);
@@ -34,15 +37,16 @@ class Feature implements Crudable, Component{
 		mysqli_close($conn);
 		return $err;
 	}
-	public static function read($conditions = "", $limit = 100, $order = ""){
+	public static function read($conditions = "", $order = "", $limit = 100){
 		$conn = DBConnect::getConnection();
 		$sql = "SELECT * FROM feature";
 		if(!empty($conditions))
 			$sql .= " $conditions";
-		$sql .= " LIMIT $limit";
 		if(!empty($order))
 			$sql .= " ORDER BY $order";
+		$sql .= " LIMIT $limit";
 		$sql .= ";";
+		echo "<h1>$sql</h1>";
 
 		if($result = mysqli_query($conn, $sql)){
 			$features = array();
@@ -85,8 +89,25 @@ class Feature implements Crudable, Component{
 		$this->classList = $classList;
 	}
 	public static function getFeatured(){
-		//$condition = "";
-		return self::read("WHERE id IN (SELECT feature_id FROM featured)");
+		return self::read("RIGHT JOIN featured ON feature.id = featured.feature_id", "feature_number", 3);
+	}
+	public static function getNonFeatured(){
+		// select all features not in featured table
+		return self::read("LEFT JOIN featured ON feature.id = featured.feature_id WHERE feature_id IS NULL");		
+	}
+	public static function setFeatured($featureId, $featureNo){
+		$conn = DBConnect::getConnection();
+		$sql = "UPDATE featured
+			SET feature_id = '$featureId'
+			WHERE feature_number = '$featureNo';";
+		echo $sql;
+		$result = mysqli_query($conn, $sql);
+		if($error = mysqli_error($conn)){
+			mysqli_close($conn);
+			return $error;
+		}
+		mysqli_close($conn);
+		return $result;
 	}
 	public function render(){
 		echo $this->getHTMLString();

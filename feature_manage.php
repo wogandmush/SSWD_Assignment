@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
 	$createNew = new Button("action", "create-new", "Create New");
 	$editExisting = new Button('action', 'edit-existing', 'Edit Existing');
 	$changeFeatured = new Button('action', 'change-featured', 'Change Featured');
-	$stage->setData("1");
+	$stage->setData("start");
 
 	$actionForm = new Form('action-form', 'feature_manage.php', 'POST');
 	$actionForm->addFields($stage, $action);
@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
 else{
 	var_dump($_POST);
 	if(!isset($_POST['stage']))
-		$stage->setData("1");
+		$stage->setData("start");
 	else $stage->setData($_POST['stage']);
 	if(!isset($_POST['action'])){
 		var_dump($_POST);
@@ -33,19 +33,19 @@ else{
 	switch($action->getData()){
 		case 'create-new':
 			switch($stage->getData()){
-				case "1":
+				case "start":
 					$contentForm = new Form("feature-content", "feature_manage.php");
 					$contentForm->setData();
 					$title = new Input('title', 'Choose title of feature');
 					$detail = new TextArea('detail', 'Enter text content of your feature');
-					$stage->setData("2");
+					$stage->setData("choose-image");
 					$contentForm->forwardPOST();
 					$contentForm->addFields($stage, $action, $title, $detail);
 					$submitContent = new Button('next');
 					$contentForm->addButtons($submitContent);
 					$contentForm->render();
 					break;
-				case '2':
+				case 'choose-image':
 					$imageForm = new Form("image-form", 'feature_manage.php');
 					$imageForm->forwardPOST();
 					$category = new Select('category', 'Choose image category');
@@ -53,7 +53,7 @@ else{
 					$category->setOptions($categories);
 					$category->render();
 					$featureImg = new Input('feature-img', '', 'hidden');
-					$stage->setData("3");
+					$stage->setData("submit");
 					$nextButton = new Button('next');
 					$imageForm->addFields($stage, $action, $featureImg);
 					$imageForm->addButton($nextButton);
@@ -67,7 +67,6 @@ var category = document.querySelector('#category');
 var featureImage = document.querySelector('#feature-img');
 var images = [];
 category.addEventListener("change", getImages);
-
 	function getImages(e){
 		var inputs = document.querySelectorAll('input');
 		inputs.forEach(x => console.log(x.value));
@@ -101,13 +100,13 @@ category.addEventListener("change", getImages);
 </script>
 <?php
 					break;
-				case '3':
+				case 'submit':
 					$title  = $_POST['title'];
 					$detail = $_POST['detail'];
 					$img_url = $_POST['feature-img'];
 					$feature = new Feature("", $title, $detail, $img_url);
 					$feature->render();
-					$stage->setData('4');
+					$stage->setData('complete');
 					$submitForm = new Form('feature-submit', 'feature_manage.php');
 					$submitForm->forwardPOST();
 					$submitForm->addFields($stage);
@@ -115,7 +114,7 @@ category.addEventListener("change", getImages);
 					$submitForm->addButton($submitButton);
 					$submitForm->render();
 					break;
-				case '4':
+				case 'complete':
 					$title = $_POST['title'];
 					$detail = $_POST['detail'];
 					$img_url = $_POST['feature-img'];
@@ -134,6 +133,49 @@ category.addEventListener("change", getImages);
 			break;
 		case 'edit-existing':
 			echo "<h4 class='text-danger'>I mean I must have said this before, since I say it now</h4>";
+			break;
+		case 'change-featured':
+			switch($stage->getData()){
+			case 'start':
+				$features = Feature::getFeatured();
+				echo "<form action='feature_manage.php' method='POST'>";
+				Form::renderForwardPOST();
+				foreach($features as $index=>$feature){
+					$feature->render();
+					$selectButton = new Button('feature-number', ++$index, 'change');
+					$selectButton->render();
+				}
+				$stage->setData('choose-feature');
+				$stage->render();
+				echo "</form>";
+				break;
+			case 'choose-feature':
+				$features = Feature::getNonFeatured();
+				echo "<form action='feature_manage.php' method='POST'>";
+				Form::renderForwardPost();
+				$stage->setData("complete");
+				$stage->render();
+				foreach($features as $feature){
+					$feature->render();
+					$featureButton = new Button('feature-id', $feature->getId(), 'feature');
+					$featureButton->render();
+				}
+				echo "</form>";
+				break;
+			case 'complete';
+				$featureId = $_POST['feature-id'];
+				$featureNumber = $_POST['feature-number'];
+				if(Feature::setFeatured($featureId, $featureNumber))
+					echo "<h4 class='text-success'>Look at you!</h4>";
+				else{
+					echo "<h4 class='text-warning'>You fail</h4>";
+				}
+				break;
+			default:
+				echo "<h4 class='text-error'>Something went wrong</h4>";
+				header("Refresh:2; url=feature_manage.php");
+				exit();
+			}
 			break;
 		default:
 			break;
