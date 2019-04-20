@@ -1,5 +1,7 @@
 <?php
-include 'header.php';
+include_once 'header.php';
+
+echo "<section id='admin'>";
 
 if(!$isAdmin){
 	$adminLogin = new Form('admin-login', 'admin.php', 'POST');
@@ -16,10 +18,11 @@ if(!$isAdmin){
 
 	$adminLogin->addFields($email, $password);
 
-	$submitBtn = new Button('login');
+	$submitBtn = new Button('admin-submit', 'login');
 	$submitBtn->setClassList("btn btn-danger");
 
 	$adminLogin->addButtons($submitBtn);
+	$success = false;
 
 	if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		$adminLogin->setData();
@@ -32,21 +35,23 @@ if(!$isAdmin){
 			$num = mysqli_num_rows($result);			
 			if($num === 1){
 				$row = mysqli_fetch_array($result);
-				echo $row['password'];
 				if(password_verify($password->getData(), $row['password'])){
 					$_SESSION['admin'] = true;
 					$_SESSION['first_name'] = 'admin';
 					$_SESSION['email'] = $row['email'];
+					$success = true;
+					echo "<h4 class='text-success'>Login successful! Redirecting...</h4>";
 					header("Refresh:2; url='index.php'");				
 				}
 			}
 			else echo "<h4 class='text-danger'>Error!</h4>";
-
 			mysqli_close($conn);
 		}
-		
 	}
-	$adminLogin->render();
+	if(!$success){
+		echo "<h4 class='text-default'>Login as admin:</h4><br/>";
+		$adminLogin->render();
+	}
 }
 if($isAdmin){
 	$conn = DBConnect::getConnection();
@@ -97,3 +102,4 @@ if($isAdmin){
 	$adminRegister->render();
 	mysqli_close($conn);
 }
+echo "</section>";

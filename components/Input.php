@@ -16,6 +16,8 @@ class Input extends Field{
 		$this->type = $type;
 	}
 	public function getHTMLString(){
+		if($this->type === 'hidden')
+			return "<input name='$this->name' id='$this->name' value=\"$this->data\" type='$this->type' />";
 		if(!empty($this->errors)){
 			$output =  "<div class='form-group'>
 				<label class='text-danger' for='$this->name'>$this->label</label>";

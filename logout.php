@@ -1,8 +1,8 @@
 <?php
 
-session_start();
+include 'init.php';
 
-if(isset($_SESSION['email'])){
+if($isMember || $isAdmin){
 	session_unset();
 	session_destroy();
 }

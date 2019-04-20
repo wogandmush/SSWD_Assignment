@@ -27,7 +27,6 @@ class Feature implements Crudable, Component{
 		$temp_image_url = mysqli_real_escape_string($conn, $this->image_url);
 		$sql = "INSERT INTO feature(feature_title, detail, img_url) 
 					VALUES('$temp_title', '$temp_detail', '$temp_image_url')";
-		echo $sql;
 		if($result = mysqli_query($conn, $sql)){
 			mysqli_close($conn);
 			return $result;
@@ -46,7 +45,6 @@ class Feature implements Crudable, Component{
 			$sql .= " ORDER BY $order";
 		$sql .= " LIMIT $limit";
 		$sql .= ";";
-		echo "<h1>$sql</h1>";
 
 		if($result = mysqli_query($conn, $sql)){
 			$features = array();
@@ -100,7 +98,6 @@ class Feature implements Crudable, Component{
 		$sql = "UPDATE featured
 			SET feature_id = '$featureId'
 			WHERE feature_number = '$featureNo';";
-		echo $sql;
 		$result = mysqli_query($conn, $sql);
 		if($error = mysqli_error($conn)){
 			mysqli_close($conn);

@@ -65,7 +65,7 @@ include 'init.php';
 						<button class='btn btn-warning ml-auto'>Logout</button>
 					</form>";
 					}
-					else {
+					else if(!($isMember || $isAdmin)){
 						echo "<button onclick='location.href=\"${root}/register.php\";' type='button' class='btn btn-link' id='register-link'>JOIN</button>";
 						echo "<button type='button' class='btn btn-link' id='login-link'>MEMBERS</button>";
 						$loginSuccess = false;

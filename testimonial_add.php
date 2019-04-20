@@ -1,16 +1,17 @@
 <?php 
-include 'header.php';
+include_once 'header.php';
 
-if(!isset($_SESSION['first_name'])){
+if(!$isMember){
 	//if user not logged in, redirect them to main page
 	header('Location: index.php');
 	//end script
 	exit();
 }
 else {
+	echo "<section id='testimonial-add'>";
 	#initialize objects for each of our form fields
 	// create a textarea element for user to write their message
-	$testimonialForm = new Form('testimonial_add', 'testimonial_add.php');
+	$testimonialForm = new Form('add-testimonial', 'testimonial_add.php');
 
 	$message = new TextArea('testimonial', "Add your testimonial: ");
 	$message->setAttributes(array(
@@ -108,6 +109,7 @@ console.log(textArea);
 </script>
 <?php
 	}
+	echo "</section>";
 }
 include 'footer.php';
 ?>

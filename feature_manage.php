@@ -5,6 +5,7 @@ if(!$isAdmin){
 	exit();
 }
 
+echo "<section id='feature-manage'>";
 $stage = new Input('stage', '', 'hidden');
 $action = new Input('action', '', 'hidden');
 if($_SERVER['REQUEST_METHOD'] !== 'POST'){
@@ -16,15 +17,14 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
 	$actionForm = new Form('action-form', 'feature_manage.php', 'POST');
 	$actionForm->addFields($stage, $action);
 	$actionForm->addButtons($createNew, $editExisting, $changeFeatured);
+
 	$actionForm->render();
 }
 else{
-	var_dump($_POST);
 	if(!isset($_POST['stage']))
 		$stage->setData("start");
 	else $stage->setData($_POST['stage']);
 	if(!isset($_POST['action'])){
-		var_dump($_POST);
 		header("refresh: 2");
 		exit();
 	}
@@ -37,7 +37,9 @@ else{
 					$contentForm = new Form("feature-content", "feature_manage.php");
 					$contentForm->setData();
 					$title = new Input('title', 'Choose title of feature');
+					$title->setRequired(true);
 					$detail = new TextArea('detail', 'Enter text content of your feature');
+					$detail->setRequired(true);
 					$stage->setData("choose-image");
 					$contentForm->forwardPOST();
 					$contentForm->addFields($stage, $action, $title, $detail);
@@ -53,6 +55,7 @@ else{
 					$category->setOptions($categories);
 					$category->render();
 					$featureImg = new Input('feature-img', '', 'hidden');
+					$featureImg->setRequired(true);
 					$stage->setData("submit");
 					$nextButton = new Button('next');
 					$imageForm->addFields($stage, $action, $featureImg);
@@ -165,11 +168,13 @@ category.addEventListener("change", getImages);
 			case 'complete';
 				$featureId = $_POST['feature-id'];
 				$featureNumber = $_POST['feature-number'];
-				if(Feature::setFeatured($featureId, $featureNumber))
-					echo "<h4 class='text-success'>Look at you!</h4>";
-				else{
-					echo "<h4 class='text-warning'>You fail</h4>";
+				if(Feature::setFeatured($featureId, $featureNumber)){
+					echo "<h4 class='text-success'>Successully updated list of features</h4>";
 				}
+				else{
+					echo "<h4 class='text-warning'>Something went wrong</h4>";
+				}
+				header("Refresh: 2;url='index.php'");
 				break;
 			default:
 				echo "<h4 class='text-error'>Something went wrong</h4>";
@@ -181,3 +186,4 @@ category.addEventListener("change", getImages);
 			break;
 	}
 }
+echo "</section>";

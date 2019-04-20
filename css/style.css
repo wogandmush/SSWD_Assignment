@@ -53,7 +53,7 @@
 }
 .gallery-img {
 	width: 100%;
-	opacity: 0.8;
+	opacity: 0.6;
 	height: 100%;
 	transition: opacity 0.2s;
 }
@@ -61,6 +61,7 @@
 .gallery-img.selected{
 	opacity: 1;
 	transition: opacity 0.2s;
+	outline: 4px solid #05fa;
 }
 
 .feature img {
@@ -87,6 +88,7 @@
 .testimonial {
 	width: 80%;
 	height: auto;
+	margin-top: 20%;
 	background: #EEED;
 }
 
@@ -164,4 +166,35 @@
 #img-crop {
 	margin: 0 auto;
 	display: block;
+}
+
+section#admin{
+	padding: 5em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#admin-login{
+	width: 20em;
+
+}
+#testimonial-add{
+	padding: 5em;
+
+}
+#feature-manage{
+	height: 90vh;
+	padding: 5em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#action-form{
+	display: flex;
+	flex-direction: column;
+	align-items: space-between;
+}
+#action-form button{
+	margin: 2em;
 }
