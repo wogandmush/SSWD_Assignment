@@ -1,5 +1,28 @@
 ---Read Me---
 
+Using git
+
+- cd into directory on your local machine
+
+- Before doing any work, sync up to github repository
+
+git pull origin
+
+
+After making changes
+1. Add all changes
+git add . 
+
+2. Commit changes, and write a commit message
+git commit -m "<message text>"
+
+3. Push commit to github repo
+git push origin
+
+
+
+---getting db connection---
+
 *pages which include connect.php more than once raise errors
  - I propose using a DBConnect class with static method getConnection to 
 get a connection variable instead.

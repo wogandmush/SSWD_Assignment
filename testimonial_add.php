@@ -67,7 +67,7 @@ else {
 
 				echo 
 					"<form method='POST' action='testimonial_db.php'>";
-				Form::forwardPOST();
+				Form::renderForwardPOST();
 				echo 
 					"<input type='hidden' name='first_name' value='${_SESSION['first_name']}'>
 					<input class='btn btn-primary' type='submit' name='create' value='create' />

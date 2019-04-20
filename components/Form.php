@@ -83,7 +83,7 @@ class Form implements Component{
 		}
 		return $answer;
 	}
-	public static function renderForwardPost(){
+	public static function renderForwardPOST(){
 		foreach($_POST as $key => $value){
 			echo "<input type='hidden' name='$key' value='$value' />";			
 		};

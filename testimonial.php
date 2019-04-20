@@ -14,7 +14,7 @@ if($testimonials){
 		$testimonial->render();
 	}
 }
-if(isset($_SESSION['membership'])){
+if($isMember){
 	echo "<p id='testimonial-share'>Want to share your experiences? <a href='testimonial_add.php'>Add a testimonial</a></p>";
 }
 ?>

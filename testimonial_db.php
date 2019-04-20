@@ -1,14 +1,8 @@
 <?php
-#header("Access-Control-Allow-Origin: *");
-session_start();
-ini_set('display_errors', 1);
-spl_autoload_register(function($class_name){
-	include __DIR__.'/components/'.$class_name.'.php';
-});
-
-if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE)){
+include 'init.php';
+if(!$isAdmin){
 	echo "<h4 class='text-danger'>Unauthorized request made. Redirecting...</h4>";
-	header("refresh: 2; url: 'index.php'");
+	header("refresh: 2; url='index.php'");
 	exit();
 }
 else {
