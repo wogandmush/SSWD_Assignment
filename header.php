@@ -10,8 +10,9 @@ spl_autoload_register(function($class_name){
 $isMember = isset($_SESSION['email']);
 $isAdmin = isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE;
 
-$root = PathHelper::getRoot();
-$fsRoot = PathHelper::getFSRoot();
+// 
+$root = PathHelper::getRoot(); //creates a variable to access the absolute root directory of the project
+$fsRoot = PathHelper::getFSRoot(); //file system root 
 
 ###for testing###
 #$_SESSION['admin'] = true;
