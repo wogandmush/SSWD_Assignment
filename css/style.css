@@ -195,6 +195,17 @@ section#admin{
 	flex-direction: column;
 	align-items: space-between;
 }
+
 #action-form button{
 	margin: 2em;
+}
+
+#image-manage{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 5em;
+}
+#image-crop{
+	width: 30em;
 }
