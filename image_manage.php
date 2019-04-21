@@ -1,7 +1,13 @@
 <?php
 include './header.php';
 
+
 echo "<section id='image-manage'>";
+if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['upload'])){
+	$uploadSrc = $_GET['path'];
+	echo "<h4 class='text-success'>Succesfully uploaded image</h4>";
+	echo "<img src='$uploadSrc' />";
+}
 if(!isset($_FILES['img-upload'])){
 $imgForm = new Form('img-form', 'image_manage.php', 'POST');
 $imgUpload = new Input('img-upload', 'Upload an new image: ', 'file');
@@ -30,7 +36,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 ?>
 <canvas id="img-crop-canvas"></canvas>
 
-	<script src='js/image_cropper.js'>
+	<script src='scripts/image_cropper.js'>
 	</script>
 <?php
 	$selectBtn = new Button('select-btn', 'Crop Selection');
