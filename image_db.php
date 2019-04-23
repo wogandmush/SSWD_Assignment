@@ -13,17 +13,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		echo json_encode(['success'=>false]);
 		exit();
 	}
-	else if(isset($_POST['image'])){
+	else if(isset($_FILES['image-upload'])){
 		$response = array();
-		$data = $_POST['image'];
 		$category = $_POST['img-category'];
 		$tempFile = $_POST['temp-file'];
 		$name = $_POST['file-name'];
 		$name .= ".jpg";
 		$path = "./images/$category/$name";
-		//echo $path;
-		if(move_uploaded_file($_FILES['image']['tmp_name'], $path)){
-			
+		if(move_uploaded_file($_FILES['image-upload']['tmp_name'], $path)){
 			$response['status'] = 'success';
 			$response['path'] = $path;
 			$response['temp-file'] = $tempFile;

@@ -1,3 +1,4 @@
+
 const ASPECT_RATIO_WIDTH = 3;
 const ASPECT_RATIO_HEIGHT = 4;
 const ASPECT_RATIO = ASPECT_RATIO_WIDTH/ASPECT_RATIO_HEIGHT;
@@ -118,17 +119,18 @@ function imageCrop(){
 			tempCanv.toBlob(sendBlob, "image/jpeg");
 				
 			function sendBlob(blob){
-				console.log({blob});
+				
+				console.log(blob);
 				var fd = new FormData();
-				fd.append("image", blob);
+				fd.append("image-upload", blob);
 				fd.append("temp-file", upload.src);
 				fd.append("img-category", imgCategory.value);
 				fd.append("file-name", fileName.value);
-				console.log(fd);
 				var xhr = new XMLHttpRequest();
 				xhr.open("POST", "image_db.php", true);
 				xhr.onload = function(){
 					var json = xhr.responseText;
+					console.log(json);
 					var res = JSON.parse(json);
 					console.log(res);
 					if(res.status == "success")
