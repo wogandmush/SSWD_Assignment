@@ -8,7 +8,7 @@ spl_autoload_register(function($class_name){
 
 ###for testing###
 $_SESSION['admin'] = true;
-$_SESSION['first_name'] = 'Dan';
+$_SESSION['first_name'] = 'Sarah';
 $_SESSION['user_no'] = 1;
 $_SESSION['email'] = 'dan@poo';
 $isMember = isset($_SESSION['email']);
