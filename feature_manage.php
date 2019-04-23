@@ -6,6 +6,7 @@ if(!$isAdmin){
 }
 
 echo "<section id='feature-manage'>";
+var_dump($_POST);
 $stage = new Input('stage', '', 'hidden');
 $action = new Input('action', '', 'hidden');
 if($_SERVER['REQUEST_METHOD'] !== 'POST'){
@@ -52,6 +53,7 @@ else{
 					$imageForm->forwardPOST();
 					$category = new Select('category', 'Choose image category');
 					$categories = IOHelper::getDirectories("./images");
+					sort($categories);
 					$category->setOptions($categories);
 					$category->render();
 					$featureImg = new Input('feature-img', '', 'hidden');
@@ -71,8 +73,6 @@ var featureImage = document.querySelector('#feature-img');
 var images = [];
 category.addEventListener("change", getImages);
 	function getImages(e){
-		var inputs = document.querySelectorAll('input');
-		inputs.forEach(x => console.log(x.value));
 		if(images.length > 0){
 			for(let i=images.length-1; i>=0;i--){
 			gallery.removeChild(images[i]);
@@ -135,7 +135,46 @@ category.addEventListener("change", getImages);
 			}
 			break;
 		case 'edit-existing':
-			echo "<h4 class='text-danger'>I mean I must have said this before, since I say it now</h4>";
+			var_dump($_POST);
+			switch($stage->getData()){
+				case "start":
+
+					echo "<h4 class='text-danger'>I mean I must have said this before, since I say it now</h4>";
+					echo "<form action='feature_manage.php' method='POST'>";
+					Form::renderForwardPOST();
+					$stage->setData('choose-action');
+					$stage->render();
+					$features = Feature::read();
+					foreach($features as $feature){
+						$feature->render();
+						$editButton = new Button("feature-id", $feature->getId(), "Edit");
+						$editButton->render();
+					}
+					echo "</form>";
+					break;
+				case 'choose-action':
+					$condition = "WHERE id =  ${_POST['feature-id']}";
+					echo "<h4 class='text-success'>$condition</h4>";
+					$toEdit = Feature::read($condition, 1)[0];
+					$toEdit->render();
+					$editForm = new Form('edit-form');
+					$editTitle = new Button('edit-action', 'title', 'Edit Title');
+					$editDetail = new Button('edit-action', 'detail', 'Edit Detail');
+					$editImage = new Button('edit-action', 'image', 'Change Picture');
+					$editLink = new Button('edit-action', 'line', 'Change Link');
+					$stage->setData('edit-content');
+					$editForm->forwardPOST();
+					$editForm->addField($stage);			
+					$editForm->addButtons($editTitle, $editDetail, $editImage, $editLink);
+					$editForm->render();
+					break;
+				case 'edit-content':
+					echo "Nearly there!";
+					break;
+				default:
+					echo "<h4 class='text-danger'>You have failed</h4>";
+					break;
+			}
 			break;
 		case 'change-featured':
 			switch($stage->getData()){
@@ -143,9 +182,9 @@ category.addEventListener("change", getImages);
 				$features = Feature::getFeatured();
 				echo "<form action='feature_manage.php' method='POST'>";
 				Form::renderForwardPOST();
-				foreach($features as $index=>$feature){
+				foreach($features as $index=> $feature){
 					$feature->render();
-					$selectButton = new Button('feature-number', ++$index, 'change');
+					$selectButton = new Button('feature-number', $index+1, 'change');
 					$selectButton->render();
 				}
 				$stage->setData('choose-feature');

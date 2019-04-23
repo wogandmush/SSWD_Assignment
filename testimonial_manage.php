@@ -108,7 +108,6 @@ const testimonialAction = action => {
 	xhr.open("POST", "testimonial_db.php");
 	xhr.onload = function(){
 		var res = xhr.responseText;
-		console.log(res);
 		sorted.add(index);
 		if(sorted.size < testimonials.length)
 			showNext();
