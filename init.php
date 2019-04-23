@@ -3,7 +3,7 @@ ob_start(); // Turn on output buffering - place HTML etc. into buffer until end 
 session_start(); // start session to track data for user over pages
 
 spl_autoload_register(function($class_name){
-	include __DIR__.'/components/'.$class_name .'.php';
+	include __DIR__.'/php_classes/'.$class_name .'.php';
 });
 
 ###for testing###
