@@ -16,14 +16,6 @@ include 'header.php';
         <p><br><em>Fitness Training That Delivers Results</em></p>
       </div>
     </div>
-    <!--?php
-    #Draw down from the admin-uploaded components, the two features from the featured table with id = 1 and 2
-    #Development Team Note: use cloud9 for verifying function not local WAMP DB table
-    $features = Feature::getFeatured(); // use the getFeatured()method from the Feature class to read those features tagged for display
-    foreach($features as $feature){
-      $feature->render(); // uses render() component to
-    }
-    ?>-->
 
     <div class="container">
       <?php

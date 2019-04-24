@@ -13,20 +13,20 @@ include 'init.php';
         
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
-		<!--<link rel="stylesheet" href="css/stylefees.css">-->
+		<link rel="stylesheet" href="css/stylefees.css">
 
-		<link rel="stylesheet" href="<?php echo $root;?>/css/style.css">
 		<link rel="stylesheet" href="<?php echo $root;?>/css/Footer.css">
+		<link rel="stylesheet" href="<?php echo $root;?>/css/style.css">
 	</head>
 	<body>
 		<header>           
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href='<?php echo $root;?>'>Home</a>
-				<button class="navbar-toggler" type="button" id="navbar-toggler"> 
-					<span class="navbar-toggler-icon"></span>
-				</button>
+			<button class="navbar-toggler" type="button" id="navbar-toggler"> 
+				<span class="navbar-toggler-icon"></span>
+			</button>
                 
 				<div class=" collapse navbar-collapse" id="nav-div">
 					<ul class="navbar-nav mr-auto">
