@@ -66,40 +66,12 @@ else{
 ?>
 <div id='gallery'>
 </div>
+<script src='scripts/createImageGallery.js'></script>
 <script>
 var gallery = document.querySelector('#gallery');
-var category = document.querySelector('#category');
-var featureImage = document.querySelector('#feature-img');
-var images = [];
-category.addEventListener("change", getImages);
-	function getImages(e){
-		if(images.length > 0){
-			for(let i=images.length-1; i>=0;i--){
-			gallery.removeChild(images[i]);
-			}
-		}
-		let imgCategory = e.target.value;
-		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "image_get.php?category="+imgCategory);
-		xhr.onload = function(){
-			var json = xhr.responseText;
-			res = JSON.parse(json);
-			images = res.map((src, i) => {
-				var img = document.createElement("img");
-				img.className = "gallery-img";
-				img.src = src;
-				return img;
-			});
-			images.forEach(img => gallery.appendChild(img));
-			$(".gallery-img").bind('click', function(){
-				$(".gallery-img").removeClass('selected');
-				$(this).toggleClass('selected');
-				featureImage.value = this.src;
-			});
-		}
-		xhr.send();
-	};
-	getImages({target: category});
+var imageCategories = document.querySelector('#category');
+var imageInput = document.querySelector('#feature-img');
+createImageGallery(gallery, imageCategories, imageInput);
 </script>
 <?php
 					break;
@@ -170,6 +142,59 @@ category.addEventListener("change", getImages);
 					break;
 				case 'edit-content':
 					echo "Nearly there!";
+					$editAction = $_POST['edit-action'];
+					$featureId = $_POST['feature-id'];
+					$featureToEdit = Feature::read("WHERE id = $featureId")[0];
+					$featureToEdit->render();
+					switch($editAction){
+						case 'image':
+							if(isset($_POST['new-image'])){
+								$imgUrl = $_POST['new-image'];
+								echo "<h4 class='text-warning'>$imgUrl</h4>";
+								$featureToEdit->update('image_url', $imgUrl);
+								$featureToEdit->setImageURL($imgUrl);
+								$featureToEdit->render();
+
+								exit();
+							}
+							echo "<h4 class='text-default'>Choose a new image</h4>";
+							$editImageForm = new Form('feature-edit-image', 'feature_manage.php');
+							$editImageForm->forwardPOST();
+							$categorySelect = new Select('edit-image-categories', "Choose image category: ");
+							$categories = IOHelper::getDirectories("$fsRoot/images/");
+							$categorySelect->setOptions($categories);
+							$newImage = new Input('new-image', '', 'hidden');
+
+							$stage->setData('submit');
+							$editImageForm->addFields($categorySelect, $newImage);
+							$submitButton = new Button('submit');
+							$editImageForm->addButton($submitButton);
+							$editImageForm->render();
+?>
+<div id='gallery'>
+</div>
+<script src='scripts/createImageGallery.js'></script>
+<script>
+var gallery = document.getElementById('gallery');
+var categorySelect = document.getElementById('edit-image-categories');
+var newImage = document.getElementById('new-image');
+createImageGallery(gallery, categorySelect, newImage);
+
+
+
+</script>
+<?php
+							break;
+						case 'title':
+							break;
+						case 'detail':
+							break;
+						case 'link':
+							break;
+						default:
+							echo "<h4 class='text-warning'>Something went wrong</h4>";
+							break;
+					}
 					break;
 				default:
 					echo "<h4 class='text-danger'>You have failed</h4>";
