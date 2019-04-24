@@ -3,25 +3,20 @@ include 'header.php';
 #^^this should be the first line of the file. Body tags are already opened
 ?>
 
-    <!-- Hero Image -->
-    <div class="jumbotron text-center">
 
-      <!-- Title -->
-      <!--<h2><strong>Classes</strong></h2>-->
-
-      <!-- Card image -->
-      <div class="view overlay my-4">
-
-        <img src="https://blogcms.gymshark.com/uploads/1540458284-strength-or-cardio-header.jpg" height="600" width="1280">
-        <a href="#"></a>
-      </div>
-
-    <div class="container">
-     <h1 class="h1-responsive font-weight-bold text-center my-5">Cardio</h1>
-        <p class="lead grey-text text-center w-responsive mx-auto mb-5"> The ultimate high-energy workout class that uses martial arts techniques inspired by Taekwondo, Kung Fu, Tai Chi and Karate. Increase your mobility and flexibility whilst burning calories and boosting metabolism in this fun-filled high energy class. </p>
-
+<div class="jumbotron" style="background-image: url(images/cardio/cardiohero.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  <div class="text-white text-center py-5 px-4 my-5 font-bold">
+    <div>
+      <h1 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Cardio</strong></h1>
+      <h4 class="mx-5 mb-5">The ultimate high-energy workout class that uses martial arts techniques inspired by Taekwondo, Kung Fu, Tai Chi and Karate.  </h4>
+     <h4 class="mx-5 mb-5"> Increase your mobility and flexibility whilst burning calories and boosting metabolism in this fun-filled high energy class.</h4>
+      
     </div>
-    </div>
+  </div>
+</div>
+
+    
+    
     <body>
 
         <!-- Section: Features v.2 -->
@@ -45,10 +40,40 @@ At the end of each Cardio session you will leave exhausted but feeling great. Co
   <p class="lead grey-text text-center w-responsive mx-auto mb-5">Our Perfect Form Fitness instructors will show you techniques to help burn fat. An hour Cardio class allows you to burn up to 1,000 calories. Although individual results vary depending on your fitness level, height and weight, it is a class that will certainly keep you on your toes.
 
 This empowering cardio workout will also help you build muscle, improve balance and coordination. It will work your upper body, lower body and core. Toning your arms, abs and legs. It will also boost your energy levels and is a great way to de-stress.</p>
-        <a href="" class="btn btn-success btn-md">Sign Up</a>
+        
     </div>
     
+     <div class="view" style="background-image: url('images/strength/signupstrength.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+            <!-- Mask & flexbox options-->
+            <div class="mask rgba-black-light align-items-center">
+              <!-- Content -->
+              <div class="container">
+                <!--Grid row-->
+                <div class="row">
+                  <!--Grid column-->
+                  
+                  <div class="col-md-12 mb-4 white-text text-center">
+                      <h3 class="text-white display-3 font-weight-bold white-text mb-0 pt-md-5 pt-5">Sign Up Now</h3>
+                    <h1 class="h1-reponsive text-white text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Cardio</strong></h1>
+                    <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
+                    <a href="<?php echo $root;?>/register.php" class="btn btn-danger btn-md">
+                      Sign Up
+                     </a>
+                   
+                  </div>
+                  <!--Grid column-->
+                </div>
+                <!--Grid row-->
+              </div>
+              <!-- Content -->
+            </div>
+            <!-- Mask & flexbox options-->
+          </div>
     
+    
+   <?php
+    include 'testimonial.php';
+    ?>
    
     
 
@@ -62,5 +87,5 @@ This empowering cardio workout will also help you build muscle, improve balance 
         
 <?php
 #vv this should be the last line. body and html tags are closed
-include 'footer.php';
+include_once 'footer.php';
 ?>

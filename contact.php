@@ -54,8 +54,8 @@ include 'header.php';
 							<textarea id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
 							<label for="message" class="text-info">Your message</label>
 						</div>
-						<div class="text-center text-md-left">
-							<a class="btn btn-info btn-md" onclick="document.getElementById('contact-form').submit();">Send</a>
+						<div class="text-center text-md-center">
+							<a class="btn btn-info btn-lg text-white" onclick="document.getElementById('contact-form').submit();">send</a>
 						</div>
 						<div class="status"></div>
 					</div>
@@ -73,17 +73,23 @@ include 'header.php';
 	<div class="h1-responsive font-weight-bold text-center my-4">
 		<ul class="list-unstyled mb-0">
 			<li><i class="text-center"></i>
-				<p>Dublin, Frankdown Lane, Rathmines</p>
+				<p>Shop 1/13-17 Kennedy Cres, Bonnet Bay NSW 2226, Australia</p>
 			</li>
 			<li><i class="text-center"></i>
 				<p>+ 01 435 242 23</p>
 			</li>
 			<li><i class="text-center"></i>
-				<p>contact@fitness.com</p>
+				<p>contact@perfectformfitness.com</p>
 			</li>
 		</ul>
 	</div>
 	<!--Grid column-->
+
+  <div class="embed-responsive-item col-md-4 mx-auto text-center">
+    <br><br><br><br>
+    <iframe width="620" height="476" src="https://maps.google.com/maps?q=perfect%20form%20fitness&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+  </div>
+
 </section>
 
 <?php

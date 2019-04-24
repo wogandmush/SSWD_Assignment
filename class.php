@@ -3,25 +3,19 @@ include 'header.php';
 #^^this should be the first line of the file. Body tags are already opened
 ?>
 
-    <!-- Hero Image -->
-    <div class="jumbotron text-center">
-
-      <!-- Card image -->
-      <div class="view overlay my-4">
-
-          <!-- class="img-fluid" -->
-        <img src="https://micksgym-iodv7bcgc4.stackpathdns.com/wp-content/uploads/2016/07/hiit-workout-header.jpg" class="img-fluid" alt="">
-        <a href="#"></a>
-      </div>
-
-    <div class="container">
-       <h1 class="h1-responsive font-weight-bold text-center my-5">Classes</h1>
-        <p class="lead grey-text text-center w-responsive mx-auto mb-5">Perfect Form Fitness, where fitness and science combine. Our unique, creative classes are structured from the ground to give the absolutely best results and ensure you've got a good workout while also maintaining a fun engaging atmosphere. </p>
-
+<div class="jumbotron" style="background-image: url(images/class/classhero.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  <div class="text-warning text-center py-5 px-4 my-5 font-bold">
+    <div>
+      <h1 class="text-light bg-dark card-title h1-responsive pt-3 mb-5 font-bold"><strong>Classes</strong></h1>
+      <h4 class="text-light bg-dark mx-5 mb-5">Perfect Form Fitness, where fitness and science combine.  </h4>
+     <h4 class="text-light bg-dark mx-5 mb-5"> Our unique, creative classes are structured from the ground to give the absolutely best results and ensure you've got a good workout while also maintaining a fun engaging atmosphere.</h4>
+      
     </div>
-    </div>
+  </div>
+</div>
+
      <!--Table-->   
-    <div class="container">
+    <div class="container table-responsive">
       <div class="row">
         <div class="col-sm">
           <table class="table table-hover" id="tablePreview">
@@ -88,12 +82,12 @@ include 'header.php';
         <div class="card-deck">
 
           <!-- Card -->
-          <div class="card mb-4">
+          <div class="card mb-4 text-center">
 
             <!--Card image-->
-            <div class="view overlay">
+            <div class="view overlay text-center">
               <!--<img class="card-img-top" src="images/feature1.jpg" alt="Card image cap">-->
-             <img  src= "https://cdn.pixabay.com/photo/2018/01/01/01/56/yoga-3053487_960_720.jpg" alt="" height="260" width="350">
+             <img  src= "images/yoga/yogacard2.jpg" alt="" height="260" width="350" class="img-fluid">
               <a href="#!">
                 <div class="mask rgba-white-slight"></div>
               </a>
@@ -107,20 +101,21 @@ include 'header.php';
               <!--Text-->
               <p class="card-text">Yoga Classes for all levels whether you're a vetern or beginner our classes will leave you feeling rejuvenated and stress free.</p>
               <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                <a href="yogaclass.php" class="btn btn-info btn-md">Read more</a>
-
+              <div class = "text-center">
+                <a href="<?php echo $root;?>/yogaclass.php" class="btn btn-info btn-md">Read more</a>
+              </div>
             </div>
 
           </div>
           <!-- Card -->
 
             <!-- Card -->
-          <div class="card mb-4">
+          <div class="card mb-4 text-center">
 
             <!--Card image-->
-            <div class="view overlay">
+            <div class="view overlay text-center">
               <!--<img class="card-img-top" src="images/feature1.jpg" alt="Card image cap">-->
-             <img  src= "https://cdn.pixabay.com/photo/2017/04/25/20/18/sport-2260736_960_720.jpg" alt="" height="260" width="350">
+             <img  src= "images/strength/strengthcard.jpg" alt="" height="260" width="350" class="img-fluid">
               <a href="#!">
                 <div class="mask rgba-white-slight"></div>
               </a>
@@ -134,20 +129,21 @@ include 'header.php';
               <!--Text-->
               <p class="card-text">Strength Class is a brand new fitness class which will build your core strength and help prevent injury, imporve joint mobility and resilience</p>
               <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-              <a href="strengthclass.php" class="btn btn-info btn-md">Read more</a>
-
+              <div class = "text-center">
+                <a href="<?php echo $root;?>/strengthclass.php" class="btn btn-info btn-md">Read more</a>
+              </div>
             </div>
 
           </div>
           <!-- Card -->
 
           <!-- Card -->
-          <div class="card mb-4">
+          <div class="card mb-4 text-center">
 
             <!--Card image-->
-            <div class="view overlay">
+            <div class="view overlay text-center">
               <!--<img class="card-img-top" src="images/feature1.jpg" alt="Card image cap">-->
-             <img  src= "https://blog.nasm.org/wp-content/uploads/2017/05/201705_metabolic-conditioning.jpg" alt="" height="260" width="350">
+             <img  src= "images/cardio/cardiocard.jpg" alt="" height="260" width="350" class="img-fluid">
               <a href="#!">
                 <div class="mask rgba-white-slight"></div>
               </a>
@@ -161,8 +157,9 @@ include 'header.php';
               <!--Text-->
               <p class="card-text">Feel the burn with an intense cardio workout that'll leave you in much better shape and boost overall fitness levels. </p>
               <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-              <a href="cardioclass.php" class="btn btn-info btn-md">Read more</a>
-
+              <div class = "text-center">
+                <a href="<?php echo $root;?>/cardioclass.php" class="btn btn-info btn-md">Read more</a>
+              </div> 
             </div>
           </div>
         </div>
@@ -171,5 +168,5 @@ include 'header.php';
     </div>    
 <?php
 #vv this should be the last line. body and html tags are closed
-include 'footer.php';
+include_once 'footer.php';
 ?>
