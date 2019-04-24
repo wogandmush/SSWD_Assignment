@@ -71,6 +71,7 @@ class Feature implements Crudable, Component{
 			SET $field = '$value'
 			WHERE id = '$this->id';";
 		$result = mysqli_query($conn, $sql);
+		echo "<h4 class='text-danger'>$sql</h4>";
 		if($error = mysqli_error($conn)){
 			mysqli_close($conn);
 			return $error;

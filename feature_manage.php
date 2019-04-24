@@ -151,7 +151,7 @@ createImageGallery(gallery, imageCategories, imageInput);
 							if(isset($_POST['new-image'])){
 								$imgUrl = $_POST['new-image'];
 								echo "<h4 class='text-warning'>$imgUrl</h4>";
-								$featureToEdit->update('image_url', $imgUrl);
+								$featureToEdit->update('img_url', $imgUrl);
 								$featureToEdit->setImageURL($imgUrl);
 								$featureToEdit->render();
 
