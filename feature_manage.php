@@ -107,11 +107,9 @@ createImageGallery(gallery, imageCategories, imageInput);
 			}
 			break;
 		case 'edit-existing':
-			var_dump($_POST);
 			switch($stage->getData()){
 				case "start":
 
-					echo "<h4 class='text-danger'>I mean I must have said this before, since I say it now</h4>";
 					echo "<form action='feature_manage.php' method='POST'>";
 					Form::renderForwardPOST();
 					$stage->setData('choose-action');
@@ -126,7 +124,6 @@ createImageGallery(gallery, imageCategories, imageInput);
 					break;
 				case 'choose-action':
 					$condition = "WHERE id =  ${_POST['feature-id']}";
-					echo "<h4 class='text-success'>$condition</h4>";
 					$toEdit = Feature::read($condition, 1)[0];
 					$toEdit->render();
 					$editForm = new Form('edit-form');
@@ -141,22 +138,23 @@ createImageGallery(gallery, imageCategories, imageInput);
 					$editForm->render();
 					break;
 				case 'edit-content':
-					echo "Nearly there!";
 					$editAction = $_POST['edit-action'];
 					$featureId = $_POST['feature-id'];
 					$featureToEdit = Feature::read("WHERE id = $featureId")[0];
-					$featureToEdit->render();
 					switch($editAction){
 						case 'image':
 							if(isset($_POST['new-image'])){
 								$imgUrl = $_POST['new-image'];
-								echo "<h4 class='text-warning'>$imgUrl</h4>";
-								$featureToEdit->update('img_url', $imgUrl);
-								$featureToEdit->setImageURL($imgUrl);
-								$featureToEdit->render();
-
+								if($featureToEdit->update('img_url', $imgUrl)){
+									$featureToEdit->setImageURL($imgUrl);
+									$featureToEdit->render();
+								}
+								else {
+									echo "<h4 class='text-warning'>Could not update feature</h4>";
+								}
 								exit();
 							}
+							$featureToEdit->render();
 							echo "<h4 class='text-default'>Choose a new image</h4>";
 							$editImageForm = new Form('feature-edit-image', 'feature_manage.php');
 							$editImageForm->forwardPOST();
@@ -178,9 +176,11 @@ createImageGallery(gallery, imageCategories, imageInput);
 var gallery = document.getElementById('gallery');
 var categorySelect = document.getElementById('edit-image-categories');
 var newImage = document.getElementById('new-image');
-createImageGallery(gallery, categorySelect, newImage);
-
-
+var featurePreview = document.querySelector(".feature img");
+function updateFeatureImage(src){
+	featurePreview.src = src;
+}
+createImageGallery(gallery, categorySelect, newImage, updateFeatureImage);
 
 </script>
 <?php

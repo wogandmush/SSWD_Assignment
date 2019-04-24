@@ -1,4 +1,4 @@
-function createImageGallery(gallery, categorySelect, imageInput){
+function createImageGallery(gallery, categorySelect, imageInput, updateImage){
 	var images = [];
 	categorySelect.addEventListener("change", getImages);
 	function getImages(e){
@@ -24,6 +24,10 @@ function createImageGallery(gallery, categorySelect, imageInput){
 				$(".gallery-img").removeClass('selected');
 				$(this).toggleClass('selected');
 				imageInput.value = this.src;
+				if(updateImage){
+					console.log(imageInput.value);
+					updateImage(imageInput.value);
+				}
 			});
 		}
 		xhr.send();
