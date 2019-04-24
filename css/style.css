@@ -223,6 +223,23 @@ flex-direction:column;
 align-items: flex-start;
 justify-content: space-between;
 }
+/* specify styling criteria for all header texts covering the background image*/
+.header h1 {
+  color: #ffffff;
+  font-size: 5em;
+  font-family: 'Roboto', non-serif;
+  margin-left: 0.5em;
+  margin-top: 8em;
+}
+/* specify styling criteria for all header texts covering the background image*/
+.header h1 {
+  color: #ffffff;
+  font-size: 5em;
+  font-family: 'Roboto', non-serif;
+  margin-left: 0.5em;
+  margin-top: 8em;
+
+}
 .section {
   /* Give the section class a width of 100% */
   width: 100%;
