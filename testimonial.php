@@ -43,6 +43,3 @@ var delayTime = 4000;
 })();
 </script>
 
-<?php
-include_once 'footer.php';
-?>

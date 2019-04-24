@@ -8,7 +8,9 @@ include 'header.php';
        <!-- [1] add image or h1 text to help us visualise our page design -->
        <!-- we will remover these later -->
        <!-- Placeholder for image -->
+<!--
        <img src='images/index/barbell.png' alt="PerfectForm Fitness Logo" id="header_logo"/>
+-->
        <div id="hero">
         <h1> PerfectForm Fitness </h1>
         <p><br><em>Fitness Training That Delivers Results</em></p>
@@ -33,13 +35,11 @@ include 'header.php';
       }
 
       include 'classdeck.php';
-      include 'testimonal.php';
+      include 'testimonial.php';
       include 'fees.php';
       #^^this should be the first line of the file. Body tags are already opened
-
       ?>
     </div>
-
 <?php
 #vv this should be the last line. body and html tags are closed
 include 'footer.php';

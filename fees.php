@@ -2,7 +2,7 @@
 	two heads? 
 -->
 <?php 
-include 'header.php'; 
+include_once 'header.php'; 
 #^^this should be the first line of the file. Body tags are already opened
 ?>
 
@@ -80,5 +80,3 @@ include 'header.php';
     </div>
   </div>
 </div>
- <?php
-include 'footer.php';

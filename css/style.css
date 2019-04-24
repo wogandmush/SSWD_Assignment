@@ -211,7 +211,7 @@ section#admin{
 }
 #index_hero {
 /* Give it a 'hero' background image covering the complete header container*/
-background-image: url(../images/index/hero_image_for_index_page.jpg);
+background-image: url(../images/index/hero_index.jpg);
 height: 40em;
 /* centre of background image maintains most visibility as container resizes*/
 background-position:center;
