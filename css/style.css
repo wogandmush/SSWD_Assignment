@@ -224,6 +224,30 @@ section#admin{
 	align-items: flex-start;
 	justify-content: space-between;
 }
+/* specify styling criteria for all header texts covering the background image*/
+.header h1 {
+  color: #ffffff;
+  font-size: 5em;
+  font-family: 'Roboto', non-serif;
+  margin-left: 0.5em;
+  margin-top: 8em;
+}
+/* specify styling criteria for all header texts covering the background image*/
+.header h1 {
+  color: #ffffff;
+  font-size: 5em;
+  font-family: 'Roboto', non-serif;
+  margin-left: 0.5em;
+  margin-top: 5em;
+}
+/* specify styling criteria for all standard texts covering the background image*/
+.header p{
+  color: #ffffff;
+  font-size: 2em;
+  font-family: 'Roboto', serif;
+  margin-left: 2em;
+  margin-bottom: 3em;
+}
 .section {
 	/* Give the section class a width of 100% */
 	width: 100%;
