@@ -174,14 +174,15 @@ section#admin{
 	flex-direction: column;
 	align-items: center;
 }
+
 #admin-login{
 	width: 20em;
-
 }
+
 #testimonial-add{
 	padding: 5em;
-
 }
+
 #feature-manage{
 	height: 90vh;
 	padding: 5em;
@@ -210,29 +211,29 @@ section#admin{
 	width: 30em;
 }
 #index_hero {
-/* Give it a 'hero' background image covering the complete header container*/
-background-image: url(../images/index/hero_index.jpg);
-height: 40em;
-/* centre of background image maintains most visibility as container resizes*/
-background-position:center;
-background-repeat: no-repeat;
-background-size: cover;
-position: relative;
-display: flex;
-flex-direction:column;
-align-items: flex-start;
-justify-content: space-between;
+	/* Give it a 'hero' background image covering the complete header container*/
+	background-image: url(../images/index/hero_index.jpg);
+	height: 40em;
+	/* centre of background image maintains most visibility as container resizes*/
+	background-position:center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	flex-direction:column;
+	align-items: flex-start;
+	justify-content: space-between;
 }
 .section {
-  /* Give the section class a width of 100% */
-  width: 100%;
-  /* Give the section class a default height of (18.750em) 300px */
-  /* we can over write these height vales in our media queries */
-  height: 18.750em;
-  /* Make it into a flex container */
-  display: flex;
-  /* Centre the content of this section*/
-  justify-content: center;
-  /* Align the children i.e. the flex items in the centre*/
-  align-items: center;
+	/* Give the section class a width of 100% */
+	width: 100%;
+	/* Give the section class a default height of (18.750em) 300px */
+	/* we can over write these height vales in our media queries */
+	height: 18.750em;
+	/* Make it into a flex container */
+	display: flex;
+	/* Centre the content of this section*/
+	justify-content: center;
+	/* Align the children i.e. the flex items in the centre*/
+	align-items: center;
 }

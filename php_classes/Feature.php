@@ -20,6 +20,9 @@ class Feature implements Crudable, Component{
 	public function getId(){
 		return $this->id;
 	}
+	public function setImageURL($image_url){
+		$this->image_url = $image_url;
+	}
 	public function create(){
 		$conn = DBConnect::getConnection();
 		$temp_title = mysqli_real_escape_string($conn, $this->title);
@@ -68,7 +71,7 @@ class Feature implements Crudable, Component{
 			SET $field = '$value'
 			WHERE id = '$this->id';";
 		$result = mysqli_query($conn, $sql);
-		if($error = mysqli($conn)){
+		if($error = mysqli_error($conn)){
 			mysqli_close($conn);
 			return $error;
 		}
