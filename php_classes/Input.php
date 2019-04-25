@@ -16,8 +16,19 @@ class Input extends Field{
 		$this->type = $type;
 	}
 	public function getHTMLString(){
-		if($this->type === 'hidden')
-			return "<input name='$this->name' id='$this->name' value=\"$this->data\" type='$this->type' />";
+		if($this->type === 'hidden'){
+			$output =  "<input name='$this->name' id='$this->name' type='$this->type' ";
+		if(isset($this->data))
+			$output .= "value=\"$this->data\" ";
+	   	foreach($this->attributes as $key=>$value)
+			if($value === 'required')
+				$output .= "required ";
+			else
+			$output .= "$key='$value'";
+		$output .= "/>";
+		return $output;
+		}
+
 		if(!empty($this->errors)){
 			$output =  "<div class='form-group'>
 				<label class='text-danger' for='$this->name'>$this->label</label>";

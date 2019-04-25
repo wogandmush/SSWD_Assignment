@@ -16,7 +16,6 @@ else $testimonials = Testimonial::loadUnapproved();
 	<section id='testimonials'>
 	   	<div class='container' id='testimonial-container'>
 <?php
-
 # provide a button to switch between approved and non-approved testimonials
 if(isset($_GET['manage_approved']))
 	echo "<button onclick='location.href=`testimonial_manage.php`;'>Manage unapproved</button>";
@@ -59,13 +58,12 @@ var testimonials = $('.testimonial');
 //hide all testimonials
 $(testimonials).hide();
 var index = 0, num = testimonials.length;
-
 var sorted = new Set();
 var info = document.getElementById("admin-info");
 const updateInfo = _ => {
-let currentIndex = index + 1;
-let less = [...sorted].filter(x => x < currentIndex).length;
-info.textContent = `${(currentIndex-less)} / ${num - sorted.size} Testimonials`;
+	let currentIndex = index + 1;
+	let less = [...sorted].filter(x => x < currentIndex).length;
+	info.textContent = `${(currentIndex-less)} / ${num - sorted.size} Testimonials`;
 }
 updateInfo();
 $(testimonials[index]).show();
