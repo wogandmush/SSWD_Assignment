@@ -23,6 +23,9 @@ class Feature implements Crudable, Component{
 	public function setImageURL($image_url){
 		$this->image_url = $image_url;
 	}
+	public function setTitle($title){
+		$this->title = $title;
+	}
 	public function create(){
 		$conn = DBConnect::getConnection();
 		$temp_title = mysqli_real_escape_string($conn, $this->title);
@@ -70,6 +73,7 @@ class Feature implements Crudable, Component{
 		$sql = "UPDATE feature
 			SET $field = '$value'
 			WHERE id = '$this->id';";
+		//echo "<h4 class='text-warning'>$sql</h4>";
 		$result = mysqli_query($conn, $sql);
 		if($error = mysqli_error($conn)){
 			mysqli_close($conn);

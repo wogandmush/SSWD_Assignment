@@ -71,6 +71,14 @@ else{
 var gallery = document.querySelector('#gallery');
 var imageCategories = document.querySelector('#category');
 var imageInput = document.querySelector('#feature-img');
+var imageForm = document.querySelector("#image-form");
+// prevent form from submitting if image has not been chosen
+imageForm.addEventListener("submit", e => {
+	if(imageInput.value === ""){
+		e.preventDefault();
+		alert("please choose an image");
+	}
+});
 createImageGallery(gallery, imageCategories, imageInput);
 </script>
 <?php
@@ -181,11 +189,42 @@ function updateFeatureImage(src){
 	featurePreview.src = src;
 }
 createImageGallery(gallery, categorySelect, newImage, updateFeatureImage);
-
 </script>
 <?php
 							break;
 						case 'title':
+							if(isset($_POST['new-title'])){
+								$newTitle = $_POST['new-title'];
+								if($featureToEdit->update('feature_title', $newTitle)){
+									$featureToEdit->setTitle($newTitle);
+									$featureToEdit->render();
+									exit();
+								}
+							}
+							$featureToEdit->render();
+							$editTitleForm = new Form('feature-edit-title');
+							$editTitleForm->forwardPOST();
+							$newTitle = new Input('new-title', 'Enter new title');
+							$newTitle->setRequired(true);
+							$editTitleForm->addFields($newTitle);
+							$editTitleSubmit = new Button('submit');
+							$editTitleForm->addButton($editTitleSubmit);
+							$editTitleForm->render();
+?>
+<script>
+
+var featureTitle = document.querySelector(".feature h1");
+console.log(featureTitle);
+var newTitle = document.querySelector('#new-title');
+newTitle.addEventListener("keyup", e => {
+	featureTitle.textContent = e.target.value;
+});
+
+
+</script>
+
+<?php
+
 							break;
 						case 'detail':
 							break;
