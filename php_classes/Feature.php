@@ -20,11 +20,29 @@ class Feature implements Crudable, Component{
 	public function getId(){
 		return $this->id;
 	}
+	public function getImageURL(){
+		return $this->image_url;
+	}
 	public function setImageURL($image_url){
 		$this->image_url = $image_url;
 	}
+	public function getTitle(){
+		return $this->title;
+	}
 	public function setTitle($title){
 		$this->title = $title;
+	}
+	public function getDetail(){
+		return $this->detail;
+	}
+	public function setDetail($detail){
+		$this->detail = $detail;
+	}
+	public function getLink(){
+		return $this->link;
+	}
+	public function setLink($link){
+		$this->link = $link;
 	}
 	public function create(){
 		$conn = DBConnect::getConnection();
@@ -68,18 +86,15 @@ class Feature implements Crudable, Component{
 		mysqli_close($conn);
 		return false;
 	}
-	public function getDetail(){
-		return $this->detail;
-	}
-	public function setDetail($detail){
-		$this->detail = $detail;
-	}
 	public function update($field, $value){
 		$conn = DBConnect::getConnection();
-		$sql = "UPDATE feature
+		$sql = "";
+		if(empty($value))
+			$sql .= "UPDATE feature SET $field = NULL WHERE id = '$this->id';";
+		else $sql .= "UPDATE feature
 			SET $field = '$value'
 			WHERE id = '$this->id';";
-		//echo "<h4 class='text-warning'>$sql</h4>";
+		echo "<h4 class='text-warning'>$sql</h4>";
 		$result = mysqli_query($conn, $sql);
 		if($error = mysqli_error($conn)){
 			mysqli_close($conn);
@@ -129,9 +144,10 @@ class Feature implements Crudable, Component{
 			<div class='feature-content'>
 				<img class='img-fluid' src='$this->image_url' />
 				<p>$this->detail</p>
-			</div>
-			<a href='$this->link'>Read more</a>
-		</div>";
+			</div>";
+		if(isset($this->link)) 
+			$output .="<a href='$this->link'>Read more</a>";
+		$output .= "</div>";
 		return $output;
 	}
 }

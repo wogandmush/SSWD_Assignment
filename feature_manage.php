@@ -280,14 +280,17 @@ var linkForm = document.querySelector("#feature-edit-link");
 var linkInput = document.querySelector("#new-link");
 linkForm.addEventListener("submit", e => {
 	e.preventDefault();
+	var link = linkInput.value;
+	if(link === "" && confirm("Feature will include no link")){
+		linkForm.submit();
+		return;
+	}
 	var xhr = new XMLHttpRequest();
 	// prefix https://cors.io/? to prevent cors cross-origin-access error
-	var linkUrl = 'https://cors.io/?'+linkInput.value;
+	var linkUrl = 'https://cors.io/?'+link;
 	xhr.open("GET", linkUrl);
 	console.log(xhr);
 	xhr.onload = function(){
-		console.log(xhr);
-		console.log(linkForm);
 		// if link is valid, submit the form
 		if(xhr.status === 200)
 			linkForm.submit();
