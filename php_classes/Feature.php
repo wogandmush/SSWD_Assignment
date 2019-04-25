@@ -68,6 +68,12 @@ class Feature implements Crudable, Component{
 		mysqli_close($conn);
 		return false;
 	}
+	public function getDetail(){
+		return $this->detail;
+	}
+	public function setDetail($detail){
+		$this->detail = $detail;
+	}
 	public function update($field, $value){
 		$conn = DBConnect::getConnection();
 		$sql = "UPDATE feature

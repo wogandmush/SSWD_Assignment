@@ -138,7 +138,7 @@ createImageGallery(gallery, imageCategories, imageInput);
 					$editTitle = new Button('edit-action', 'title', 'Edit Title');
 					$editDetail = new Button('edit-action', 'detail', 'Edit Detail');
 					$editImage = new Button('edit-action', 'image', 'Change Picture');
-					$editLink = new Button('edit-action', 'line', 'Change Link');
+					$editLink = new Button('edit-action', 'link', 'Change Link');
 					$stage->setData('edit-content');
 					$editForm->forwardPOST();
 					$editForm->addField($stage);			
@@ -164,7 +164,7 @@ createImageGallery(gallery, imageCategories, imageInput);
 							}
 							$featureToEdit->render();
 							echo "<h4 class='text-default'>Choose a new image</h4>";
-							$editImageForm = new Form('feature-edit-image', 'feature_manage.php');
+							$editImageForm = new Form('edit-feature-image', 'feature_manage.php');
 							$editImageForm->forwardPOST();
 							$categorySelect = new Select('edit-image-categories', "Choose image category: ");
 							$categories = IOHelper::getDirectories("$fsRoot/images/");
@@ -202,11 +202,11 @@ createImageGallery(gallery, categorySelect, newImage, updateFeatureImage);
 								}
 							}
 							$featureToEdit->render();
-							$editTitleForm = new Form('feature-edit-title');
+							$editTitleForm = new Form('edit-feature-title');
 							$editTitleForm->forwardPOST();
-							$newTitle = new Input('new-title', 'Enter new title');
-							$newTitle->setRequired(true);
-							$editTitleForm->addFields($newTitle);
+							$newTitleInput = new Input('new-title', 'Enter new title');
+							$newTitleInput->setRequired(true);
+							$editTitleForm->addFields($newTitleInput);
 							$editTitleSubmit = new Button('submit');
 							$editTitleForm->addButton($editTitleSubmit);
 							$editTitleForm->render();
@@ -227,8 +227,77 @@ newTitle.addEventListener("keyup", e => {
 
 							break;
 						case 'detail':
+							if(isset($_POST['new-detail'])){
+								$newDetail = $_POST['new-detail'];
+								if($featureToEdit->update('detail', $newDetail)){
+									$featureToEdit->setDetail($newDetail);
+									$featureToEdit->render();
+									exit();
+								}
+							}
+							$featureToEdit->render();
+							$editDetailForm = new Form('edit-feature-title');
+							$editDetailForm->forwardPOST();
+							$newDetailTextArea = new TextArea('new-detail', 'Edit detail');
+							$newDetailTextArea->setData($featureToEdit->getDetail());
+							$editDetailForm->addFields($newDetailTextArea);
+							$submitTitle = new Button('submit');
+							$editDetailForm->addButton($submitTitle);
+							$editDetailForm->render();
+
+?>
+<script>
+var featureDetail = document.querySelector(".feature p");
+var newDetail = document.querySelector("#new-detail");
+newDetail.addEventListener("keyup", e =>{
+	featureDetail.textContent = newDetail.value;
+});
+
+</script>
+<?php
 							break;
 						case 'link':
+							if(isset($_POST['new-link'])){
+								$newLink = $_POST['new-link'];
+								if($featureToEdit->update('link', $newLink)){
+									echo "<h4 class='text-success'>Link updated successfully</h4>";
+									header("refresh: 3s;url='feature-manage.php'");
+									exit();
+								}
+							}
+							$featureToEdit->render();
+							$editLinkForm = new Form('feature-edit-link');
+							$editLinkForm->forwardPOST();
+							$newLinkInput = new Input('new-link', 'Enter new link: ');
+							$editLinkForm->addFields($newLinkInput);
+							$submitLink = new Button('edit-link-submit', 'submit');
+							$editLinkForm->addButton($submitLink);
+							$editLinkForm->render();
+?>
+
+<script>
+var linkForm = document.querySelector("#feature-edit-link");
+var linkInput = document.querySelector("#new-link");
+linkForm.addEventListener("submit", e => {
+	e.preventDefault();
+	var xhr = new XMLHttpRequest();
+	var linkUrl = linkInput.value;
+	xhr.open("GET", linkUrl);
+	xhr.onload = function(){
+		console.log(xhr);
+		console.log(linkForm);
+		// if link is valid, submit the form
+		if(xhr.status === 200)
+			linkForm.submit();
+		else
+			alert("Link is not valid");
+	}
+	console.log(xhr);
+	xhr.send();
+});
+
+</script>
+<?php
 							break;
 						default:
 							echo "<h4 class='text-warning'>Something went wrong</h4>";
