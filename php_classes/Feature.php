@@ -117,7 +117,7 @@ class Feature implements Crudable, Component{
 		"<div id='feature-$this->id' class='$this->classList'>
 			<h1>$this->title</h1>
 			<div class='feature-content'>
-				<img src='$this->image_url' />
+				<img class='img-fluid' src='$this->image_url' />
 				<p>$this->detail</p>
 			</div>
 			<a href='$this->link'>Read more</a>
