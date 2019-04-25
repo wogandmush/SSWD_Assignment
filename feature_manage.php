@@ -281,8 +281,10 @@ var linkInput = document.querySelector("#new-link");
 linkForm.addEventListener("submit", e => {
 	e.preventDefault();
 	var xhr = new XMLHttpRequest();
-	var linkUrl = linkInput.value;
+	// prefix https://cors.io/? to prevent cors cross-origin-access error
+	var linkUrl = 'https://cors.io/?'+linkInput.value;
 	xhr.open("GET", linkUrl);
+	console.log(xhr);
 	xhr.onload = function(){
 		console.log(xhr);
 		console.log(linkForm);
@@ -292,7 +294,6 @@ linkForm.addEventListener("submit", e => {
 		else
 			alert("Link is not valid");
 	}
-	console.log(xhr);
 	xhr.send();
 });
 
