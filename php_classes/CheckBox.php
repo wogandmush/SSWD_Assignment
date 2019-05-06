@@ -29,7 +29,7 @@ class CheckBox extends OptionField{
 			}, $this->data);
 		return $this->data;
 	}
-	public function setData($data = null){
+	public function setData($data = null, $sanitize = true){
 		if(isset($data)){
 			$this->data = array_map(function($value){
 				return htmlspecialchars($value);

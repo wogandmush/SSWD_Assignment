@@ -55,7 +55,6 @@ class Feature implements Crudable, Component{
 			mysqli_close($conn);
 			return $result;
 		}
-
 		$err = mysqli_error($conn);
 		mysqli_close($conn);
 		return $err;
@@ -69,7 +68,6 @@ class Feature implements Crudable, Component{
 			$sql .= " ORDER BY $order";
 		$sql .= " LIMIT $limit";
 		$sql .= ";";
-
 		if($result = mysqli_query($conn, $sql)){
 			$features = array();
 			while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
@@ -94,7 +92,6 @@ class Feature implements Crudable, Component{
 		else $sql .= "UPDATE feature
 			SET $field = '$value'
 			WHERE id = '$this->id';";
-		echo "<h4 class='text-warning'>$sql</h4>";
 		$result = mysqli_query($conn, $sql);
 		if($error = mysqli_error($conn)){
 			mysqli_close($conn);

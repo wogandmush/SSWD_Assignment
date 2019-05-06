@@ -26,7 +26,6 @@ include_once 'header.php';
         </div>
       </div>
     </div>
-
     <!-- Table #1  -->
     <div class="col-xs-12 col-lg-4">
       <div class="card text-xs-center">
