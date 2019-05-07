@@ -226,7 +226,7 @@ section#admin{
 }
 /* specify styling criteria for all header texts covering the background image*/
 h1 {
-  color: #ff00ff; 
+  color: #ffffff; 
   font-size: 5em;
   font-family: 'Roboto', non-serif;
   margin-left: 0.5em;
@@ -253,8 +253,11 @@ h1 {
 	/* Align the children i.e. the flex items in the centre*/
 	align-items: center;
 }
+.feature {
+	margin-top: 1.5em;
+}
 .feature img {
-    border-radius: 100px;
+    border-radius: 5px;
     width: 350px;
     height: 260px;
     margin-right: 1.5em;
@@ -275,7 +278,7 @@ h1 {
 @media only screen and (max-width: 50em) {
 /* specify styling criteria for all header texts covering the background image*/
 .header h1 {
-  color: #000000;
+  color: #ffffff;
   font-size: 4em;
   font-family: 'Roboto', serif;
   margin-left: 0.5em;
@@ -284,7 +287,7 @@ h1 {
 }
 /* specify styling criteria for all standard texts covering the background image*/
 .header p{
-  color: #000000;
+  color: #ffffff;
   font-size: 2em;
   font-family: 'Roboto', serif;
   margin-left: 1em;
@@ -297,5 +300,8 @@ h1 {
 	align-items: center;
 	justify-content:space-between;
 	font-size: 1.2em;
+}
+.feature img {
+    margin-bottom: 1.5em;
 }
 }

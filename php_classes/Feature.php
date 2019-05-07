@@ -137,9 +137,9 @@ class Feature implements Crudable, Component{
 	public function getHTMLString(){
 		$output = 
 		"<div id='feature-$this->id' class='$this->classList'>
-			<h1>$this->title</h1>
+			<h2>$this->title</h2>
 			<div class='feature-content'>
-				<img class='img-fluid' src='$this->image_url' />
+				<img class='img-fluid' id='feature-img' src='$this->image_url' />
 				<p>$this->detail</p>
 			</div>";
 		if(isset($this->link)) 
