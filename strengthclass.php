@@ -81,6 +81,7 @@ Strength Class is an enjoyable class. With a friendly atmosphere led by enthusia
     
     
    <?php
+	$testimonials = Testimonial::loadApproved("strength");
     include 'testimonial.php';
     ?>
     

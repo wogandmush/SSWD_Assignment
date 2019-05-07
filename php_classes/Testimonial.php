@@ -72,8 +72,11 @@ class Testimonial implements Crudable, Component{
 		mysqli_close($conn);
 		return $result;
 	}
-	public static function loadApproved(){
-		return self::read("WHERE approved = 1");
+	public static function loadApproved($class = ""){
+		$cond = "WHERE approved = 1";
+		if(!empty($class))
+			$cond .= " AND class_title = '$class'";
+		return self::read($cond);
 	}
 	public static function loadUnapproved(){
 		return self::read("WHERE approved = 0");

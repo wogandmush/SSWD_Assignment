@@ -72,6 +72,7 @@ This empowering cardio workout will also help you build muscle, improve balance 
     
     
    <?php
+	$testimonials = Testimonial::loadApproved("cardio");
     include 'testimonial.php';
     ?>
    

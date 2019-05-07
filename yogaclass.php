@@ -76,6 +76,7 @@ As well as the physical benefits there are a number of other positive factors in
     
     
    <?php
+	$testimonials = Testimonial::loadApproved("yoga");
     include 'testimonial.php';
     ?>
     

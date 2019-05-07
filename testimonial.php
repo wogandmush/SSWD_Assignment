@@ -2,7 +2,9 @@
 include_once 'header.php'; 
 
 
-$testimonials = Testimonial::loadApproved();
+// load default testimonials if not loaded before include
+if(!isset($testimonials))
+	$testimonials = Testimonial::loadApproved();
 
 	// div to contain all testimonials
 ?>
