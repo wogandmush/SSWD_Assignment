@@ -28,6 +28,9 @@ class Fees implements Crudable, Component{
 	public function addBenefit($benefit){
 		$this->benefits[] = $benefit;
 	}
+	public function setBenefits($benefits){
+		$this->benefits = $benefits;
+	}
 	public function getBenefits(){
 		return $this->benefits;
 	}
@@ -118,7 +121,7 @@ class Fees implements Crudable, Component{
 	}
 	public function getHTMLString(){
 		$html = "
-    <div class='col-xs-12 col-lg-4'>
+    <div id='$this->name' class='fees col-xs-12 col-lg-4'>
       <div class='card text-xs-center'>
         <div class='card-header'>
           <h3 class='display-2'><span class='currency'>€</span>$this->price<span class='period'>/$this->period</span></h3>
