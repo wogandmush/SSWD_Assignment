@@ -4,6 +4,7 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Allfees	fees_manage.php	/^$Allfees = Fees::read();$/;"	v
 Button	php_classes/Button.php	/^class Button implements Component{$/;"	c
 CheckBox	php_classes/CheckBox.php	/^class CheckBox extends OptionField{$/;"	c
 Component	php_classes/Component.php	/^interface Component{$/;"	i
@@ -12,11 +13,12 @@ Crudable	php_classes/Crudable.php	/^interface Crudable{$/;"	i
 DBConnect	php_classes/DBConnect.php	/^class DBConnect{$/;"	c
 Example	example.php	/^class Example {$/;"	c
 Feature	php_classes/Feature.php	/^class Feature implements Crudable, Component{$/;"	c
+Fees	php_classes/Fees.php	/^class Fees implements Crudable, Component{$/;"	c
 Field	php_classes/Field.abs.php	/^abstract class Field implements Component{$/;"	c
 Form	php_classes/Form.php	/^class Form implements Component{$/;"	c
 IOHelper	php_classes/IOHelper.php	/^class IOHelper{$/;"	c
 Input	php_classes/Input.php	/^class Input extends Field{$/;"	c
-OptionField	php_classes/OptionField.abs.php	/^abstract class OptionField extends Field{$/;"	c
+OptionField	php_classes/OptionField.php	/^abstract class OptionField extends Field{$/;"	c
 PathHelper	php_classes/PathHelper.php	/^class PathHelper {$/;"	c
 Radio	php_classes/Radio.php	/^class Radio extends OptionField{$/;"	c
 Select	php_classes/Select.php	/^class Select extends OptionField{$/;"	c
@@ -26,6 +28,7 @@ Validator	php_classes/Validator.php	/^class Validator{$/;"	c
 __construct	php_classes/Button.php	/^	public function __construct($name, $value = null, $text = null){$/;"	f
 __construct	php_classes/CheckBox.php	/^	public function __construct(string $name, string $label, array $options = array(), array $attributes = array()){$/;"	f
 __construct	php_classes/Feature.php	/^	public function __construct($id, $title, $detail, $image_url, $link = "", $feature_number = ""){$/;"	f
+__construct	php_classes/Fees.php	/^	public function __construct($name = "", $price = 0, $period = "", $benefits = array()){$/;"	f
 __construct	php_classes/Form.php	/^	public function __construct($id, $action = '', $method = 'POST', $enctype = "", $fields = array(), $buttons = array()){$/;"	f
 __construct	php_classes/Input.php	/^	public function __construct(string $name, string $label, string $type = "text", array $attributes = array()){$/;"	f
 __construct	php_classes/Radio.php	/^	public function __construct(string $name, string $label, array $options = array(), array $attributes = array()){$/;"	f
@@ -40,6 +43,7 @@ action	php_classes/Form.php	/^		$this->action = $action;$/;"	v
 action	php_classes/Form.php	/^		$this->action = empty($action) ? $_SERVER['REQUEST_URI'] : $action;$/;"	v
 action	php_classes/Form.php	/^	private $action;$/;"	v
 actionForm	feature_manage.php	/^	$actionForm = new Form('action-form', 'feature_manage.php', 'POST');$/;"	v
+addBenefit	php_classes/Fees.php	/^	public function addBenefit($benefit){$/;"	f
 addButton	php_classes/Form.php	/^	public function addButton($button){$/;"	f
 addButtons	php_classes/Form.php	/^	public function addButtons(){$/;"	f
 addField	php_classes/Form.php	/^	public function addField($field){$/;"	f
@@ -69,6 +73,11 @@ attributes	php_classes/TextArea.php	/^		$this->attributes = $attributes; \/\/att
 attributes	php_classes/simpleExample.php	/^$attributes = array("maxlength"=>20, "required");$/;"	v
 benefit	sql/benefit.sql	/^CREATE TABLE benefit($/;"	t
 benefit.benefit	sql/benefit.sql	/^CREATE TABLE benefit($/;"	F
+benefitCheck	fees_manage.php	/^$benefitCheck = new CheckBox('benefits', 'Select benefits');$/;"	v
+benefits	fees_manage.php	/^$benefits = array();$/;"	v
+benefits	php_classes/Fees.php	/^					$benefits = array();$/;"	v
+benefits	php_classes/Fees.php	/^		$this->benefits = $benefits;$/;"	v
+benefits	php_classes/Fees.php	/^	private $benefits;$/;"	v
 btn	test.php	/^$btn = new Button("submit");$/;"	v
 button	php_classes/test/Test3.php	/^$button = new Button('submit');$/;"	v
 button	php_classes/test/Test4.php	/^$button = new Button('phone_no_test', 'Test Phone Number');$/;"	v
@@ -110,9 +119,11 @@ components	php_classes/Form.php	/^		$components = array();$/;"	v
 condition	feature_manage.php	/^					$condition = "WHERE id =  ${_POST['feature-id']}";$/;"	v
 conn	admin.php	/^			$conn = DBConnect::getConnection();$/;"	v
 conn	admin.php	/^	$conn = DBConnect::getConnection();$/;"	v
+conn	fees_manage.php	/^$conn = DBConnect::getConnection();$/;"	v
 conn	header.php	/^								$conn = DBConnect::getConnection();$/;"	v
 conn	php_classes/DBConnect.php	/^		$conn = mysqli_connect(DB_HOST, DB_USER, DB_PWD, DB_NAME) or die('Error: '. mysqli_connect_error());$/;"	v
 conn	php_classes/Feature.php	/^		$conn = DBConnect::getConnection();$/;"	v
+conn	php_classes/Fees.php	/^		$conn = DBConnect::getConnection();$/;"	v
 conn	php_classes/Testimonial.php	/^		$conn = DBConnect::getConnection();$/;"	v
 conn	testimonial_add.php	/^	$conn = DBConnect::getConnection();$/;"	v
 contactEmail	contact_example.php	/^$contactEmail = new Input('contact-email', 'Enter your email: ', 'email');$/;"	v
@@ -135,6 +146,7 @@ course	php_classes/registerExample.php	/^$course = new Select('course', 'Course:
 course	php_classes/registerExample2.php	/^$course = new Select('course', 'Course: ');$/;"	v
 create	php_classes/Crudable.php	/^	public function create();$/;"	f
 create	php_classes/Feature.php	/^	public function create(){$/;"	f
+create	php_classes/Fees.php	/^	public function create(){$/;"	f
 create	php_classes/Testimonial.php	/^	public function create(){$/;"	f
 createImageGallery	scripts/createImageGallery.js	/^function createImageGallery(gallery, categorySelect, imageInput, updateImage){$/;"	f
 createNew	feature_manage.php	/^	$createNew = new Button("action", "create-new", "Create New");$/;"	v
@@ -166,6 +178,7 @@ defaultError	php_classes/Field.abs.php	/^		$this->defaultError = $errorMessage;$
 defaultError	php_classes/Field.abs.php	/^	protected $defaultError = 'Invalid input';$/;"	v
 delete	php_classes/Crudable.php	/^	public function delete();$/;"	f
 delete	php_classes/Feature.php	/^	public function delete(){$/;"	f
+delete	php_classes/Fees.php	/^	public function delete(){$/;"	f
 delete	php_classes/Testimonial.php	/^	public function delete(){$/;"	f
 deleteBtn	testimonial_manage.php	/^	$deleteBtn = new Button("delete");$/;"	v
 detail	feature_manage.php	/^					$detail = $_POST['detail'];$/;"	v
@@ -228,6 +241,8 @@ features	feature_manage.php	/^				$features = Feature::getNonFeatured();$/;"	v
 features	index.php	/^      $features = Feature::getFeatured(); \/\/ use the getFeatured()method from the Feature class to read those features tagged for display$/;"	v
 features	php_classes/Feature.php	/^			$features = array();$/;"	v
 features	test/featureTest.php	/^$features = Feature::getFeatured();$/;"	v
+fees	fees_manage.php	/^$fees = new Fees("Hello", "poo", "period");$/;"	v
+fees	php_classes/Fees.php	/^			$fees = array();$/;"	v
 fees	sql/fees.sql	/^CREATE TABLE fees($/;"	t
 fees.cost	sql/fees.sql	/^	membership_type VARCHAR(60) NOT NULL,$/;"	F
 fees.membership_type	sql/fees.sql	/^CREATE TABLE fees($/;"	F
@@ -265,6 +280,7 @@ gender	test/FormTest.php	/^$gender = new Radio('gender', 'Choose your gender: ')
 genderError	register.php	/^		$genderError = 'Please enter your gender';$/;"	v
 getAction	php_classes/Form.php	/^	public function getAction(){$/;"	f
 getAttibutes	php_classes/Field.abs.php	/^	public function getAttibutes(){$/;"	f
+getBenefits	php_classes/Fees.php	/^	public function getBenefits(){$/;"	f
 getClassList	php_classes/Button.php	/^	public function getClassList(){$/;"	f
 getConnection	php_classes/DBConnect.php	/^	public static function getConnection(){$/;"	f
 getData	php_classes/CheckBox.php	/^	public function getData($conn = null){$/;"	f
@@ -282,6 +298,7 @@ getHTMLString	php_classes/Button.php	/^	public function getHTMLString(){$/;"	f
 getHTMLString	php_classes/CheckBox.php	/^	public function getHTMLString(){$/;"	f
 getHTMLString	php_classes/Component.php	/^	public function getHTMLString();$/;"	f
 getHTMLString	php_classes/Feature.php	/^	public function getHTMLString(){$/;"	f
+getHTMLString	php_classes/Fees.php	/^	public function getHTMLString(){$/;"	f
 getHTMLString	php_classes/Form.php	/^	public function getHTMLString(){$/;"	f
 getHTMLString	php_classes/Input.php	/^	public function getHTMLString(){$/;"	f
 getHTMLString	php_classes/Radio.php	/^	public function getHTMLString(){$/;"	f
@@ -296,10 +313,13 @@ getLink	php_classes/Feature.php	/^	public function getLink(){$/;"	f
 getMethod	php_classes/Form.php	/^	public function getMethod(){$/;"	f
 getName	example.php	/^	public function getName(){$/;"	f
 getName	php_classes/Button.php	/^	public function getName(){$/;"	f
+getName	php_classes/Fees.php	/^	public function getName(){$/;"	f
 getName	php_classes/Field.abs.php	/^	public function getName(){$/;"	f
 getNonFeatured	php_classes/Feature.php	/^	public static function getNonFeatured(){$/;"	f
-getOptions	php_classes/OptionField.abs.php	/^	public function getOptions(){$/;"	f
+getOptions	php_classes/OptionField.php	/^	public function getOptions(){$/;"	f
 getParentDirectory	php_classes/PathHelper.php	/^	public static function getParentDirectory($dir, $levels = 1){$/;"	f
+getPeriod	php_classes/Fees.php	/^	public function getPeriod(){$/;"	f
+getPrice	php_classes/Fees.php	/^	public function getPrice(){$/;"	f
 getRoot	php_classes/PathHelper.php	/^	public static function getRoot(){$/;"	f
 getText	php_classes/Button.php	/^	public function getText(){$/;"	f
 getTitle	php_classes/Feature.php	/^	public function getTitle(){$/;"	f
@@ -312,6 +332,7 @@ hasErrors	php_classes/Form.php	/^	public function hasErrors(){$/;"	f
 hash	admin.php	/^			$hash = password_hash($password->getData(), PASSWORD_DEFAULT);$/;"	v
 home_tel	php_classes/registerExample.php	/^$home_tel = new Input('home_tel', 'Home Number: ', 'tel');$/;"	v
 home_tel	php_classes/registerExample2.php	/^$home_tel = new Input('home_tel', 'Home Number: ', 'tel');$/;"	v
+html	php_classes/Fees.php	/^		$html = "$/;"	v
 id	php_classes/Feature.php	/^				$id = $row['id'];$/;"	v
 id	php_classes/Feature.php	/^		$this->id = $id;$/;"	v
 id	php_classes/Feature.php	/^	private $id;$/;"	v
@@ -416,6 +437,9 @@ name	mail.php	/^$name = $_POST['name'];$/;"	v
 name	php_classes/Button.php	/^		$this->name = $name;$/;"	v
 name	php_classes/Button.php	/^	private $name;$/;"	v
 name	php_classes/CheckBox.php	/^		$this->name = $name;$/;"	v
+name	php_classes/Fees.php	/^				$name = $row['membership_type'];$/;"	v
+name	php_classes/Fees.php	/^		$this->name = $name;$/;"	v
+name	php_classes/Fees.php	/^	private $name;$/;"	v
 name	php_classes/Field.abs.php	/^		$this->name = $name;$/;"	v
 name	php_classes/Field.abs.php	/^	protected $name; \/\/ the name attribute$/;"	v
 name	php_classes/Input.php	/^		$this->name = $name;$/;"	v
@@ -457,7 +481,7 @@ onload	test/ImgUploadTest.php	/^			xhr.onload = function(){$/;"	j
 onload	test/ImgUploadTest.php	/^upload.onload = function(){$/;"	j
 onload	testimonial_manage.php	/^	xhr.onload = function(){$/;"	j
 options	php_classes/CheckBox.php	/^		$this->options = $options;$/;"	v
-options	php_classes/OptionField.abs.php	/^	protected $options; \/\/array of options$/;"	v
+options	php_classes/OptionField.php	/^	protected $options; \/\/array of options$/;"	v
 options	php_classes/Radio.php	/^		$this->options = $options;$/;"	v
 options	php_classes/Select.php	/^		$this->options = $options; \/\/ labeltext => value$/;"	v
 output	php_classes/Button.php	/^		$output = $/;"	v
@@ -483,6 +507,9 @@ passwordCheck	admin.php	/^	$passwordCheck = new Input('password-check', 'Confirm
 passwordError	register.php	/^			$passwordError = 'Password should be longer than 6 characters';$/;"	v
 passwordError	register.php	/^		$passwordError = 'Password cannot be empty';$/;"	v
 path	image_db.php	/^		$path = ".\/images\/$category\/$name";$/;"	v
+period	php_classes/Fees.php	/^				$period = $row['period'];$/;"	v
+period	php_classes/Fees.php	/^		$this->period = $period;$/;"	v
+period	php_classes/Fees.php	/^	private $period;$/;"	v
 phone_no	php_classes/test/Test4.php	/^$phone_no = new Input('phone_no', 'Enter a phone number', 'tel');$/;"	v
 phoneno	register.php	/^		$phoneno = validate($_POST['phoneno']);$/;"	v
 phonenoError	register.php	/^			$phonenoError = 'phone number should only contain numbers and match the following format eg 0852534837';$/;"	v
@@ -490,9 +517,13 @@ phonenoError	register.php	/^		$phonenoError = 'phone number should be filled and
 pooPants	example.php	/^	public function pooPants($name){$/;"	f
 preview	testimonial_add.php	/^				$preview = new Testimonial($_SESSION['first_name'], $message->getData(), $class->getData(), date("M,d,Y h:i:s"));$/;"	v
 previewButton	testimonial_add.php	/^	$previewButton = new Button("preview");$/;"	v
+price	php_classes/Fees.php	/^				$price = $row['price'];$/;"	v
+price	php_classes/Fees.php	/^		$this->price = $price;$/;"	v
+price	php_classes/Fees.php	/^	private $price;$/;"	v
 radioTest	php_classes/test/Test.php	/^$radioTest = new Radio("gender", "Gender: ");$/;"	v
 read	php_classes/Crudable.php	/^	public static function read($conditions = "", $order = "", $limit = "");$/;"	f
 read	php_classes/Feature.php	/^	public static function read($conditions = "", $order = "", $limit = 100){$/;"	f
+read	php_classes/Fees.php	/^	public static function read($conditions = "", $order = "", $limit = 100){$/;"	f
 read	php_classes/Testimonial.php	/^	public static function read($conditions = "", $limit = 100, $order = ""){$/;"	f
 recipient	backup/mail.php	/^$recipient = "oisinmacsweeney@gmail.com";$/;"	v
 recipient	mail.php	/^$recipient = $_POST['email'];$/;"	v
@@ -500,10 +531,11 @@ registerButton	admin.php	/^	$registerButton = new Button('register');$/;"	v
 registerButton	php_classes/registerExample2.php	/^$registerButton = new Button('register');$/;"	v
 registerForm	php_classes/registerExample2.php	/^$registerForm = new Form('register_form', 'registerExample2.php');$/;"	v
 remember	register.php	/^	$remember = !empty($_POST['remember']) ? filter_var($_POST['remember'], FILTER_VALIDATE_BOOLEAN) : ""; $/;"	v
-removeOption	php_classes/OptionField.abs.php	/^	public function removeOption($option){$/;"	f
+removeOption	php_classes/OptionField.php	/^	public function removeOption($option){$/;"	f
 render	php_classes/Button.php	/^	public function render(){$/;"	f
 render	php_classes/Component.php	/^	public function render();$/;"	f
 render	php_classes/Feature.php	/^	public function render(){$/;"	f
+render	php_classes/Fees.php	/^	public function render(){$/;"	f
 render	php_classes/Field.abs.php	/^	public function render(){$/;"	f
 render	php_classes/Form.php	/^	public function render(){$/;"	f
 render	php_classes/Testimonial.php	/^	public function render(){$/;"	f
@@ -512,9 +544,12 @@ response	image_db.php	/^		$response = array();$/;"	v
 result	admin.php	/^			$result = mysqli_query($conn, $sql);$/;"	v
 result	admin.php	/^	$result = mysqli_query($conn, $sql);$/;"	v
 result	backup/login.php	/^      $result = mysqli_query($conn,$sql);$/;"	v
+result	fees_manage.php	/^$result = mysqli_query($conn, $sql);$/;"	v
 result	header.php	/^								$result = mysqli_query($conn, $sql);$/;"	v
 result	login.php	/^      $result = mysqli_query($conn,$sql);$/;"	v
 result	php_classes/Feature.php	/^		$result = mysqli_query($conn, $sql);$/;"	v
+result	php_classes/Fees.php	/^		$result = mysqli_query($conn, $sql);$/;"	v
+result	php_classes/Fees.php	/^		$result = mysqli_query($conn, $updateSql);$/;"	v
 result	php_classes/Testimonial.php	/^		$result = mysqli_query($conn, $sql);$/;"	v
 result	php_classes/registerExample.php	/^		$result = mysqli_query($conn, $sql);$/;"	v
 result	php_classes/registerExample2.php	/^		$result = mysqli_query($conn, $sql);$/;"	v
@@ -541,7 +576,7 @@ setAttributes	php_classes/Field.abs.php	/^	public function setAttributes(array $
 setClassList	php_classes/Button.php	/^	public function setClassList($classList){$/;"	f
 setClassList	php_classes/Feature.php	/^	public function setClassList($classList){$/;"	f
 setClassList	php_classes/Form.php	/^	public function setClassList(string $classList){$/;"	f
-setData	php_classes/CheckBox.php	/^	public function setData($data = null){$/;"	f
+setData	php_classes/CheckBox.php	/^	public function setData($data = null, $sanitize = true){$/;"	f
 setData	php_classes/Field.abs.php	/^	public function setData($data = null, $sanitize = true){$/;"	f
 setData	php_classes/Form.php	/^	public function setData(){$/;"	f
 setDefaultError	php_classes/Field.abs.php	/^	public function setDefaultError($errorMessage){$/;"	f
@@ -554,8 +589,10 @@ setImageURL	php_classes/Feature.php	/^	public function setImageURL($image_url){$
 setLink	php_classes/Feature.php	/^	public function setLink($link){$/;"	f
 setMethod	php_classes/Form.php	/^	public function setMethod($method){$/;"	f
 setName	php_classes/Button.php	/^	public function setName($name){$/;"	f
+setName	php_classes/Fees.php	/^	public function setName($name){$/;"	f
 setName	php_classes/Field.abs.php	/^	public function setName(string $name){$/;"	f
-setOptions	php_classes/OptionField.abs.php	/^	public function setOptions(array $options){$/;"	f
+setOptions	php_classes/OptionField.php	/^	public function setOptions(array $options){$/;"	f
+setPrice	php_classes/Fees.php	/^	public function setPrice($price){$/;"	f
 setRequired	php_classes/Field.abs.php	/^	public function setRequired(bool $which){$/;"	f
 setText	php_classes/Button.php	/^	public function setText($text){$/;"	f
 setTitle	php_classes/Feature.php	/^	public function setTitle($title){$/;"	f
@@ -566,6 +603,7 @@ sql	admin.php	/^			$sql = "INSERT INTO admin VALUES ('".$email->getData($conn)."
 sql	admin.php	/^			$sql = "SELECT * FROM admin WHERE email = '".$email->getData($conn)."';";$/;"	v
 sql	admin.php	/^	$sql = "SELECT email FROM admin";$/;"	v
 sql	backup/login.php	/^      $sql = "SELECT * FROM member WHERE email = '$myusername' and password = '$mypassword'";$/;"	v
+sql	fees_manage.php	/^$sql = "SELECT * FROM benefit";$/;"	v
 sql	header.php	/^								$sql = "SELECT * FROM member $/;"	v
 sql	login.php	/^      $sql = "SELECT * FROM member WHERE email = '$myusername' and password = '$mypassword'";$/;"	v
 sql	php_classes/Feature.php	/^		$sql = "";$/;"	v
@@ -573,6 +611,11 @@ sql	php_classes/Feature.php	/^		$sql = "DELETE FROM testimonial $/;"	v
 sql	php_classes/Feature.php	/^		$sql = "INSERT INTO feature(feature_title, detail, img_url) $/;"	v
 sql	php_classes/Feature.php	/^		$sql = "SELECT * FROM feature";$/;"	v
 sql	php_classes/Feature.php	/^		$sql = "UPDATE featured$/;"	v
+sql	php_classes/Fees.php	/^				$sql = "SELECT benefit FROM fees_benefit WHERE membership_type = '$fee->name'";$/;"	v
+sql	php_classes/Fees.php	/^		$sql = "DELETE FROM fees WHERE membership_type = '$this->name'";$/;"	v
+sql	php_classes/Fees.php	/^		$sql = "DELETE FROM fees_benefit WHERE membership_type = '$this->name'";$/;"	v
+sql	php_classes/Fees.php	/^		$sql = "SELECT * FROM fees";$/;"	v
+sql	php_classes/Fees.php	/^		$sql = "UPDATE fees SET $field = '$value' WHERE membership_type = '$this->name'";$/;"	v
 sql	php_classes/Testimonial.php	/^		$sql = "DELETE FROM testimonial WHERE first_name = '$this->name' AND date = '$this->date';";$/;"	v
 sql	php_classes/Testimonial.php	/^		$sql = "INSERT INTO testimonial(first_name, message, class_title) VALUES($/;"	v
 sql	php_classes/Testimonial.php	/^		$sql = "SELECT * FROM testimonial";$/;"	v
@@ -658,8 +701,11 @@ type	php_classes/Input.php	/^	private $type; \/\/ text, email, tel, password$/;"
 unapproveBtn	testimonial_manage.php	/^	$unapproveBtn = new Button("unapprove");$/;"	v
 update	php_classes/Crudable.php	/^	public function update($field, $value);$/;"	f
 update	php_classes/Feature.php	/^	public function update($field, $value){$/;"	f
+update	php_classes/Fees.php	/^	public function update($field, $value){$/;"	f
 update	php_classes/Testimonial.php	/^	public function update($field, $value){$/;"	f
+updateBenefits	php_classes/Fees.php	/^	public function updateBenefits(){$/;"	f
 updateFeatureImage	feature_manage.php	/^function updateFeatureImage(src){$/;"	f
+updateSql	php_classes/Fees.php	/^		$updateSql = "INSERT INTO fees_benefit VALUES";$/;"	v
 upload.onload	scripts/image_cropper.js	/^	var upload = new Image();$/;"	c
 upload.onload	test/ImgUploadTest.php	/^upload.onload = function(){$/;"	j
 uploadBtn	image_manage.php	/^	$uploadBtn = new Button('upload');$/;"	v
@@ -673,7 +719,7 @@ usernoError	register.php	/^        $usernoError = 'userno can only contain numbe
 validate	php_classes/CheckBox.php	/^	public function validate(){$/;"	f
 validate	php_classes/Field.abs.php	/^	public function validate(){$/;"	f
 validate	php_classes/Form.php	/^	public function validate(){$/;"	f
-validate	php_classes/OptionField.abs.php	/^	public function validate(){$/;"	f
+validate	php_classes/OptionField.php	/^	public function validate(){$/;"	f
 validate	register.php	/^	function validate($str) {$/;"	f
 validateDate	php_classes/Validator.php	/^	public static function validateDate($data){$/;"	f
 validateEmail	php_classes/Validator.php	/^	public static function validateEmail($data){$/;"	f
