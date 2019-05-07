@@ -121,7 +121,7 @@ class Fees implements Crudable, Component{
 	}
 	public function getHTMLString(){
 		$html = "
-    <div id='$this->name' class='fees col-xs-12 col-lg-4'>
+    <div id='".StringHelper::toSkeletonCase($this->name)."' class='fees col-xs-12 col-lg-4'>
       <div class='card text-xs-center'>
         <div class='card-header'>
           <h3 class='display-2'><span class='currency'>€</span>$this->price<span class='period'>/$this->period</span></h3>
@@ -130,7 +130,7 @@ class Fees implements Crudable, Component{
           <h4 class='card-title'>$this->name</h4>
           <ul class='list-group'>";
 	foreach($this->benefits as $benefit){
-		$html .= "<li class='list-group-item'>$benefit</li>";
+		$html .= "<li class='benefit list-group-item'>$benefit</li>";
 	}
 	$html .= "
           </ul>

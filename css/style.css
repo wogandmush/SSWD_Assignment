@@ -201,6 +201,30 @@ section#admin{
 	margin: 2em;
 }
 
+#fees-admin {
+	display: flex;
+	flex-direction: row;
+	background: white;
+}
+
+#fees-admin-panel{
+	margin: 2em;
+	width: 30%;
+}
+
+#fees-preview{
+	background: blue;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 70%;
+	align-items: center;
+}
+
+#fees-preview .fees{
+	width: 100%;
+}
+
 #image-manage{
 	display: flex;
 	flex-direction: column;

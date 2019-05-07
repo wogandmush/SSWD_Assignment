@@ -12,6 +12,8 @@ $form->addButton($btn);
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	var_dump($_POST);
 	$input->setData($_POST['test'], false);
+	$value = $input->getData();
+	echo StringHelper::toSkeletonCase($value);
 	$form->validate();
 }
 $form->render();
