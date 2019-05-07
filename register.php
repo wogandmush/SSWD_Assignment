@@ -5,17 +5,12 @@ require '../config/connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	// primary validate function
+	
+
+	
 	function validate($str) {
 		return trim(htmlspecialchars($str));
 	}    
-	
-    if (empty($_POST['userno'])) {
-		$usernoError = 'userno should be filled';
-	} else {
-		$userno = validate($_POST['userno']);
-         if (!preg_match('/^[0-9]{0,15}$/', $userno)) {
-        $usernoError = 'userno can only contain numbers'; } 
-	}
     
 	if (empty($_POST['name'])) {
 		$nameError = 'Name should be filled';
@@ -65,15 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 	}
         
-         if (empty($_POST['mobilephoneno'])) {
-		$mobilephonenoError = 'mobile phone number should be filled and match the following format eg 0852534837 ';
-	} else {
-		$mobilephoneno = validate($_POST['mobilephoneno']);
-		if (!preg_match('/^[0-9]{10,}$/', $mobilephoneno)) {
-			$mobilephonenoError = 'mobile phone number should only contain numbers and match the following format eg 0852534837';
-		}
-	}
-
+         
 
 
 	if (empty($_POST['email'])) {
@@ -103,6 +90,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$passwordError = 'Password should be longer than 6 characters';
 		}
 	}
+	
+	if (empty($_POST['confirmpassword'])) {
+		$passwordError = 'Please Confirm Password';
+	} else {
+		$confirm_password = validate($_POST['confirmpassword']);
+		if (strlen($confirm_password) < 6) {
+			$confirm_passwordError = 'Password should be longer than 6 characters';
+		}
+		if ($password != $confirm_password)
+		{
+		    $passwordError = 'Passwords should match';
+	        echo $password . " " . $confirm_password;
+		}
+
+	}
     
     if (empty($_POST['membership'])) {
 		$membershipError = 'Please enter your membership';
@@ -112,18 +114,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
 	$remember = !empty($_POST['remember']) ? filter_var($_POST['remember'], FILTER_VALIDATE_BOOLEAN) : ""; 
 
-	if (empty($nameError) && empty($emailError) && empty($genderError) && empty($passwordError) && empty($lnameError) && empty($dateofbirthError) && empty($phonenoError) && empty($mobilephonenoError) && empty($usernoError) && empty($addressError) && empty($membershipError)) 
+	if (empty($nameError) && empty($emailError) && empty($genderError) && empty($passwordError) && empty($confirm_passwordError)&& empty($lnameError) && empty($dateofbirthError) && empty($phonenoError) && empty($addressError) && empty($membershipError)) 
     {
 		// completed the form
 		?>
             <div class="text-center">
-                <h1><strong><br>You have filled the form successfully!</strong></h1>
-                <h5><strong><br><br>Your user number is </strong></h5> <?php echo $userno ?><br>         
+                <h1><strong><br>You have filled the form successfully!</strong></h1>         
                 <h5><strong>Your first name is </strong></h5> <?php echo $name ?><br>  
                 <h5><strong>Your second name is </strong></h5> <?php echo $lname ?><br>   
                 <h5><strong>Your birthdate is </strong></h5> <?php echo $dateofbirth ?><br> 
                 <h5><strong>Your Gender is </strong></h5> <?php echo $gender ?><br>  
-                <h5><strong>Your mobile number is </strong></h5> <?php echo $mobilephoneno ?><br>   
                 <h5><strong>Your phone number is </strong></h5> <?php echo $phoneno ?><br>     
                 <h5><strong>Your email is </strong></h5> <?php echo $email ?><br>       
                 <h5><strong>Your Address is </strong></h5> <?php echo $address ?><br>
@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php
             
 		// mysqli_real_escape_string needed here
-        $sql = "INSERT INTO member (user_no, first_name, last_name, date_of_birth, gender, mobile, home_tel, email, address, membership, password) VALUES ('$userno', '$name', '$lname', '$dateofbirth', '$gender', '$mobilephoneno', '$phoneno', '$email', '$address', '$membership', '$password')";
+        $sql = "INSERT INTO member (first_name, last_name, date_of_birth, gender, home_tel, email, address, membership, password) VALUES ('$name', '$lname', '$dateofbirth', '$gender', '$phoneno', '$email', '$address', '$membership', '$password')";
         if(mysqli_query($conn, $sql)){
             echo "<p>New row added successfully!</p>";  
         }else{
@@ -163,14 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	-->
 	
 	
-	
-     <div class="form-group">
-      <label class="control-label col-sm-2" for="userno">User Number</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" placeholder="Enter Student Number eg 125" name="userno" value="<?php if (isset($userno)) echo $userno ?>"/>
-      </div>
-         <span class="error"><?php if (isset($usernoError)) echo $usernoError ?></span><br>
-    </div>
+
 	
   
     
@@ -206,6 +199,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <span class="error"><?php if (isset($passwordError)) echo $passwordError ?></span><br>
     </div>  
     
+    <div class="form-group"> 
+        <label class="control-label col-sm-2" for="confirmpassword">Confirm Password *</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" name="confirmpassword" placeholder="Confirm password" value="<?php if (isset($confirm_password)) echo $confirm_password ?>"/>
+        </div>
+        <span class="error"><?php if (isset($confirm_passwordError)) echo $confirm_passwordError ?></span><br>
+    </div>  
+    
     
      <div class="form-group"> 
         <label class="control-label col-sm-2" for="phoneno">Phone Number *</label>
@@ -213,14 +214,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" class="form-control" name="phoneno" placeholder="Enter phone number eg 0852534837" value="<?php if (isset($phoneno)) echo $phoneno ?>"/>
         </div>
         <span class="error"><?php if (isset($phonenoError)) echo $phonenoError ?></span><br>
-    </div>  
-    
-    <div class="form-group"> 
-        <label class="control-label col-sm-2" for="mobilephoneno">Mobile Number *</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="mobilephoneno" placeholder="Enter mobile phone number" value="<?php if (isset($mobilephoneno)) echo $mobilephoneno ?>"/>
-        </div>
-        <span class="error"><?php if (isset($mobilephonenoError)) echo $mobilephonenoError ?></span><br>
     </div>  
     
     <div class="form-group"> 
@@ -250,6 +243,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      </select>
         <br><span class="error"><?php if (isset($membershipError)) echo $membershipError ?></span><br>
     </div><br><br>
+    
+    <!--
+    <div class="wow fadeInDown form-group" data-wow-delay="0.9s"> 
+        <label class="control-label col-sm-2" for="select">Membership *</label>
+        <select class="browser-default custom-select col-sm-10" id="select" name="membership">
+        <option value="" disabled="" selected="" >Choose your membership option </option>  
+        <option value="Student Monthly" >Student Monthly (€29.50 monthly)</option>
+        <option value="Adult Monthly">Adult Monthly (€39.50 monthly)</option>
+        <option value="Adult Yearly">Adult Yearly (€379.50 yearly)</option>
+     </select>
+        <br><span class="error"><?php //if (isset($membershipError)) echo $membershipError ?></span><br>
+    </div><br><br>-->
         
     
 	<!--Password: 
@@ -261,7 +266,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="custom-control custom-checkbox custom-control-inline">
       <input type="checkbox" class="custom-control-input" id="defaultInline1">
-      <label class="custom-control-label" for="defaultInline1">Strength and Stretch</label>
+      <label class="custom-control-label" for="defaultInline1">Strength</label>
     </div> <br><br>
 
     <!-- Default inline 2-->
@@ -273,26 +278,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Default inline 3-->
     <div class="custom-control custom-checkbox custom-control-inline">
       <input type="checkbox" class="custom-control-input" id="defaultInline3">
-      <label class="custom-control-label" for="defaultInline3">Spin</label>
-    </div> <br><br>
+      <label class="custom-control-label" for="defaultInline3">Cardio</label>
+    </div> <br><br><br><br>
 
-                            <!-- Default inline 1-->
-    <div class="custom-control custom-checkbox custom-control-inline">
-      <input type="checkbox" class="custom-control-input" id="defaultInline4">
-      <label class="custom-control-label" for="defaultInline4">Upper Body</label>
-    </div> <br><br>
-
-    <!-- Default inline 2-->
-    <div class="custom-control custom-checkbox custom-control-inline">
-      <input type="checkbox" class="custom-control-input" id="defaultInline5">
-      <label class="custom-control-label" for="defaultInline5">Lower Body</label>
-    </div> <br><br>
-
-    <!-- Default inline 3-->
-    <div class="custom-control custom-checkbox custom-control-inline">
-      <input type="checkbox" class="custom-control-input" id="defaultInline6">
-      <label class="custom-control-label" for="defaultInline6">Cardio</label>
-    </div><br><br> <br><br>
       
         
     <div class="form-group">   
@@ -306,8 +294,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
 	<!--Remember Me: 
 	<input type="checkbox" name="remember"> -->
-    <button class="btn btn-outline-success" type="submit">Submit</button>
-     
+	<div class = 'text-center'>
+    <button class="btn btn-outline-success" type="submit">Submit</button><br><br><br><br><br>
+     </div>
         
         
     
