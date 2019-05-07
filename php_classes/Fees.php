@@ -121,7 +121,7 @@ class Fees implements Crudable, Component{
     <div class='col-xs-12 col-lg-4'>
       <div class='card text-xs-center'>
         <div class='card-header'>
-          <h3 class='display-2'><span class='currency'>€</span>$this->price<span class='period'>/month</span></h3>
+          <h3 class='display-2'><span class='currency'>€</span>$this->price<span class='period'>/$this->period</span></h3>
         </div>
         <div class='card-block'>
           <h4 class='card-title'>$this->name</h4>

@@ -65,6 +65,7 @@
 }
 
 .feature img {
+	border-radius: 100px;
 	width: 350px;
 	height: 260px;	
 }
@@ -224,8 +225,8 @@ section#admin{
 	justify-content: space-between;
 }
 /* specify styling criteria for all header texts covering the background image*/
-.header h1 {
-  color: #ffffff;
+h1 {
+  color: #ff00ff; 
   font-size: 5em;
   font-family: 'Roboto', non-serif;
   margin-left: 0.5em;
@@ -243,7 +244,7 @@ section#admin{
 	/* Give the section class a width of 100% */
 	width: 100%;
 	/* Give the section class a default height of (18.750em) 300px */
-	/* we can over write these height vales in our media queries */
+	/* we can over write these height values in our media queries */
 	height: 18.750em;
 	/* Make it into a flex container */
 	display: flex;
@@ -251,4 +252,50 @@ section#admin{
 	justify-content: center;
 	/* Align the children i.e. the flex items in the centre*/
 	align-items: center;
+}
+.feature img {
+    border-radius: 100px;
+    width: 350px;
+    height: 260px;
+    margin-right: 1.5em;
+}
+
+.feature-content {
+	color: #000000;
+	display: inline-flex;
+	flex-direction:row;
+	align-items: center;
+	justify-content:space-between;
+	font-size: 1.6em;
+}
+/**************************************************************************/
+/***********Responsive design - Mobile-specific Styles*********************/
+/*************************************************************************/
+/*25em or 540px*/
+@media only screen and (max-width: 50em) {
+/* specify styling criteria for all header texts covering the background image*/
+.header h1 {
+  color: #000000;
+  font-size: 4em;
+  font-family: 'Roboto', serif;
+  margin-left: 0.5em;
+  margin-top: 6em;
+  
+}
+/* specify styling criteria for all standard texts covering the background image*/
+.header p{
+  color: #000000;
+  font-size: 2em;
+  font-family: 'Roboto', serif;
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+}
+.feature-content {
+	color: #000000;
+	display: flex;
+	flex-direction:column;
+	align-items: center;
+	justify-content:space-between;
+	font-size: 1.2em;
+}
 }
