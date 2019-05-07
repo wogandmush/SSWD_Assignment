@@ -60,7 +60,7 @@ include 'init.php';
 					</ul>
 					<?php 
 					if(isset($_SESSION['first_name'])){
-					echo "<h5 class='text-secondary my-2 mr-lg-2'>logged in as ${_SESSION['first_name']}</h5>
+					echo "<p class='text-secondary my-2 mr-lg-2'>logged in as ${_SESSION['first_name']}</p>
 					<form action='$root/logout.php'>
 						<button class='btn btn-warning ml-auto'>Logout</button>
 					</form>";

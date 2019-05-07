@@ -54,7 +54,8 @@ class Fees implements Crudable, Component{
 				$name = $row['membership_type'];
 				$price = $row['price'];
 				$period = $row['period'];
-				$fees[] = new Fees($name, $price, $period);
+				$index = StringHelper::toSkeletonCase($name);
+				$fees[$index] = new Fees($name, $price, $period);
 			}
 			mysqli_free_result($result);
 			foreach($fees as $fee){
@@ -120,11 +121,12 @@ class Fees implements Crudable, Component{
 		echo $this->getHTMLString();
 	}
 	public function getHTMLString(){
+		$price = explode(".", $this->price);
 		$html = "
     <div id='".StringHelper::toSkeletonCase($this->name)."' class='fees col-xs-12 col-lg-4'>
       <div class='card text-xs-center'>
         <div class='card-header'>
-          <h3 class='display-2'><span class='currency'>€</span>$this->price<span class='period'>/$this->period</span></h3>
+          <h3 class='display-2'><span class='currency'>€</span>${price[0]}<span class='period'>.${price[1]}/$this->period</span></h3>
         </div>
         <div class='card-block'>
           <h4 class='card-title'>$this->name</h4>

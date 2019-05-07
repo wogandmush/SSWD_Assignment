@@ -213,7 +213,7 @@ section#admin{
 }
 
 #fees-preview{
-	background: blue;
+	background: #444444;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -222,7 +222,8 @@ section#admin{
 }
 
 #fees-preview .fees{
-	width: 100%;
+	max-width: 35em;
+	min-width: 25em;
 }
 
 #image-manage{

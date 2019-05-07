@@ -16,7 +16,7 @@ if($error = mysqli_error($conn)){
 $benefits = array();
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
 	$benefit = $row['benefit'];
-	$benefits[$benefit] = StringHelper::toSkeletonCase($benefit);
+	$benefits[$benefit] = $benefit;
 }
 mysqli_free_result($result);
 
@@ -30,7 +30,9 @@ if($error = mysqli_error($conn)){
 }
 $membership_types = array();
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-	$membership_types[] = $row['membership_type'];
+	$label = $row['membership_type'];
+	$value = StringHelper::toSkeletonCase($label);
+	$membership_types[$label] = $value;
 }
 mysqli_free_result($result);
 mysqli_close($conn);
@@ -39,19 +41,37 @@ $feesSelect = new Select('fees-select', 'Choose fees scheme to edit');
 
 $feesSelect->setOptions($membership_types);
 
+
 $Allfees = Fees::read();
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-	$selectedBenefits = $_POST['benefits'];
-	foreach($Allfees as $fees){
-		$fees->setBenefits($selectedBenefits);		
+	$selectedPlan = $_POST['fees-select'];
+	$feesSelect->setData($selectedPlan);
+	$fees = $Allfees[$selectedPlan];
+	if(isset($_POST['benefits'])){
+		$selectedBenefits = $_POST['benefits'];
+		if(!empty($selectedBenefits)){
+			$fees->setBenefits($selectedBenefits);		
+			$fees->updateBenefits();
+		}
+	}
+	if(isset($_POST['new-price'])){
+		$newPrice = $_POST['new-price'];
+		$newPrice = number_format((float)$newPrice, 2, ".", "");
+		if(!empty($newPrice)){
+			$fees->setPrice($newPrice);
+			$fees->update("price", $newPrice);
+		}
 	}
 }
 
 $benefitForm = new Form('manage-benefits');
 $benefitCheck = new CheckBox('benefits', 'Select benefits');
 $benefitCheck->setOptions($benefits);
-$benefitForm->addFields($feesSelect, $benefitCheck);
+$newPriceInput = new Input('new-price', 'Choose a new price: ', 'number');
+$newPriceInput->setAttributes(['step'=>'0.01']);
+
+$benefitForm->addFields($feesSelect, $benefitCheck, $newPriceInput);
 $benefitSubmit = new Button('benefit-submit', 'submit');
 $benefitForm->addButton($benefitSubmit);
 $benefitForm->render();
@@ -72,12 +92,17 @@ function toSkeletonCase(str){
 	return str.toLowerCase().replace(' ', '-');
 }
 $(fees).hide();
+var shown;
+<?php
+if(isset($selectedPlan)){
+echo "shown = document.querySelector('#$selectedPlan');
+$(shown).show();";
+}?>
 
 $('#fees-select').on('change', function(e){
 	var id = e.target.value;
 	id = toSkeletonCase(id);
-	console.log(id);
-	var shown = document.getElementById(id);
+	shown = document.getElementById(id);
 	$(fees).fadeOut()
 	setTimeout(()=>$(shown).fadeIn(), 400);
 });
