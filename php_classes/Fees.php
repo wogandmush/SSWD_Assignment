@@ -6,7 +6,7 @@ class Fees implements Crudable, Component{
 	private $benefits;
 	public function __construct($name = "", $price = 0, $period = "", $benefits = array()){
 		$this->name = $name;
-		$this->price = $price;
+		$this->price = number_format((float)$price, 2, ".", "");
 		$this->period = $period;
 		$this->benefits = $benefits;
 	}
@@ -20,7 +20,7 @@ class Fees implements Crudable, Component{
 		return $this->price;
 	}
 	public function setPrice($price){
-		$this->price = $price;
+		$this->price = number_format((float)$price, 2, ".", "");
 	}
 	public function getPeriod(){
 		return $this->period;
@@ -36,7 +36,18 @@ class Fees implements Crudable, Component{
 	}
 	public function create(){
 		$conn = DBConnect::getConnection();
+		$sql = "INSERT INTO fees VALUES(
+			'".mysqli_real_escape_string($conn, $this->name)."',
+			'".mysqli_real_escape_string($conn, $this->price)."',
+			'".mysqli_real_escape_string($conn, $this->period)."'
+			)";
+		$result = mysqli_query($conn, $sql);
+		if($error = mysqli_error($conn)){
+			mysqli_close($conn);
+			return $error;
+		}
 		mysqli_close($conn);
+		$this->updateBenefits();
 	}
 	public static function read($conditions = "", $order = "", $limit = 100){
 		$conn = DBConnect::getConnection();
