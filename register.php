@@ -213,15 +213,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <span class="error"><?php if (isset($dateofbirthError)) echo $dateofbirthError ?></span><br>
     </div>  
-    
+<?php
+
+$feesSchemes = Fees::read();
+$linkedScheme;
+if(isset($_GET['linked-scheme'])){
+	$linkedScheme = $_GET['linked-scheme'];
+}
+?>    
     
     <div class="wow fadeInDown form-group" data-wow-delay="0.9s"> 
         <label class="control-label col-sm-2" for="select">Membership *</label>
         <select class="browser-default custom-select col-sm-10" id="select" name="membership">
         <option value="" disabled="" selected="" >Choose your membership option </option>  
+<?php
+	foreach($feesSchemes as $scheme){
+		$schemeName = $scheme->getName();
+		$schemePrice = $scheme->getPrice();		
+		$schemePeriod = $scheme->getPeriod();
+		if($linkedScheme === StringHelper::toSkeletonCase($schemeName)){
+			echo "<option value='$schemeName' selected='selected'>
+				$schemeName (€$schemePrice ${schemePeriod}ly)
+				</option>";
+
+		}
+		else{
+			echo "<option value='$schemeName'>
+				$schemeName (€$schemePrice ${schemePeriod}ly)
+				</option>";
+		}
+	}
+?>
         <option value="Student Monthly" >Student Monthly (€29.50 monthly)</option>
         <option value="Adult Monthly">Adult Monthly (€39.50 monthly)</option>
         <option value="Adult Yearly">Adult Yearly (€379.50 yearly)</option>
+?>
      </select>
         <br><span class="error"><?php if (isset($membershipError)) echo $membershipError ?></span><br>
     </div><br><br>

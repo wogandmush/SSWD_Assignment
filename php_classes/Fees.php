@@ -135,8 +135,9 @@ class Fees implements Crudable, Component{
 	}
 	public function getHTMLString(){
 		$price = explode(".", $this->price);
+		$nameFmt = StringHelper::toSkeletonCase($this->name);
 		$html = "
-    <div id='".StringHelper::toSkeletonCase($this->name)."' class='fees col-xs-12 col-lg-4'>
+    <div id='$nameFmt' class='fees col-xs-12 col-lg-4'>
       <div class='card text-xs-center'>
         <div class='card-header'>
           <h3 class='display-2'><span class='currency'>€</span>${price[0]}<span class='period'>.${price[1]}/$this->period</span></h3>
@@ -151,7 +152,7 @@ class Fees implements Crudable, Component{
 	}
 	$html .= "
           </ul>
-          <a href='register.php' class='btn btn-gradient mt-2'>Choose Plan</a>
+          <a href='register.php?linked-scheme=$nameFmt' class='btn btn-gradient mt-2'>Choose Plan</a>
         </div>
       </div>
     </div>";

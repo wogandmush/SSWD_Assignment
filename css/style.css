@@ -2,6 +2,9 @@
 	box-sizing: border-box;
 }
 
+html {
+	scroll-behavior: smooth;
+}
 
 #login-link{
 	display: inline-block;
@@ -80,7 +83,7 @@
 	min-height: 90vh;
 }
 
-#testimonials{
+section#testimonial{
 	background-image: url('../images/yoga/yoga.jpg');
 	padding: 5em 0;
 }
@@ -221,9 +224,9 @@ section#admin{
 	width: 70%;
 	align-items: center;
 }
-#fees-preview .fees{
-	max-width: 35em;
-	min-width: 25em;
+.fees{
+	max-width: 40em;
+	min-width: 21em;
 }
 
 #image-manage{

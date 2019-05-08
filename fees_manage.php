@@ -123,7 +123,7 @@ switch($feesAction->getData()){
 		$createName = new Input('create-fees-name', 'Choose name for new fees plan');
 		$createName->setRequired(true);
 		$createPeriod = new Select('create-fees-period', 'Choose payment period:');
-		$createPeriod->setOptions(['year', 'month', 'week', 'day']);
+		$createPeriod->setOptions(['year', 'month', 'week']);
 
 		$createPeriod->setRequired(true);
 		$newPriceInput->setRequired(true);
