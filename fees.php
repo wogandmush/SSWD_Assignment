@@ -4,6 +4,7 @@ include_once 'header.php';
 
 $fees = Fees::read("", "", 3);
 ?>
+<section id='fees'>
 <div class="container">
   <div class="row flex-items-xs-middle flex-items-xs-center">
     <!-- Table #1  -->
@@ -14,3 +15,4 @@ foreach($fees as $fee){
 ?>
   </div>
 </div>
+</section>

@@ -8,7 +8,7 @@ if(!isset($testimonials))
 
 	// div to contain all testimonials
 ?>
-	<section id='testimonials'>
+	<section id='testimonial'>
 	   	<div class='container' id='testimonial-container'>
 <?php
 if($testimonials){
