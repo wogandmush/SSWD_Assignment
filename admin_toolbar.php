@@ -20,9 +20,6 @@ if($isAdmin){
 		<li>
 			<a href="<?php echo $root;?>/image_manage.php">Images</a>
 		</li>
-		<li>
-			<a href="<?php echo $root;?>/contact_manage.php">Enquiries</a>
-		</li>
 	</ul>
 </nav>
 <?php

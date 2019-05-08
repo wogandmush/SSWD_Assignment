@@ -204,6 +204,7 @@ section#admin{
 #fees-admin {
 	display: flex;
 	flex-direction: row;
+	min-height: 60vh;
 	background: white;
 }
 
@@ -213,7 +214,7 @@ section#admin{
 }
 
 #fees-preview{
-	background: #444444;
+	background: blue;
 	display: flex;
 	align-items: center;
 	justify-content: center;
