@@ -58,7 +58,6 @@ class Fees implements Crudable, Component{
 			$sql .= " ORDER BY $order";
 		$sql .= " LIMIT $limit";
 		$sql .= ";";
-
 		if($result = mysqli_query($conn, $sql)){
 			$fees = array();
 			while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
