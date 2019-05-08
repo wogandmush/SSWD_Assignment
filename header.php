@@ -55,8 +55,6 @@ include 'init.php';
 						<li class="nav-item">
 							<a class="nav-link" href="<?php echo $root?>/contact.php">Contact Us</a>
 						</li>
-                    
-                         
 					</ul>
 					<?php 
 					if(isset($_SESSION['first_name'])){

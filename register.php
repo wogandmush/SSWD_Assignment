@@ -6,8 +6,6 @@ require '../config/connect.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	// primary validate function
 	
-
-	
 	function validate($str) {
 		return trim(htmlspecialchars($str));
 	}    
@@ -42,14 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }         	
 	}
 
-    
     if (empty($_POST['gender'])) {
 		$genderError = 'Please enter your gender';
 	} else {
 		$gender = $_POST['gender'];
 	}
-
-
 
     if (empty($_POST['phoneno'])) {
 		$phonenoError = 'phone number should be filled and match the following format eg 0852534837';
@@ -60,9 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 	}
         
-         
-
-
 	if (empty($_POST['email'])) {
 		$emailError = 'Please enter your email';
 	} else {
@@ -72,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 	}
      
-    
       if (empty($_POST['address'])) {
 		$addressError = 'address cannot be empty';
 	} else {
@@ -101,9 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if ($password != $confirm_password)
 		{
 		    $passwordError = 'Passwords should match';
-	        echo $password . " " . $confirm_password;
+	        //echo $password . " " . $confirm_password;
 		}
-
 	}
     
     if (empty($_POST['membership'])) {
@@ -134,9 +124,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </body>
 
         <?php
-            
 		// mysqli_real_escape_string needed here
-        $sql = "INSERT INTO member (first_name, last_name, date_of_birth, gender, home_tel, email, address, membership, password) VALUES ('$name', '$lname', '$dateofbirth', '$gender', '$phoneno', '$email', '$address', '$membership', '$password')";
+		$hash = password_hash($password, PASSWORD_DEFAULT);
+		$conn = DBConnect::getConnection();
+        $sql = "INSERT INTO member (first_name, last_name, date_of_birth, gender, home_tel, email, address, membership, password) VALUES ('$name', '$lname', '$dateofbirth', '$gender', '$phoneno', '$email', '$address', '$membership', '$hash')";
         if(mysqli_query($conn, $sql)){
             echo "<p>New row added successfully!</p>";  
         }else{
@@ -146,9 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		mysqli_close($conn);
 		exit(); // terminates the script
 	} 
-    
 }
-
 ?>
 	
     <div class="container"> 
@@ -162,11 +151,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	</div>
 	-->
 	
-	
-
-	
-  
-    
     <div class="form-group"> 
         <label class="control-label col-sm-2" for="name">First Name *</label>
         <div class="col-sm-10">
@@ -298,8 +282,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button class="btn btn-outline-success" type="submit">Submit</button><br><br><br><br><br>
      </div>
         
-        
-    
 		</form>
 	 </div>
 <?php
