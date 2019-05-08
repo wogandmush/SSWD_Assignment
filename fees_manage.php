@@ -57,6 +57,15 @@ switch($feesAction->getData()){
 			$selectedPlan = $_POST['fees-select'];
 			$feesSelect->setData($selectedPlan);
 			$fees = $Allfees[$selectedPlan];
+			if(isset($_POST['fees-delete'])){
+				$result = $fees->delete();
+				echo $result;
+				if($result == 1){
+					echo "<h4 class='text-success'>Deleted fees plan</h4>";
+					header("refresh: 2;url='fees_manage.php?action=manage-existing'");
+					exit();
+				}
+			}
 			if(isset($_POST['benefits'])){
 				$selectedBenefits = $_POST['benefits'];
 				if(!empty($selectedBenefits)){
@@ -75,7 +84,9 @@ switch($feesAction->getData()){
 		$benefitForm = new Form('manage-benefits');
 		$benefitForm->addFields($feesAction, $feesSelect, $benefitCheck, $newPriceInput);
 		$updateSubmit = new Button('update-submit', 'submit');
-		$benefitForm->addButtons($updateSubmit);
+		$feesDelete = new Button('fees-delete', 'delete');
+		$feesDelete->setClassList("btn btn-danger");
+		$benefitForm->addButtons($updateSubmit, $feesDelete);
 		$benefitForm->render();
 		echo "<a class='btn btn-secondary' href='fees_manage.php'>back</a>";
 		break;
@@ -96,8 +107,11 @@ switch($feesAction->getData()){
 		$createName->setRequired(true);
 		$createPeriod = new Select('create-fees-period', 'Choose payment period:');
 		$createPeriod->setOptions(['year', 'month', 'week', 'day']);
+
 		$createPeriod->setRequired(true);
 		$newPriceInput->setRequired(true);
+		$benefitCheck->setRequired(true);
+
 		$createForm->addFields($feesAction, $createName, $benefitCheck, $newPriceInput, $createPeriod);
 		$createSubmit = new Button('create-submit', 'Add Plan');
 		$createForm->addButton($createSubmit);

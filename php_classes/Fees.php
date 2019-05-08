@@ -77,8 +77,8 @@ class Fees implements Crudable, Component{
 						$fee->addBenefit($row['benefit']);
 					}
 				}
+				mysqli_free_result($result);
 			}
-			mysqli_free_result($result);
 			mysqli_close($conn);
 			return $fees;
 		}
@@ -120,7 +120,7 @@ class Fees implements Crudable, Component{
 	public function delete(){
 		$conn = DBConnect::getConnection();
 		$sql = "DELETE FROM fees WHERE membership_type = '$this->name'";
-		$result - mysqli_query($conn, $sql);
+		$result = mysqli_query($conn, $sql);
 		if($error = mysqli_error($conn)){
 			mysqli_close($conn);
 			return $error;
