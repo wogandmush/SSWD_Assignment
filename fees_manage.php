@@ -50,7 +50,7 @@ $Allfees = Fees::read();
 $benefitCheck = new CheckBox('benefits', 'Select benefits');
 $benefitCheck->setOptions($benefits);
 $newPriceInput = new Input('new-price', 'Choose a new price: ', 'number');
-$newPriceInput->setAttributes(['step'=>'0.01']);
+$newPriceInput->setAttributes(['step'=>'0.01', 'min'=>0]);
 switch($feesAction->getData()){
 	case 'manage-existing':
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -92,15 +92,32 @@ switch($feesAction->getData()){
 		break;
 	case 'create-new':
 		if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-submit'])){
-			var_dump($_POST);
-			$plan_name = $_POST['create-fees-name'];
-			$plan_benefits = $_POST['benefits'];
-			$plan_price = $_POST['new-price'];
-			$plan_period = $_POST['create-fees-period'];
-			$new_plan = new Fees($plan_name, $plan_price, $plan_period, $plan_benefits);
-			$new_plan->render();
-			$new_plan->create();
-			exit();
+			if(isset($_POST['create-fees-name']) &&
+				isset($_POST['new-price']) &&
+				isset($_POST['create-fees-period'])){
+
+				$plan_name = $_POST['create-fees-name'];
+				$plan_price = $_POST['new-price'];
+				$plan_period = $_POST['create-fees-period'];
+				$new_plan = new Fees($plan_name, $plan_price, $plan_period);
+				
+				if(isset($_POST['benefits'])){
+					$plan_benefits = $_POST['benefits'];
+					$new_plan->setBenefits($plan_benefits);
+				}
+				$result = $new_plan->create();
+				if($result == 1){
+					echo "
+					<h4 class='text-success'>Fees Plan Added!</h4>
+					<button onClick='location.href=\"fees_manage.php\"' class='btn btn-primary'>Back</button>
+					</div>
+						<div id='fees-preview'>";
+					$new_plan->render();
+					echo "</div>
+					</section>";
+					exit();
+				}
+			}
 		}
 		$createForm = new Form('create-fees-plan');
 		$createName = new Input('create-fees-name', 'Choose name for new fees plan');
@@ -110,7 +127,6 @@ switch($feesAction->getData()){
 
 		$createPeriod->setRequired(true);
 		$newPriceInput->setRequired(true);
-		$benefitCheck->setRequired(true);
 
 		$createForm->addFields($feesAction, $createName, $benefitCheck, $newPriceInput, $createPeriod);
 		$createSubmit = new Button('create-submit', 'Add Plan');

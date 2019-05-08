@@ -47,7 +47,10 @@ class Fees implements Crudable, Component{
 			return $error;
 		}
 		mysqli_close($conn);
-		$this->updateBenefits();
+		if(!empty($this->benefits))
+			return $this->updateBenefits();
+		else 
+			return $result;
 	}
 	public static function read($conditions = "", $order = "", $limit = 100){
 		$conn = DBConnect::getConnection();
@@ -141,8 +144,10 @@ class Fees implements Crudable, Component{
         <div class='card-block'>
           <h4 class='card-title'>$this->name</h4>
           <ul class='list-group'>";
-	foreach($this->benefits as $benefit){
-		$html .= "<li class='benefit list-group-item'>$benefit</li>";
+	if(!empty($this->benefits)){
+		foreach($this->benefits as $benefit){
+			$html .= "<li class='benefit list-group-item'>$benefit</li>";
+		}
 	}
 	$html .= "
           </ul>

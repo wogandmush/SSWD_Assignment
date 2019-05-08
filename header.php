@@ -64,6 +64,8 @@ include 'init.php';
 					</form>";
 					}
 					else if(!($isMember || $isAdmin)){
+						include "$fsRoot/login.php";
+						/*
 						echo "<button onclick='location.href=\"${root}/register.php\";' type='button' class='btn btn-link' id='register-link'>JOIN</button>";
 						echo "<button type='button' class='btn btn-link' id='login-link'>MEMBERS</button>";
 						$loginSuccess = false;
@@ -111,6 +113,7 @@ include 'init.php';
 						if(!$loginSuccess){
 							$loginForm->render();
 						}
+						 */
 					}
 					?>
 				</div>
