@@ -228,6 +228,9 @@ section#admin{
 	max-width: 40em;
 	min-width: 21em;
 }
+#fees-preview .fees{
+	min-width: 30em;
+}
 
 #image-manage{
 	display: flex;

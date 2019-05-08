@@ -13,7 +13,7 @@ if(isset($_GET['manage_approved']))
 	$testimonials = Testimonial::loadApproved();
 else $testimonials = Testimonial::loadUnapproved();
 ?>
-	<section id='testimonials'>
+	<section id='testimonial'>
 	   	<div class='container' id='testimonial-container'>
 <?php
 # provide a button to switch between approved and non-approved testimonials

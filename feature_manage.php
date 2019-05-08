@@ -6,7 +6,7 @@ if(!$isAdmin){
 }
 
 echo "<section id='feature-manage'>";
-var_dump($_POST);
+//var_dump($_POST);
 $stage = new Input('stage', '', 'hidden');
 $action = new Input('action', '', 'hidden');
 if($_SERVER['REQUEST_METHOD'] !== 'POST'){

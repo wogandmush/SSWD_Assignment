@@ -83,7 +83,7 @@ switch($feesAction->getData()){
 		}
 		$benefitForm = new Form('manage-benefits');
 		$benefitForm->addFields($feesAction, $feesSelect, $benefitCheck, $newPriceInput);
-		$updateSubmit = new Button('update-submit', 'submit');
+		$updateSubmit = new Button('update-submit', 'update');
 		$feesDelete = new Button('fees-delete', 'delete');
 		$feesDelete->setClassList("btn btn-danger");
 		$benefitForm->addButtons($updateSubmit, $feesDelete);
