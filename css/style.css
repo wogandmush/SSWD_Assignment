@@ -255,6 +255,66 @@ section#admin{
 	align-items: flex-start;
 	justify-content: space-between;
 }
+
+#class_hero {
+	/* Give it a 'hero' background image covering the complete header container*/
+	background-image: url(../images/class/classhero.jpg);
+	height: 40em;
+	/* centre of background image maintains most visibility as container resizes*/
+	background-position:center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	flex-direction:column;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+#cardio_hero {
+	/* Give it a 'hero' background image covering the complete header container*/
+	background-image: url(../images/cardio/cardiohero.jpg);
+	height: 40em;
+	/* centre of background image maintains most visibility as container resizes*/
+	background-position:center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	flex-direction:column;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+#yoga_hero {
+	/* Give it a 'hero' background image covering the complete header container*/
+	background-image: url(../images/yoga/yogahero.jpg);
+	height: 40em;
+	/* centre of background image maintains most visibility as container resizes*/
+	background-position:center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	flex-direction:column;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+#strength_hero {
+	/* Give it a 'hero' background image covering the complete header container*/
+	background-image: url(../images/strength/strengthhero.jpg);
+	height: 40em;
+	/* centre of background image maintains most visibility as container resizes*/
+	background-position:center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	flex-direction:column;
+	align-items: flex-start;
+	justify-content: space-between;
+}
 /* specify styling criteria for all header texts covering the background image*/
 h1 {
   color: #ffffff; 

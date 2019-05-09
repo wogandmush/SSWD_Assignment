@@ -3,17 +3,20 @@ include 'header.php';
 #^^this should be the first line of the file. Body tags are already opened
 ?>
 
-
-<div class="jumbotron" style="background-image: url(images/yoga/yogahero.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-  <div class="text-black text-center py-5 px-4 my-5 font-bold">
-    <div>
-      <h1 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Yoga</strong></h1>
-      <h4 class="mx-5 mb-5">Practicing yoga can help you live a healthier and happier lifestyle. It is a spiritual and physical practice that was first developed by the Indus-Sarasvati civilisation in India over 5,000 years ago. </h4>
-     <h4 class="mx-5 mb-5"> Yoga class at Perform Fitness is an exercise that focuses on varied muscle groups.</h4>
-      
+<!-- Hero Image -->
+      <div class='section header' id="yoga_hero">
+       <!-- [1] add image or h1 text to help us visualise our page design -->
+       <!-- we will remover these later -->
+       <!-- Placeholder for image -->
+<!--
+       <img src='images/index/barbell.png' alt="PerfectForm Fitness Logo" id="header_logo"/>
+-->
+       <div id="hero">
+        <h1 class = "text-dark"> Yoga </h1>
+        <p class = "text-dark"><br><em>Practicing Yoga Can Help You Live a Healthier and Happier Lifestyle</em></p>
+      </div>
     </div>
-  </div>
-</div>
+    
 
      
 
@@ -57,8 +60,8 @@ As well as the physical benefits there are a number of other positive factors in
                   <!--Grid column-->
                   
                   <div class="col-md-12 mb-4 white-text text-center">
-                      <h3 class="text-white display-3 font-weight-bold white-text mb-0 pt-md-5 pt-5">Sign Up Now</h3>
-                    <h1 class="h1-reponsive text-white text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Yoga</strong></h1>
+                      <h3 class="text-dark display-3 font-weight-bold white-text mb-0 pt-md-5 pt-5">Sign Up Now</h3>
+                    <h2 class="text-dark h1-reponsive text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Yoga</strong></h2>
                     <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
                     <a href="<?php echo $root;?>/register.php" class="btn btn-danger btn-md">
                       Sign Up

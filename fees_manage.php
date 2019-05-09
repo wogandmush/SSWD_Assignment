@@ -54,6 +54,8 @@ $newPriceInput->setAttributes(['step'=>'0.01', 'min'=>0]);
 switch($feesAction->getData()){
 	case 'manage-existing':
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+			print_r($Allfees);
+			var_dump($_POST);
 			$selectedPlan = $_POST['fees-select'];
 			$feesSelect->setData($selectedPlan);
 			$fees = $Allfees[$selectedPlan];

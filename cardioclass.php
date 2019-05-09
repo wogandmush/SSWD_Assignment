@@ -3,17 +3,21 @@ include 'header.php';
 #^^this should be the first line of the file. Body tags are already opened
 ?>
 
-
-<div class="jumbotron" style="background-image: url(images/cardio/cardiohero.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-  <div class="text-white text-center py-5 px-4 my-5 font-bold">
-    <div>
-      <h1 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Cardio</strong></h1>
-      <h4 class="mx-5 mb-5">The ultimate high-energy workout class that uses martial arts techniques inspired by Taekwondo, Kung Fu, Tai Chi and Karate.  </h4>
-     <h4 class="mx-5 mb-5"> Increase your mobility and flexibility whilst burning calories and boosting metabolism in this fun-filled high energy class.</h4>
-      
+<!-- Hero Image -->
+      <div class='section header' id="cardio_hero">
+       <!-- [1] add image or h1 text to help us visualise our page design -->
+       <!-- we will remover these later -->
+       <!-- Placeholder for image -->
+<!--
+       <img src='images/index/barbell.png' alt="PerfectForm Fitness Logo" id="header_logo"/>
+-->
+       <div id="hero">
+        <h1 class = "text-light"> Cardio </h1>
+        <p><br><em>Ultimate High-Energy Workout Class</em></p>
+      </div>
     </div>
-  </div>
-</div>
+
+
 
     
     
@@ -54,7 +58,7 @@ This empowering cardio workout will also help you build muscle, improve balance 
                   
                   <div class="col-md-12 mb-4 white-text text-center">
                       <h3 class="text-white display-3 font-weight-bold white-text mb-0 pt-md-5 pt-5">Sign Up Now</h3>
-                    <h1 class="h1-reponsive text-white text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Cardio</strong></h1>
+                    <h2 class="h1-reponsive text-white text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Cardio</strong></h2>
                     <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
                     <a href="<?php echo $root;?>/register.php" class="btn btn-danger btn-md">
                       Sign Up
@@ -90,3 +94,4 @@ This empowering cardio workout will also help you build muscle, improve balance 
 #vv this should be the last line. body and html tags are closed
 include_once 'footer.php';
 ?>
+

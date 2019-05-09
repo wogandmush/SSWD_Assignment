@@ -3,16 +3,19 @@ include 'header.php';
 #^^this should be the first line of the file. Body tags are already opened
 ?>
 
-<div class="jumbotron" style="background-image: url(images/class/classhero.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-  <div class="text-warning text-center py-5 px-4 my-5 font-bold">
-    <div>
-      <h1 class="text-light bg-dark card-title h1-responsive pt-3 mb-5 font-bold"><strong>Classes</strong></h1>
-      <h4 class="text-light bg-dark mx-5 mb-5">Perfect Form Fitness, where fitness and science combine.  </h4>
-     <h4 class="text-light bg-dark mx-5 mb-5"> Our unique, creative classes are structured from the ground to give the absolutely best results and ensure you've got a good workout while also maintaining a fun engaging atmosphere.</h4>
-      
+<!-- Hero Image -->
+      <div class='section header' id="class_hero">
+       <!-- [1] add image or h1 text to help us visualise our page design -->
+       <!-- we will remover these later -->
+       <!-- Placeholder for image -->
+<!--
+       <img src='images/index/barbell.png' alt="PerfectForm Fitness Logo" id="header_logo"/>
+-->
+       <div id="hero">
+        <h1 class = "text-light"> Classes </h1>
+        <p><br><em>Where Fitness and Science Combine</em></p>
+      </div>
     </div>
-  </div>
-</div>
 
      <!--Table-->   
     <div class="container table-responsive">
