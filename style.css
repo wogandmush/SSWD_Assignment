@@ -1,0 +1,365 @@
+* {
+	box-sizing: border-box;
+}
+
+
+#login-link{
+	display: inline-block;
+	text-decoration: none;
+}
+
+#login-form{
+	margin-left: 1em;
+}
+
+#login-form input {
+	margin-right: 0.5em;
+	margin-top: -4px;
+}
+
+#login-form input::placeholder {
+	color: #666;
+}
+
+#admin-toolbar{
+	display: flex;
+	flex-direction: row;
+	background: #aaa5;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	padding: 1em;
+}
+
+#admin-toolbar h5{
+	margin-bottom: 0;
+}
+
+#admin-toolbar ul{
+	display: flex;
+	flex-direction: row;
+	flex-basis: calc(100% - 10em);
+	margin: 0;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#gallery{
+	display: grid;
+	width: 100%;
+	height: 20em;
+	grid-template-columns: repeat(5, 20%);
+	grid-gap: 1em;
+}
+.gallery-img {
+	width: 100%;
+	opacity: 0.6;
+	height: 100%;
+	transition: opacity 0.2s;
+}
+
+.gallery-img.selected{
+	opacity: 1;
+	transition: opacity 0.2s;
+	outline: 4px solid #05fa;
+}
+
+.error {
+	color: red;
+}
+
+#testimonial-container {
+	width: 80%;
+	margin: 2em auto;
+	min-height: 90vh;
+}
+
+#testimonials{
+	background-image: url('../images/yoga/yoga.jpg');
+	padding: 5em 0;
+}
+
+.testimonial {
+	width: 80%;
+	height: auto;
+	margin-top: 20%;
+	background: #EEED;
+}
+
+.testimonial blockquote{
+	text-align: center;
+	font-size: 2em;
+}
+
+.testimonial blockquote::before{
+	font-family: times;
+	content: '\201C';
+}
+
+.testimonial blockquote::after{
+	font-family: times;
+	content: '\201D';
+}
+
+.testimonial .lead{
+	text-align: right;
+}
+
+.testimonial small{
+	font-size: 12px;
+	float: right;
+	text-align: right;
+}
+
+#testimonial-share{
+	float: right;
+	background: #fffa;
+	padding: 1em;
+	border-radius: 5px;
+	display: inline-block;	
+	text-align: right;
+}
+/* word count span in testimonial-add page */
+#testimonial_add .word-count{
+	margin-left: 1em;
+	opacity: 0.5
+}
+
+
+.admin-btns{
+	background: #DDDD;
+	display: flex;
+	flex-direction: row;
+	margin: 0 auto;
+	justify-content: space-around;
+	align-items: center;
+	padding: 1em;
+	width: 80%;
+}
+.back-btn, .fwd-btn{
+	filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));
+	height: 0;	
+	width: 0;
+	border-top: 3em solid transparent;
+	border-bottom: 3em solid transparent;
+	cursor: pointer;
+}
+.back-btn{
+	border-right: 6em solid #0000ff;
+}
+.back-btn:hover{
+	border-right: 6em solid #0000cc;
+}
+.fwd-btn{
+	border-left: 6em solid #0000ff;
+}
+.fwd-btn:hover{
+	border-left: 6em solid #0000cc;
+}
+
+#img-crop {
+	margin: 0 auto;
+	display: block;
+}
+
+section#admin{
+	padding: 5em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#admin-login{
+	width: 20em;
+}
+
+#testimonial-add{
+	padding: 5em;
+}
+
+#feature-manage{
+	height: 90vh;
+	padding: 5em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#action-form{
+	display: flex;
+	flex-direction: column;
+	align-items: space-between;
+}
+
+#action-form button{
+	margin: 2em;
+}
+
+#image-manage{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 5em;
+}
+#image-crop{
+	width: 30em;
+}
+
+
+#index_hero {
+	/* Give it a 'hero' background image covering the complete header container*/
+	background-image: url(../images/index/hero_index.jpg);
+	height: 40em;
+	/* centre of background image maintains most visibility as container resizes*/
+	background-position:center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	flex-direction:column;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+#class_index_hero {
+	/* Give it a 'hero' background image covering the complete header container*/
+	background-image: url(../images/class/classhero.jpg);
+	height: 40em;
+	/* centre of background image maintains most visibility as container resizes*/
+	background-position:center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	flex-direction:column;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+#cardio_hero {
+	/* Give it a 'hero' background image covering the complete header container*/
+	background-image: url(../images/cardio/cardiohero.jpg);
+	height: 40em;
+	/* centre of background image maintains most visibility as container resizes*/
+	background-position:center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	flex-direction:column;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+#yoga_hero {
+	/* Give it a 'hero' background image covering the complete header container*/
+	background-image: url(../images/yoga/yogahero.jpg);
+	height: 40em;
+	/* centre of background image maintains most visibility as container resizes*/
+	background-position:center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	flex-direction:column;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+#strength_hero {
+	/* Give it a 'hero' background image covering the complete header container*/
+	background-image: url(../images/strength/strengthhero.jpg);
+	height: 40em;
+	/* centre of background image maintains most visibility as container resizes*/
+	background-position:center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	flex-direction:column;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+
+
+
+/* specify styling criteria for all header texts covering the background image*/
+h1 {
+  color: #ff00ff; 
+  font-size: 5em;
+  font-family: 'Roboto', non-serif;
+  margin-left: 0.5em;
+  margin-top: 5em;
+}
+/* specify styling criteria for all standard texts covering the background image*/
+.header p{
+  color: #ffffff;
+  font-size: 2em;
+  font-family: 'Roboto', serif;
+  margin-left: 2em;
+  margin-bottom: 3.5em;
+}
+.section {
+	/* Give the section class a width of 100% */
+	width: 100%;
+	/* Give the section class a default height of (18.750em) 300px */
+	/* we can over write these height values in our media queries */
+	height: 18.750em;
+	/* Make it into a flex container */
+	display: flex;
+	/* Centre the content of this section*/
+	justify-content: center;
+	/* Align the children i.e. the flex items in the centre*/
+	align-items: center;
+}
+.feature img {
+    width: 350px;
+    height: 260px;
+    margin-right: 1.5em;
+}
+
+.feature-content {
+	color: #000000;
+	display: inline-flex;
+	flex-direction:row;
+	align-items: center;
+	justify-content:space-between;
+	font-size: 1.6em;
+}
+
+.highlight 
+{
+   background-color: black;
+}
+/**************************************************************************/
+/***********Responsive design - Mobile-specific Styles*********************/
+/*************************************************************************/
+/*25em or 540px*/
+@media only screen and (max-width: 50em) {
+/* specify styling criteria for all header texts covering the background image*/
+	.header h1 {
+	  color: #000000;
+	  font-size: 4em;
+	  font-family: 'Roboto', serif;
+	  margin-left: 0.5em;
+	  margin-top: 6em;
+	  
+	}
+	/* specify styling criteria for all standard texts covering the background image*/
+	.header p{
+	  color: #000000;
+	  font-size: 2em;
+	  font-family: 'Roboto', serif;
+	  margin-left: 1em;
+	  margin-bottom: 0.5em;
+	}
+	.feature-content {
+		color: #000000;
+		display: flex;
+		flex-direction:column;
+		align-items: center;
+		justify-content:space-between;
+		font-size: 1.2em;
+	}
+}
