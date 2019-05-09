@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
 function forwardToMailServer($data){
 	$url = "https://knuth.griffith.ie/~s2995020/Assignment/SSWD_Assignment/mail.php";
-	$payload = http_build_query($fields);
+	$payload = http_build_query($data);
 	$curly = curl_init();
 	curl_setopt($curly, CURLOPT_URL, $url);
 	curl_setopt($curly, CURLOPT_POST, true);
