@@ -31,7 +31,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 
 	else if(isset($_POST['contact-submit'])){
-		var_dump($_POST);
+		//var_dump($_POST);
 		$name;
 		$email;
 		$message;
@@ -67,9 +67,32 @@ Subject: $subject
 Message: $message
 
 If you wish to remove you message click the link below:
-${_SERVER['SERVER_NAME']}$root/contact_mail?id=$key
 
 EOT;
+
+$url = "https://knuth.griffith.ie/~s2995020/Assignment/SSWD_Assignment/mail.php";
+$fields = [
+	'name' => $name,
+	'email' => $email,
+	'subject' => $subject,
+	'message' => $message,
+	'mobile' => $mobile,
+	'remove-link' => "${_SERVER['SERVER_NAME']}$root/contact_mail.php?id=$key"
+	];
+$payload = http_build_query($fields);
+$curly = curl_init();
+
+curl_setopt($curly, CURLOPT_URL, $url);
+curl_setopt($curly, CURLOPT_POST, true);
+curl_setopt($curly, CURLOPT_POSTFIELDS, $payload);
+
+curl_setopt($curly, CURLOPT_RETURNTRANSFER, true);
+var_dump($curly);
+echo $url;
+$result = curl_exec($curly);
+echo $result;
+
+/*
 			echo $content;
 			$mailheader = "From: $hostEmail \r\n";
 
@@ -77,6 +100,7 @@ EOT;
 			if($email_sent) {
 				echo "Email sent!";
 			}
+*/
 		}
 		else {
 			echo "Some fields left empty";
