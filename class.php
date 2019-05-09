@@ -8,7 +8,7 @@ include 'header.php';
       <div class='section header' id="class_hero">
 -->
 <!-- Hero Image -->
-      <div class='section header' id="class_index_hero">
+      <div class='section header' id="class_hero">
        <!-- [1] add image or h1 text to help us visualise our page design -->
        <!-- we will remover these later -->
        <!-- Placeholder for image -->
