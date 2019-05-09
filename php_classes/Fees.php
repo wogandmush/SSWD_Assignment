@@ -36,9 +36,9 @@ class Fees implements Crudable, Component{
 	}
 	public function create(){
 		$conn = DBConnect::getConnection();
-		$name = mysqli_real_escape_string($this->name);
-		$price = mysqli_real_escape_string($this->price);
-		$period = mysqli_real_escape_string($this->period);
+		$name = mysqli_real_escape_string($conn, $this->name);
+		$price = mysqli_real_escape_string($conn, $this->price);
+		$period = mysqli_real_escape_string($conn, $this->period);
 		$sql = "INSERT INTO fees VALUES('$name', '$price', '$period')";
 		$result = mysqli_query($conn, $sql);
 		if($error = mysqli_error($conn)){
@@ -71,7 +71,8 @@ class Fees implements Crudable, Component{
 			}
 			mysqli_free_result($result);
 			foreach($fees as $fee){
-				$sql = "SELECT benefit FROM fees_benefit WHERE membership_type = '$fee->name'";
+				$fee_name = mysqli_real_escape_string($conn, $fee->name);
+				$sql = "SELECT benefit FROM fees_benefit WHERE membership_type = '$fee_name'";
 				if($result = mysqli_query($conn, $sql)){
 					$benefits = array();
 					while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
@@ -108,10 +109,11 @@ class Fees implements Crudable, Component{
 		}
 		if(sizeof($this->benefits) === 0) return;
 		$updateSql = "INSERT INTO fees_benefit VALUES";
-		$updateSql .= implode(", ", array_map(function($benefit){
-			global $name;
-			return "('$name', '$benefit')";
-		}, $this->benefits));
+		$values = array();
+		foreach($this->benefits as $benefit){
+			$values[] = "('$name', '$benefit')";
+		}
+		$updateSql .= implode(", ", $values);
 		$result = mysqli_query($conn, $updateSql);
 		if($error = mysqli_error($conn)){
 			mysqli_close($conn);
