@@ -241,6 +241,12 @@ section#admin{
 #image-crop{
 	width: 30em;
 }
+
+#contact-form{
+	width: 50em;
+	margin: 0 auto;
+}
+
 #index_hero {
 	/* Give it a 'hero' background image covering the complete header container*/
 	background-image: url(../images/index/hero_index.jpg);
