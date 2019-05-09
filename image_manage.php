@@ -35,6 +35,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	$temp_src = $_FILES['img-upload']['name'];
 	echo "<script>var src='$root/images/.temp/$temp_src';</script>";
 ?>
+<p class='text-info'>Click to move selection; hold shift and move mouse to scale :)</p>
 <canvas id="img-crop-canvas"></canvas>
 <script>
 var category = document.querySelector("#img-category");

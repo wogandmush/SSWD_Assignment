@@ -29,7 +29,6 @@ function imageCrop(){
 		var overlayCxt = overlay.getContext("2d");
 		overlayCxt.fillStyle = "grey";
 		overlayCxt.globalAlpha = 0.5;
-
 		var selection = {
 			x: 0,
 			y: 0,
@@ -51,18 +50,27 @@ function imageCrop(){
 					this.y = height - this.h;
 			},
 			scaleUp: function(pix){
-				this.w += pix;
-				this.h += pix;
-				let offsetX = -pix/2;
-				let offsetY = offsetX * ASPECT_RATIO;
-				this.move(offsetX, offsetY);
+				
+				let newW = this.w + pix;
+				let newH = newW * ASPECT_RATIO;
+				if(newW < width && newH < height){
+					this.w = newW;
+					this.h = newH;
+					let offsetX = -pix/2;
+					let offsetY = offsetX * ASPECT_RATIO;
+					this.move(offsetX, offsetY);
+				}
 			},
 			scaleDown: function(pix){
-				this.w -= pix;
-				this.h -= pix;
-				let offsetX = pix/2;
-				let offsetY = offsetX * ASPECT_RATIO;
-				this.move(offsetX, offsetY);
+				let newW = this.w - pix;
+				let newH = newW * ASPECT_RATIO;
+				if(newW > 20 && newH > 20){
+					this.w -= pix;
+					this.h = this.w * ASPECT_RATIO;
+					let offsetX = pix/2;
+					let offsetY = offsetX * ASPECT_RATIO;
+					this.move(offsetX, offsetY);
+				}
 			}
 		}
 		function draw(){
@@ -75,28 +83,51 @@ function imageCrop(){
 			cxt.drawImage(overlay, 0, 0, width, height);
 		}
 		draw();	
-		canvas.addEventListener("click", e => {
+		var moveSelection = e => {
 			Object.assign(selection, {
 				x: (e.pageX - canvas.offsetLeft) - (selection.w / 2),
 				y: (e.pageY - canvas.offsetTop) - (selection.h / 2)
 			});
 			selection.move(0, 0);
 			draw();
-		});
-		window.addEventListener("keydown", e => {
+		}
+		canvas.addEventListener("click", moveSelection);
+		var mousePos;
+		var trackMouse = e => {
+			if(!mousePos) mousePos = e.pageY;
+			let newPos = e.pageY;
+			let diff = mousePos - newPos;
+			if(diff > 0)
+				selection.scaleUp(diff);
+			else
+				selection.scaleDown(-diff);
+			mousePos = newPos;
+			draw();
+		}
+		document.addEventListener("keydown", e => {
 			switch(e.keyCode){
-				case 219:
-					selection.scaleUp(10);
-					draw();
-					break;
-				case 221:
-					selection.scaleDown(10);
-					draw();
+				case 16:
+					canvas.addEventListener("mousemove", trackMouse);
+					canvas.removeEventListener("click", moveSelection);
 					break;
 				default:
-					console.log(e.keyCode);
 			}
 		});
+		document.addEventListener("keyup", e => {
+			switch(e.keyCode){
+				case 16:
+					canvas.removeEventListener("mousemove", trackMouse);
+					canvas.addEventListener("click", moveSelection);
+					mousePos = null;
+					break;
+				default:
+			}
+		});
+		
+		canvas.addEventListener("mousedown", e => {
+			mousePos = e.pageY;
+		});
+		
 		selectButton.addEventListener("click", submitImage);
 		function submitImage(){
 			var tempCanv = document.createElement("canvas");
@@ -119,7 +150,6 @@ function imageCrop(){
 			tempCanv.toBlob(sendBlob, "image/jpeg");
 				
 			function sendBlob(blob){
-				
 				console.log(blob);
 				var fd = new FormData();
 				fd.append("image-upload", blob);
