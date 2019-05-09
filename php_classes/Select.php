@@ -47,10 +47,10 @@ class Select extends OptionField{
 			}
 			else {
 				if(isset($this->data) && $this->data === $value){
-					$output .= "<option selected='selected' value='$value'>$label</option>";
+					$output .= "<option selected='selected' value=\"$value\">$label</option>";
 				}
 				else {
-					$output .= "<option value='$value'>$label</option>";
+					$output .= "<option value=\"$value\">$label</option>";
 				}
 			}
 		}
