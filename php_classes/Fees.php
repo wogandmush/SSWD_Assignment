@@ -36,11 +36,10 @@ class Fees implements Crudable, Component{
 	}
 	public function create(){
 		$conn = DBConnect::getConnection();
-		$sql = "INSERT INTO fees VALUES(
-			'".mysqli_real_escape_string($conn, $this->name)."',
-			'".mysqli_real_escape_string($conn, $this->price)."',
-			'".mysqli_real_escape_string($conn, $this->period)."'
-			)";
+		$name = mysqli_real_escape_string($this->name);
+		$price = mysqli_real_escape_string($this->price);
+		$period = mysqli_real_escape_string($this->period);
+		$sql = "INSERT INTO fees VALUES('$name', '$price', '$period')";
 		$result = mysqli_query($conn, $sql);
 		if($error = mysqli_error($conn)){
 			mysqli_close($conn);
@@ -100,7 +99,8 @@ class Fees implements Crudable, Component{
 	}
 	public function updateBenefits(){
 		$conn = DBConnect::getConnection();
-		$sql = "DELETE FROM fees_benefit WHERE membership_type = '$this->name'";
+		$name = mysqli_real_escape_string($conn, $this->name);
+		$sql = "DELETE FROM fees_benefit WHERE membership_type = '$name'";
 		$result = mysqli_query($conn, $sql);
 		if($error = mysqli_error($conn)){
 			mysqli_close($conn);
@@ -109,7 +109,8 @@ class Fees implements Crudable, Component{
 		if(sizeof($this->benefits) === 0) return;
 		$updateSql = "INSERT INTO fees_benefit VALUES";
 		$updateSql .= implode(", ", array_map(function($benefit){
-			return "('$this->name', '$benefit')";
+			global $name;
+			return "('$name', '$benefit')";
 		}, $this->benefits));
 		$result = mysqli_query($conn, $updateSql);
 		if($error = mysqli_error($conn)){
@@ -121,7 +122,7 @@ class Fees implements Crudable, Component{
 	}
 	public function delete(){
 		$conn = DBConnect::getConnection();
-		$sql = "DELETE FROM fees WHERE membership_type = '$this->name'";
+		$sql = "DELETE FROM fees WHERE membership_type = '".mysqli_real_escape_string($conn, $this->name)."'";
 		$result = mysqli_query($conn, $sql);
 		if($error = mysqli_error($conn)){
 			mysqli_close($conn);
@@ -137,7 +138,7 @@ class Fees implements Crudable, Component{
 		$price = explode(".", $this->price);
 		$nameFmt = StringHelper::toSkeletonCase($this->name);
 		$html = "
-    <div id='$nameFmt' class='fees col-xs-12 col-lg-4'>
+    <div id=\"$nameFmt\" class='fees col-xs-12 col-lg-4'>
       <div class='card text-xs-center'>
         <div class='card-header'>
           <h3 class='display-2'><span class='currency'>€</span>${price[0]}<span class='period'>.${price[1]}/$this->period</span></h3>
