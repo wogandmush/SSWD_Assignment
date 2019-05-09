@@ -31,7 +31,6 @@ function forwardToMailServer($data){
 	$result = curl_exec($curly);
 	return $result;
 }
-//var_dump($_SERVER);
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	if(isset($_POST['delete'])){
 		$success = Contact::deleteById($_POST['delete-key']);
@@ -41,7 +40,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		}
 	}
 	else if(isset($_POST['contact-submit'])){
-		//var_dump($_POST);
 		$name;
 		$email;
 		$message;
@@ -75,7 +73,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 				'enquiry' => true
 			];
 			$result = forwardToMailServer($fields);
-			echo $result;
 			// curl data to knuth, to send email
 			if($result == "Success!"){
 				echo "<h4 class='text-secondary'>Thank you for your query. A confirmation email has been sent to $email<h4>";
@@ -83,11 +80,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 				$contact->render();
 			}
 			else {
-				echo $result;
 				echo "<h4 class='text-warning'>Something went wrong</h4>";
-
 				echo "<p>Please try again</p>";
-
 			}
 		}
 		else {
@@ -95,8 +89,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		}
 	}
 	else if(isset($_POST['contact-reply'])){
-		var_dump($_POST);
-		var_dump($_SESSION);
 		$key = $_POST['contact-reply-key'];
 		$original_message = Contact::read("WHERE hashkey = '$key'")[0];
 		$subject = $original_message->getSubject();
@@ -112,8 +104,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 			'reply' => true
 		];
 		$result = forwardToMailServer($fields);
-		echo $result;
-
+				
 	}
 }
 ?>

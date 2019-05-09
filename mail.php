@@ -26,22 +26,28 @@ EOT;
 
 		$email_sent = mail($email, "Thank you for your enquiry!", $content, $mailHeader);
 
-		if($email_sent)
+		if($email_sent){
 			echo "Success!";
-		else 
+			exit();
+		}
+		else {
 			echo "Fail!";
+			exit();
+		}
 	}
+
 	else if(isset($_POST['reply'])){
 		
 		$first_name = $_POST['name'];
 		$reply_body = $_POST['reply_body'];
 		$subject = $_POST['subject'];
 		$email = $_POST['email'];
+		$removeLink = $_POST['remove-link'];
 		$content =<<<EOT
 
 $first_name has replied to your message PerfectForm Fitness:
 
-Subject: Re:$subject
+Subject: Re: $subject
 Message: 
 	$reply_body
 
@@ -55,7 +61,7 @@ EOT;
 
 		$email_sent = mail($email, "$first_name has replied to your message!", $content, $mailHeader);
 
-		if($email_send){
+		if($email_sent){
 			echo "Success!";
 			exit();
 		}
