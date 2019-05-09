@@ -19,6 +19,18 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 	$deleteForm->render();
 }
 
+function forwardToMailServer($data){
+	$url = "https://knuth.griffith.ie/~s2995020/Assignment/SSWD_Assignment/mail.php";
+	$payload = http_build_query($fields);
+	$curly = curl_init();
+	curl_setopt($curly, CURLOPT_URL, $url);
+	curl_setopt($curly, CURLOPT_POST, true);
+	curl_setopt($curly, CURLOPT_POSTFIELDS, $payload);
+
+	curl_setopt($curly, CURLOPT_RETURNTRANSFER, true);
+	$result = curl_exec($curly);
+	return $result;
+}
 //var_dump($_SERVER);
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	if(isset($_POST['delete'])){
@@ -54,28 +66,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 			$key = $contact->getKey();
 
 
-			$url = "https://knuth.griffith.ie/~s2995020/Assignment/SSWD_Assignment/mail.php";
 			$fields = [
 				'name' => $name,
 				'email' => $email,
 				'subject' => $subject,
 				'message' => $message,
 				'mobile' => $mobile,
-				'remove-link' => "${_SERVER['SERVER_NAME']}$root/contact_mail.php?id=$key"
+				'remove-link' => "${_SERVER['SERVER_NAME']}$root/contact_db.php?id=$key"
 			];
+			$result = forwardToMailServer($fields);
 			// curl data to knuth, to send email
-			$payload = http_build_query($fields);
-			$curly = curl_init();
-
-			curl_setopt($curly, CURLOPT_URL, $url);
-			curl_setopt($curly, CURLOPT_POST, true);
-			curl_setopt($curly, CURLOPT_POSTFIELDS, $payload);
-
-			curl_setopt($curly, CURLOPT_RETURNTRANSFER, true);
-			var_dump($curly);
-			echo $url;
-			$result = curl_exec($curly);
-			echo $result;
 			if($result == "Success!"){
 				echo "<h4 class='text-secondary'>Thank you for your query. A confirmation email has been sent to $email<h4>";
 				$contact->create();
@@ -93,6 +93,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	}
 	else if(isset($_POST['contact-reply'])){
 		var_dump($_POST);
+		$key = $_POST['contact-reply-key'];
+		$original_message = Contact::read("WHERE hashkey = '$key'");
+		$email = $original_message->getEmail();
+
 
 	}
 }

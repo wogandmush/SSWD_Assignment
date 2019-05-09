@@ -18,7 +18,7 @@ if($isMember){
 </section>
 
 <?php
-$contactForm = new Form('contact-form', 'contact_mail.php', 'POST');
+$contactForm = new Form('contact-form', 'contact_db.php', 'POST');
 $contactName = new Input('contact-name', 'Enter your name:', 'text');
 $contactName->setRequired(true);
 $contactEmail = new Input('contact-email', 'Enter your email', 'email');
