@@ -77,11 +77,9 @@ class Contact implements Crudable, Component{
 			'$subject',
 			'$message',
 			'$hashkey')";
-		echo $sql;
 		$result = mysqli_query($conn, $sql);
 		if($error = mysqli_error($conn)){
 			mysqli_close($conn);
-			echo $error;
 			return $error;
 		}
 		if($result){
@@ -98,7 +96,6 @@ class Contact implements Crudable, Component{
 		if(!empty($order))
 			$sql .= " ORDER BY $order";
 		$sql .= " LIMIT $limit";
-		echo $sql;
 		$result = mysqli_query($conn, $sql);
 		if($error = mysqli_error($conn)){
 			mysqli_close($conn);

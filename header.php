@@ -24,7 +24,7 @@ include 'init.php';
 	<body>
 		<header>           
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href='<?php echo $root;?>'>Home</a>
+			<a class="navbar-brand" href='<?php echo $root;?>'>PerfectForm Fitness</a>
 			<button class="navbar-toggler" type="button" id="navbar-toggler"> 
 				<span class="navbar-toggler-icon"></span>
 			</button>

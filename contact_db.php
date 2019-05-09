@@ -28,8 +28,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 			echo "<h4 class='text-success'>Your message has successfully been delisted<h4>";
 		}
 	}
-
-
 	else if(isset($_POST['contact-submit'])){
 		//var_dump($_POST);
 		$name;
@@ -49,63 +47,53 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		if(isset( $_POST['contact-message']))
 			$message = $_POST['contact-message'];
 		$hostEmail = "swole@fit.ie";
+
 		if(!(empty($name) || empty($email) || empty($message) || empty($subject))){
 
 			$contact = new Contact($name, $email, $subject, $message, $mobile);
 			$key = $contact->getKey();
-			echo $key;
-			$contact->create();
 
-			$content =<<<EOT
 
-From: $name
-Email: $email
+			$url = "https://knuth.griffith.ie/~s2995020/Assignment/SSWD_Assignment/mail.php";
+			$fields = [
+				'name' => $name,
+				'email' => $email,
+				'subject' => $subject,
+				'message' => $message,
+				'mobile' => $mobile,
+				'remove-link' => "${_SERVER['SERVER_NAME']}$root/contact_mail.php?id=$key"
+			];
+			// curl data to knuth, to send email
+			$payload = http_build_query($fields);
+			$curly = curl_init();
 
-Thank you for your enquiry.
-Your message will be made visible to our members
-Subject: $subject
-Message: $message
+			curl_setopt($curly, CURLOPT_URL, $url);
+			curl_setopt($curly, CURLOPT_POST, true);
+			curl_setopt($curly, CURLOPT_POSTFIELDS, $payload);
 
-If you wish to remove you message click the link below:
-
-EOT;
-
-$url = "https://knuth.griffith.ie/~s2995020/Assignment/SSWD_Assignment/mail.php";
-$fields = [
-	'name' => $name,
-	'email' => $email,
-	'subject' => $subject,
-	'message' => $message,
-	'mobile' => $mobile,
-	'remove-link' => "${_SERVER['SERVER_NAME']}$root/contact_mail.php?id=$key"
-	];
-$payload = http_build_query($fields);
-$curly = curl_init();
-
-curl_setopt($curly, CURLOPT_URL, $url);
-curl_setopt($curly, CURLOPT_POST, true);
-curl_setopt($curly, CURLOPT_POSTFIELDS, $payload);
-
-curl_setopt($curly, CURLOPT_RETURNTRANSFER, true);
-var_dump($curly);
-echo $url;
-$result = curl_exec($curly);
-echo $result;
-
-/*
-			echo $content;
-			$mailheader = "From: $hostEmail \r\n";
-
-			$email_sent = mail($email, "Thank you for your enquiry", $content, $mailheader);// o die("Error!");
-			if($email_sent) {
-				echo "Email sent!";
+			curl_setopt($curly, CURLOPT_RETURNTRANSFER, true);
+			var_dump($curly);
+			echo $url;
+			$result = curl_exec($curly);
+			echo $result;
+			if($result == "Success!"){
+				echo "<h4 class='text-secondary'>Thank you for your query. A confirmation email has been sent to $email<h4>";
+				$contact->create();
+				$contact->render();
 			}
-*/
+			else {
+				echo "<h4 class='text-warning'>Something went wrong</h4>";
+				echo "<p>Please try again</p>";
+
+			}
 		}
 		else {
 			echo "Some fields left empty";
 		}
-		//var_dump(error_get_last());
+	}
+	else if(isset($_POST['contact-reply'])){
+		var_dump($_POST);
+
 	}
 }
 ?>

@@ -2,8 +2,6 @@
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-	echo "hello";
-	var_dump($_POST);
 	$name = $_POST['name'];
 	$email = $_POST['email'];
 	$subject = $_POST['subject'];
@@ -16,15 +14,13 @@ From: $name
 Email: $email
 
 Thank you for your enquiry.
-Your message will be made visible to our members
+Your message will be made visible to our staff and members, who will get in touch shortly!
 Subject: $subject
 Message: $message
 
 If you wish to remove you message click the link below:
 $removeLink
-
 EOT;
-echo $content;
 
 $hostEmail = "swole@fit.ie";
 $mailHeader = "From: $hostEmail \r\n";
@@ -35,5 +31,4 @@ if($email_sent)
 	echo "Success!";
 else 
 	echo "Fail!";
-
 }
