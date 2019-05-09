@@ -1,49 +1,39 @@
 <?php
 
-include 'init.php';
-
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
+	echo "hello";
 	var_dump($_POST);
-	$name;
-	$email;
-	$message;
-	$mobile;
-	$subject;
+	$name = $_POST['name'];
+	$email = $_POST['email'];
+	$subject = $_POST['subject'];
+	$message = $_POST['message'];
+	$removeLink = $_POST['remove-link'];
 
-	if(isset( $_POST['contact-name']))
-		$name = $_POST['contact-name'];
-	if(isset( $_POST['contact-email']))
-		$email = $_POST['contact-email'];
-	if(isset( $_POST['contact-subject']))
-		$subject = $_POST['contact-subject'];
-	if(isset( $_POST['contact-mobile']))
-		$mobile = $_POST['contact-mobile'];
-	if(isset( $_POST['contact-message']))
-		$message = $_POST['contact-message'];
-	$hostEmail = "swole@fit.ie";
-	if(!(empty($name) || empty($email) || empty($message) || empty($subject))){
+$content =<<<EOT
 
-		$contact = new Contact($name, $email, $subject, $message, $mobile);
-		$key = $contact->getKey();
-		echo $key;
-		$contact->create();
+From: $name
+Email: $email
 
-		$content="From: $name \n Email: $email \n Message: $message";
-		/*
-		$mailheader = "From: $hostEmail \r\n";
+Thank you for your enquiry.
+Your message will be made visible to our members
+Subject: $subject
+Message: $message
 
-		$email_sent = mail($email, $subject, $content, $mailheader);// o die("Error!");
-		if($email_sent) {
-			echo "Email sent!";
-		}
-		 */
-	}
-	else {
-		echo "Some fields left empty";
-	}
+If you wish to remove you message click the link below:
+$removeLink
 
-	//var_dump(error_get_last());
+EOT;
+echo $content;
+
+$hostEmail = "swole@fit.ie";
+$mailHeader = "From: $hostEmail \r\n";
+
+$email_sent = mail($email, "Thank you for your enquiry!", $content, $mailHeader);
+
+if($email_sent)
+	echo "Success!";
+else 
+	echo "Fail!";
+
 }
-?>
-
