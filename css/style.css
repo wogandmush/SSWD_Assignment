@@ -203,6 +203,9 @@ section#admin{
 #action-form button{
 	margin: 2em;
 }
+section#fees{
+	padding: 5em 0;
+}
 
 #fees-admin {
 	display: flex;
