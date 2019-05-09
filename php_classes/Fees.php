@@ -78,8 +78,8 @@ class Fees implements Crudable, Component{
 					while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
 						$fee->addBenefit($row['benefit']);
 					}
+					mysqli_free_result($result);
 				}
-				mysqli_free_result($result);
 			}
 			mysqli_close($conn);
 			return $fees;
