@@ -104,6 +104,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 			'reply' => true
 		];
 		$result = forwardToMailServer($fields);
+		if($result == "Success!"){
+			$enquirer = $original_message->getName();
+			echo "<h4 class='text-success'>Thank you for your reply! Your message has been forwarded to $enquirer</h4>";
+			echo "<p class='text-secondary'>Redirecting back to enquiries page...</p>";
+			header("refresh: 2;url='$root/contact_manage.php'");
+			exit();
+		}
 				
 	}
 }
