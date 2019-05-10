@@ -1,7 +1,0 @@
-CREATE TABLE contact_us(
-	name VARCHAR(60),
-	email VARCHAR(60),
-	phone_no VARCHAR(60),
-	message VARCHAR(400),
-	date DATETIME DEFAULT CURRENT_TIMESTAMP
-);

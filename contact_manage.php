@@ -1,5 +1,9 @@
 <?php
 include 'header.php';
+if(!$isMember){
+	header("Location: index.php");
+	exit();
+}
 
 echo "<section id='contact-manage'>";
 $contactMessages = Contact::read();

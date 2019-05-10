@@ -1,5 +1,9 @@
 <?php
 include './header.php';
+if(!$isAdmin){
+	header("Location: index.php");
+	exit();
+}
 
 echo "<section id='image-manage'>";
 if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['upload'])){

@@ -1,5 +1,13 @@
 <?php 
 include 'header.php';
+
+if(!$isAdmin){
+	// redirect non-admin users
+	header("Location: index.php");
+	exit();
+}
+
+
 ?>
 
 <section id="fees-admin">

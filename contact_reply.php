@@ -1,5 +1,9 @@
 <?php
 include 'header.php';
+if(!$isMember){
+	header("Location: index.php");
+	exit();
+}
 
 $id = $_GET['id'];
 $contactMessage = Contact::read("WHERE hashkey = '$id'")[0];
@@ -15,3 +19,5 @@ $contactReplySubmit = new Button('contact-reply', 'send');
 $contactReplySubmit->setClassList('btn btn-primary');
 $contactReplyForm->addButton($contactReplySubmit);
 $contactReplyForm->render();
+
+include 'footer.php';

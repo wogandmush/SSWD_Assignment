@@ -78,12 +78,9 @@ if($isAdmin){
 	if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])){
 		$adminRegister->setData();
 		$adminRegister->validate();
-		echo $password->getData();
-		echo $passwordCheck->getData();
 		$matching = $password->getData() === $passwordCheck->getData();
 		if(!$adminRegister->hasErrors() && $matching){
 			$hash = password_hash($password->getData(), PASSWORD_DEFAULT);
-			echo $hash;
 			$sql = "INSERT INTO admin VALUES ('".$email->getData($conn)."', '$hash');";
 			$result = mysqli_query($conn, $sql);
 			if($result){
@@ -94,7 +91,6 @@ if($isAdmin){
 			}
 			else {
 				echo "<h4 class='text-warning'>Something went wrong</h4>";
-				echo mysqli_error($conn);
 			}
 		}
 	}
