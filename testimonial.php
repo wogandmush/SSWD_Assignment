@@ -1,6 +1,11 @@
 <?php 
-include_once 'header.php'; 
 
+#
+# This page is included in index.php, as well as
+#
+#
+
+include_once 'header.php'; 
 
 // load default testimonials if not loaded before include
 if(!isset($testimonials))
