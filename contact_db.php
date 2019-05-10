@@ -1,5 +1,13 @@
 <?php
 
+#
+# This file handles db logic related to the contact page
+#
+# User submitted data is curled to knuth.griffith.ie, in order to make use of it's working mail server.
+#
+# If a successful response is recieved from knuth, the user's enquiry is added to the database
+#
+
 include 'header.php';
 
 if($_SERVER['REQUEST_METHOD'] === 'GET'){

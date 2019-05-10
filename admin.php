@@ -1,4 +1,9 @@
 <?php
+#
+# This page allows admin users to login
+# A logged in admin can also use this page to register new admin users1
+#
+
 include_once 'header.php';
 
 echo "<section id='admin'>";
@@ -11,10 +16,12 @@ if(!$isAdmin){
 	$email->setValidator("Validator::validateEmail");
 
 	$password = new Input('password', 'Enter password', 'password');
-	function validatePassword($pwd){
-	return true;
-	}
-	$password->setValidator('validatePassword');
+
+	// password must be at least 8 characters
+	// password must have one alphanumeric character
+	// password must have one number
+	// password must have at least two alphabetical characters
+	$password->setValidator('Validator::validatePassword');
 
 	$adminLogin->addFields($email, $password);
 

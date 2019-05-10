@@ -1,4 +1,8 @@
 <?php
+#
+# This file provides a simple form, for logged in members to 
+# write replies to non-member users' enquiries on contact.php
+#
 include 'header.php';
 if(!$isMember){
 	header("Location: index.php");

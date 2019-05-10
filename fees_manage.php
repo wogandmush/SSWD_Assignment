@@ -1,4 +1,15 @@
 <?php 
+
+#
+# This page follows two narratives:
+#   - Edit/Delete existing fees plans
+#   - Add a new fees plan
+#
+# The admin can see a preview of the new fees plan, or the one they are currently editing
+#
+# Fees components are displayed on index.php
+#
+
 include 'header.php';
 
 if(!$isAdmin){

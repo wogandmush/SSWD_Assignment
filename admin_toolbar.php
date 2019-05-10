@@ -1,4 +1,8 @@
 <?php
+#
+# This toolbar provides links to the various content management tools available to admin users
+#
+
 if($isAdmin){
 ?>
 

@@ -1,5 +1,15 @@
 <?php
 
+#
+# This file is hosted on knuth.griffith.ie
+# it takes advantage of knuth's working mail server, to email
+# users who make an enquiry via contact.php
+#
+# Emails are also sent by members who reply to these enquiries
+#
+# Emails include links which non-members can follow, to delist their enquiries and delete them from the databasae
+#
+
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	if(isset($_POST['enquiry'])){
 		$name = $_POST['name'];
