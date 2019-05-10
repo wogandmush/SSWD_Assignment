@@ -7,7 +7,7 @@ spl_autoload_register(function($class_name){
 });
 
 ###for testing###
-ini_set('display_errors', 1);
+//ini_set('display_errors', 1);
 /*
 $_SESSION['admin'] = true;
 $_SESSION['first_name'] = 'James';

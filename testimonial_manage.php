@@ -18,11 +18,11 @@ else $testimonials = Testimonial::loadUnapproved();
 <?php
 # provide a button to switch between approved and non-approved testimonials
 if(isset($_GET['manage_approved']))
-	echo "<button onclick='location.href=`testimonial_manage.php`;'>Manage unapproved</button>";
+	echo "<button class='btn btn-secondary' onclick='location.href=`testimonial_manage.php`;'>Manage unapproved</button>";
 else {
 	# form used to reload this page with 'manage_approved' get parameter
 	echo "<form action='testimonial_manage.php' method='GET'>
-			<button type='submit' name='manage_approved'>Manage approved</button>
+			<button class='btn btn-secondary' type='submit' name='manage_approved'>Manage approved</button>
 		</form>";
 }
 

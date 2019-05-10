@@ -271,19 +271,43 @@ section#fees{
 section#contact-manage{
 	min-height: 90vh;
 	display: flex;
-	align-items: center;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
+	justify-contact: flex-start;
+	padding: 1em;
 }
 
 .contact {
-	display: flex;
-	flex-direction: row;
-	justify-content:center;
-	padding: 1em;
-	margin: 0 auto;
-	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 4fr 1fr;
+	align-content: center;
+	padding: 2em;
+	width: 90%;
+	margin: 1em auto;
+	background: #4444;
+	border-radius: 4px;
 }
+
+.contact-subject{
+	font-size: 1.5em;
+	align-self: center;
+}
+.contact-body{
+	padding: 0 2em;
+	display: flex;
+	flex-direction: column;
+}
+.contact-name, .contact-date{
+	font-weight: 600;
+	align-self: flex-end;
+}
+.contact a {
+	height: 3.5em;
+	align-self: center;
+}
+
+
+
 
 #index_hero {
 	/* Give it a 'hero' background image covering the complete header container*/

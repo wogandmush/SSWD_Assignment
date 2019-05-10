@@ -140,17 +140,24 @@ class Contact implements Crudable, Component{
 		$key = $this->getKey();
 		$output = <<<EOT
 <div id='$key' class='contact'>
-	<h4 class='contact-subject'>$this->subject</h4>
+	<h4 class='contact-subject'>
+		$this->subject
+	</h4>
 	<div class='contact-body'>
-	<p class='contact-text'>
-		$this->message
-	</p>
-	<span class='contact-name'>$this->name</span>
-	<small class='contact-date'>
-	$this->date
-	</small>
-<a href='contact_reply.php?id=$key'>Reply</a>
-		</div>
+		<p class='contact-text'>
+			$this->message
+		</p>
+		<span class='contact-name'>
+			$this->name
+		</span>
+		<small class='contact-date'>
+			$this->date
+		</small>
+	</div>
+	<a class='btn btn-primary' href='contact_reply.php?id=$key'>
+		Reply
+	</a>
+</div>
 EOT;
 
 			

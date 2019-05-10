@@ -34,7 +34,7 @@ include 'header.php';
 
   <!-- Section heading -->
     <div class="container">
-  <h2 class="h1-responsive font-weight-bold text-center my-5">What is Strength Class?</h2>
+  <h2 class="h1-responsive text-info font-weight-bold text-center my-5">What is Strength Class?</h2>
   <!-- Section description font-weight-bolder-->
   <p class="lead grey-text text-center w-responsive mx-auto mb-5">As we age, it is critical to stay active. We should listen to the needs and abilities of our bodies, to reduce the risk of injury or strain. You will work with trained Perfect Form Fitness instructors, who can modify exercises to suit your individual needs and fitness abilities.
 
@@ -43,7 +43,7 @@ Also, Strength class is for anyone who is looking for an exercise that is fun, f
     
      <!-- Section heading -->
     <div class="container">
-  <h2 class="h1-responsive font-weight-bold text-center my-5">What are the Benifits of Strength Class</h2>
+  <h2 class="h1-responsive text-info font-weight-bold text-center my-5">What are the Benefits of Strength Class?</h2>
   <!-- Section description -->
   <p class="lead grey-text text-center w-responsive mx-auto mb-5">While most older adults regularly walk, swim or run for exercise many do not perform weight or resistance training. Strength class will help you build muscle, increase mobility and improve bone density. All of which are important areas to focus on as we age.
 

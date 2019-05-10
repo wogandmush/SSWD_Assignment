@@ -28,7 +28,7 @@ include 'header.php';
 
   <!-- Section heading -->
     <div class="container">
-  <h2 class="h1-responsive font-weight-bold text-center my-5">What is Cardio?</h2>
+  <h2 class="h1-responsive text-info font-weight-bold text-center my-5">What is Cardio?</h2>
   <!-- Section description font-weight-bolder-->
   <p class="lead grey-text text-center w-responsive mx-auto mb-5">This is a full body interval training programme that burns the maximum number of calories. It is suitable for people with a moderate fitness level and incorporates exercises such as high knees, march twists, upper cuts and knee-to-elbows. And you don’t need to have any prior experience in martial arts to join in.
 
@@ -39,7 +39,7 @@ At the end of each Cardio session you will leave exhausted but feeling great. Co
     
      <!-- Section heading -->
     <div class="container">
-  <h2 class="h1-responsive font-weight-bold text-center my-5">What are the Benifits of Cardio Class</h2>
+  <h2 class="h1-responsive text-info font-weight-bold text-center my-5">What are the Benifits of Cardio Class</h2>
   <!-- Section description -->
   <p class="lead grey-text text-center w-responsive mx-auto mb-5">Our Perfect Form Fitness instructors will show you techniques to help burn fat. An hour Cardio class allows you to burn up to 1,000 calories. Although individual results vary depending on your fitness level, height and weight, it is a class that will certainly keep you on your toes.
 
