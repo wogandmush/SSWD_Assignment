@@ -1,5 +1,10 @@
 <?php
 
+#
+# This class is used to create/load/delete feature html components, using
+# data loaded from the database
+#
+
 class Feature implements Crudable, Component{
 	private $id;
 	private $title;

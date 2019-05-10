@@ -1,4 +1,5 @@
 <?php
+
 class IOHelper{
 	public static function getDirectories($dirname){
 		if($dirname[strlen($dirname) - 1] !== "/")

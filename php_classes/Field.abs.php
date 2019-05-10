@@ -1,6 +1,15 @@
 <?php
 
-include_once 'Validator.php';
+#
+# This is the parent class to all form field element component classes
+# It declares variables and abstract methods common to all of these classes, as well as defining some default methods
+#
+# Classes which extent Field are
+#  - OptionField.php (abstract)
+#  - Input.php
+#  - TextArea.php
+#
+#
 
 abstract class Field implements Component{
 	protected $name; // the name attribute
