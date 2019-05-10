@@ -149,8 +149,8 @@ class Contact implements Crudable, Component{
 	<small class='contact-date'>
 	$this->date
 	</small>
-<a href='contact_reply.php?id=$key'>Reply to this query</a>
-		<div>
+<a href='contact_reply.php?id=$key'>Reply</a>
+		</div>
 EOT;
 
 			

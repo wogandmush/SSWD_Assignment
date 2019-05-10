@@ -1,6 +1,7 @@
 <?php
 include 'header.php';
 
+echo "<section id='contact-manage'>";
 $contactMessages = Contact::read();
 
 if(is_array($contactMessages)){
@@ -8,3 +9,5 @@ if(is_array($contactMessages)){
 		$message->render();
 	}
 }
+echo "</section>";
+include 'footer.php';
