@@ -1,5 +1,10 @@
 <?php
 
+#
+# this file just echos back list of image urls 
+# for all files within a image category folder
+#
+
 include 'init.php';
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
 	if(isset($_GET['category'])){

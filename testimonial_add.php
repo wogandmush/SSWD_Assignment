@@ -1,4 +1,13 @@
 <?php 
+
+#
+# This page allows logged in members to add a testimonial
+# for a specific class
+#
+# Members can choose to preview their testimonial before they submit
+#
+#
+
 include_once 'header.php';
 
 if(!$isMember){

@@ -1,4 +1,16 @@
 <?php
+
+#
+# This page allows admin users to upload new images, to be used in
+# feature components on the main page
+#
+# The page includes a canvas element, which allows users to crop their
+# images to the correct aspect ratio
+#
+# This helps to prevent problems with stretching/overly large files, which a non-savvy admin user may inadvertently upload, if left unassisted
+#
+
+
 include './header.php';
 if(!$isAdmin){
 	header("Location: index.php");

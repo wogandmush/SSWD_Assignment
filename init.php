@@ -1,4 +1,16 @@
 <?php
+
+#
+# This file is included at the top of each page
+# it has the following functions:
+#  - initiate session
+#  - initiate output buffering
+#  - enable class autoloading
+#  - convenient place to set session variables, php.ini settings, etc, for testing
+#
+#  also initiates useful variables for resolving pathnames, etc
+#
+
 ob_start(); // Turn on output buffering - place HTML etc. into buffer until end of script
 session_start(); // start session to track data for user over pages
 

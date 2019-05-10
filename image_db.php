@@ -1,5 +1,21 @@
 <?php
 
+#
+# despite the name, this file does not link to the database
+#
+# instead, it is used to manage filesystem related logic, related to 
+# admin uploaded images
+#
+# admins can
+#  - create a new category of images, which creates a new directory within
+#  /images/
+#
+#  - Upload a new image, which will be inserted into the folder for the 
+#  category the admin has selected
+#
+#
+
+
 include 'init.php';
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	if(isset($_POST['new-category'])){
