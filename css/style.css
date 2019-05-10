@@ -379,13 +379,20 @@ h1 {
 	align-items: center;
 }
 .feature {
+	margin: 1em 0;
+	padding: 1em;
 	margin-top: 1.5em;
 }
 .feature img {
 	border-radius: 5px;
 	width: 350px;
 	height: 260px;
-	margin-right: 1.5em;
+	margin-right: 2em;
+}
+
+.feature h2{
+	color: #ad30af;
+	padding: 1em 0;
 }
 
 .feature-content {
@@ -394,15 +401,21 @@ h1 {
 	flex-direction:row;
 	align-items: center;
 	justify-content:space-between;
-	font-size: 1.6em;
+	font-size: 1.2em;
+}
+.feature-content p {
+	align-self: flex-start;
+	margin-left: 2em;
+	margin-right: 4em;
 }
 
 #feature-link {
 	color: #ad30af;
 	font-size: 1.5em;
-	margin-left: 50em;
+	/*+margin-left: 50em;*/
 	display: block;
-	ems: flex-end;
+	float: right;
+	margin-right: 2em;
 }
 
 /**************************************************************************/

@@ -143,7 +143,7 @@ class Feature implements Crudable, Component{
 				<p>$this->detail</p>
 			</div>";
 		if(isset($this->link)) 
-			$output .="<a href='$this->link'>Read more</a>";
+			$output .="<a id='feature-link' href='$this->link'>Read more</a>";
 		$output .= "</div>";
 		return $output;
 	}
