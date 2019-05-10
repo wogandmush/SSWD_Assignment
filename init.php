@@ -25,7 +25,7 @@ $_SESSION['admin'] = true;
 $_SESSION['first_name'] = 'James';
 $_SESSION['user_no'] = 1;
 $_SESSION['email'] = 'dan@poo';
- */
+*/
 #################
 
 $isMember = isset($_SESSION['email']);

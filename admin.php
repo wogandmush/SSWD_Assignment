@@ -17,10 +17,6 @@ if(!$isAdmin){
 
 	$password = new Input('password', 'Enter password', 'password');
 
-	// password must be at least 8 characters
-	// password must have one alphanumeric character
-	// password must have one number
-	// password must have at least two alphabetical characters
 	$password->setValidator('Validator::validatePassword');
 
 	$adminLogin->addFields($email, $password);
@@ -39,6 +35,7 @@ if(!$isAdmin){
 			$conn = DBConnect::getConnection();
 			$sql = "SELECT * FROM admin WHERE email = '".$email->getData($conn)."';";
 			$result = mysqli_query($conn, $sql);
+			echo $password->getData();
 			$num = mysqli_num_rows($result);			
 			if($num === 1){
 				$row = mysqli_fetch_array($result);
@@ -76,6 +73,7 @@ if($isAdmin){
 
 	$email = new Input('email', 'Enter email', 'email');
 	$password = new Input('password', 'Enter password', 'password');
+	$password->setValidator("Validator::validatePassword");
 	$passwordCheck = new Input('password-check', 'Confirm password', 'password');
 
 	$adminRegister->addFields($email, $password, $passwordCheck);
@@ -99,6 +97,17 @@ if($isAdmin){
 			else {
 				echo "<h4 class='text-warning'>Something went wrong</h4>";
 			}
+		} 
+		else {
+	// password must be at least 8 characters
+	// password must have one  non-alphanumeric character
+	// password must have one number
+	// password must have at least two alphabetical characters
+			echo "<p class='text-info'>Password must be at least 8 characters </p>";
+			echo "<p class='text-info'>Password must have at least one non-alphanumberic character </p>";
+			echo "<p class='text-info'>Password must have at least one number</p>";
+			echo "<p class='text-info'>Password must have at least two alphabetical characaters</p>";
+
 		}
 	}
 	echo "<h4 class='mx-auto'>Register a new admin user</h4>";

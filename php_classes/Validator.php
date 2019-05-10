@@ -17,11 +17,11 @@ class Validator{
 		//needs work
 		return preg_match('/^\+?[\d\s\-()]{7,}$/',$data);
 	}
-	public static function validatePassword(){
+	public static function validatePassword($password){
 	// password must be at least 8 characters
 	if(strlen($password) < 8)
 		return false;
-	// password must have one alphanumeric character
+	// password must have one non-alphanumeric character
 	if(!preg_match("/[\W]/", $password))
 		return false;
 	// password must have one number
