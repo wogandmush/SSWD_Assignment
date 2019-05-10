@@ -1,4 +1,19 @@
 <?php
+
+#
+# This is a one page, multi-branched, multistepped
+# contact management tool for admins to edit/create features.
+#
+# The three branches are,
+#  - create-new
+#    * Allows admin to create new content
+#  - edit-existing
+#    * Allows admin to change the title, content, image, or link of an exisiting feature
+#    * if admins submits a link, a http request is sent to the link destination. The link will only successfully submitted if a 200 response is received
+# - :
+#
+
+
 include 'header.php';
 if(!$isAdmin){
 	header("Location: $root/index.php");

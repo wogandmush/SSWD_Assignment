@@ -1,4 +1,12 @@
 <?php
+
+#
+# This page handles db logic relating to testimonials
+#
+# Testimonials can be added, approved/unapproved, and deleted
+#
+#
+
 include 'init.php';
 if(!$isAdmin){
 	echo "<h4 class='text-danger'>Unauthorized request made. Redirecting...</h4>";

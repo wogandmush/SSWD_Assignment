@@ -1,6 +1,16 @@
 <?php
-include 'init.php';
 
+#
+# This header is included on all displayed php pages
+#
+# It includes header information, including stylesheets etc which are necessary to display pages correctly
+#
+# It also includes the header/navbar, which provides navigation links, as well as a login form, logout button, and a link to the register (JOIN) page
+#
+# These are displayed as appropriate, depending on the users login status
+#
+
+include 'init.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

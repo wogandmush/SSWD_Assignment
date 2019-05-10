@@ -1,8 +1,11 @@
 <?php 
 
 #
-# This page is included in index.php, as well as
+# This page is included in index.php, as well as in the individual class pages
 #
+# It loads a batch of admin-approved user-submitted testimonials from the database, and cycles through them at random, using javascript/JQuery
+#
+# if a user is logged in as member, a link is also provided, which members can follow to add their own new testimomials
 #
 
 include_once 'header.php'; 

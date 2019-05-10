@@ -1,5 +1,15 @@
 <?php
 
+#
+# This page provides a tool for admins to review user-submitted testimonials
+#
+# Admins can approve new testimonials, which allows them to be displayed on the public site
+#
+# They can unapprove previously approved testimonials, which will stop them from being displayed on the public site
+#
+#	They can also delete testimonials, which will permanently remove them from the database
+#
+
 include './header.php';
 # redirect user if not admin: 
 if(!$isAdmin){

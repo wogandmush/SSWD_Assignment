@@ -1,5 +1,10 @@
 <?php
 
+#
+# This allows logged in users/admins to logout, ending their session
+#
+#
+
 include 'init.php';
 
 if($isMember || $isAdmin){
